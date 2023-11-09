@@ -1,8 +1,6 @@
-import { useState, useContext, useEffect } from "react";
-import { useHistory } from "react-router-dom";
-import FirebaseContext from "../context/firebase";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
-    const history = useHistory();
+    const history = useNavigate();
     return <p class="underline">This is a login Page</p>;
 }
