@@ -479,12 +479,27 @@ video {
   --tw-backdrop-sepia:  ;
 }
 @tailwind compontents;
-.text-3xl {
-  font-size: 1.875rem;
-  line-height: 2.25rem;
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
 }
-.font-bold {
-  font-weight: 700;
+.ml-auto {
+  margin-left: auto;
+}
+.flex {
+  display: flex;
+}
+.h-screen {
+  height: 100vh;
+}
+.w-3\/5 {
+  width: 60%;
+}
+.max-w-screen-md {
+  max-width: 768px;
+}
+.items-center {
+  align-items: center;
 }
 .underline {
   text-decoration-line: underline;
