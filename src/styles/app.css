@@ -483,9 +483,6 @@ video {
   margin-left: auto;
   margin-right: auto;
 }
-.ml-auto {
-  margin-left: auto;
-}
 .flex {
   display: flex;
 }
@@ -500,7 +497,4 @@ video {
 }
 .items-center {
   align-items: center;
-}
-.underline {
-  text-decoration-line: underline;
 }
