@@ -37,20 +37,14 @@ export default function SignUp() {
                         Sign up to see photos and videos from your friends.
                     </div>
                 )}
-                <button className="w-64 p-2 border rounded flex justify-center bg-blue-500">
-                    <img src="/images/fb-small-logo.png" />
+                <button className="w-64 mt-2 p-1 border rounded flex items-center justify-center bg-blue-500">
+                    <img src="/images/fb-logo-white.png" className="h-6 w-6" />
                     <span className="ml-2 text-xs text-white font-semibold">
                         Log in with Facebook
                     </span>
                 </button>
-                {/* <button
-                    className="w-64 text-sm text-center bg-blue-500 text-white py-1 rounded font-medium 
-                            "
-                >
-                    <img src="/images/fb-small-logo.png" />
-                    <p>Log In with Facebook</p>
-                </button> */}
-                <div className="flex justify-evenly space-x-2 w-64 mt-4">
+
+                <div className="flex justify-evenly space-x-2 w-64 my-4">
                     <span className="bg-gray-300 h-px flex-grow t-2 relative top-2"></span>
                     <span className="flex-none uppercase text-xs text-gray-400 font-semibold">
                         or
@@ -88,9 +82,9 @@ export default function SignUp() {
                         type="password"
                         placeholder="Password"
                         onChange={({ target }) => setPassword(target.value)}
-                        className="text-xs w-full mb-4 rounded border bg-gray-100 border-gray-300 px-2 py-2 focus:outline-none focus:border-gray-400 active:outline-none"
+                        className="text-xs w-full mb-2 rounded border bg-gray-100 border-gray-300 px-2 py-2 focus:outline-none focus:border-gray-400 active:outline-none"
                     />
-                    <div className="flex">
+                    <div className="flex my-1">
                         <p className="text-gray-500 text-xs text-center">
                             People who use our service may have uploaded your
                             contact information to Instagram.
@@ -99,7 +93,7 @@ export default function SignUp() {
                             </a>
                         </p>
                     </div>
-                    <div className="flex">
+                    <div className="flex m-1">
                         <p className="text-gray-500 text-xs text-center">
                             By signing up, you agree to our
                             <a className="text-blue-500 ml-1 cursor-pointer">
@@ -118,7 +112,7 @@ export default function SignUp() {
 
                     <button
                         disabled={isInvalid}
-                        className={`text-sm text-center bg-blue-500 text-white py-1 rounded font-medium 
+                        className={`text-sm text-center bg-blue-500 text-white py-1 rounded font-medium mt-3
                             ${isInvalid && "opacity-50"}`}
                     >
                         Sign Up
@@ -137,7 +131,7 @@ export default function SignUp() {
             </div>
             <div className=" text-center w-80 m-1">
                 Get the app.
-                <div className="flex justify-center mt-2">
+                <div className="flex justify-center mt-2 mb-4">
                     <img src="/images/playStore.png" className="h-12 mr-0.5" />
                     <img src="/images/appStore.png" className="h-12 ml-0.5" />
                 </div>
