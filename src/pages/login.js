@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 import * as ROUTER from "../constants/route";
@@ -13,6 +13,7 @@ export default function Login() {
     const isInvalid = password === "" || email === "";
 
     const handleLogin = () => {};
+
     return (
         <div className="container flex mx-auto max-w-screen-md items-center h-screen">
             <div className="flex w-3/6">
@@ -74,9 +75,13 @@ export default function Login() {
                 </div>
                 <div class="bg-white rounded border border-gray-300 text-center w-80 py-4">
                     <span class="text-sm">Don't have an account? </span>
-                    <button class="text-blue-500 text-sm font-semibold">
-                        Sign up
-                    </button>
+
+                    <Link
+                        class="text-blue-500 text-sm font-semibold"
+                        to="ROUTER.SIGNUP"
+                    >
+                        Sign Up
+                    </Link>
                 </div>
                 <div class=" text-center w-80 m-1">
                     Get the app.
