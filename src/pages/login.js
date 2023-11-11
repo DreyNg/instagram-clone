@@ -1,9 +1,10 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
-
+import { useState, useContext } from "react";
+import FirebaseContext from "../context/firebase";
 import * as ROUTER from "../constants/route";
 
 export default function Login() {
+    const { firebase } = useContext(FirebaseContext);
     const navigate = useNavigate();
 
     const [email, setEmail] = useState("");
@@ -12,7 +13,17 @@ export default function Login() {
     const [error, setError] = useState("");
     const isInvalid = password === "" || email === "";
 
-    const handleLogin = () => {};
+    const handleLogin = async (e) => {
+        e.preventDefault();
+        try {
+            await firebase.auth().signInWithEmailAndPassword(email, password);
+            navigate(ROUTER.DASHBOARD);
+        } catch (error) {
+            setPassword("");
+            setEmail("");
+            setError(error.message);
+        }
+    };
 
     return (
         <div className="container flex mx-auto max-w-screen-md items-center h-screen">
@@ -29,8 +40,15 @@ export default function Login() {
                         alt="instagram logo"
                         className="mt-5"
                     />
+                    {error ? (
+                        <p className="text-center m-1 text-xs text-red-500">
+                            {error}
+                        </p>
+                    ) : (
+                        <div className="m-5 w-full"></div>
+                    )}
                     <form
-                        className="mt-8 w-64 flex flex-col"
+                        className="w-64 flex flex-col"
                         onSubmit={handleLogin}
                         method="POST"
                     >
