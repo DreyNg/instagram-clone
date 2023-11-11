@@ -28,17 +28,23 @@ export default function Login() {
                         alt="instagram logo"
                         className="mt-5"
                     />
-                    <form className="mt-8 w-64 flex flex-col">
+                    <form
+                        className="mt-8 w-64 flex flex-col"
+                        onSubmit={handleLogin}
+                        method="POST"
+                    >
                         <input
                             aria-label="Enter your email address"
                             type="text"
                             placeholder="Email address"
+                            onChange={({ target }) => setEmail(target.value)}
                             class="text-xs w-full mb-2 rounded border bg-gray-100 border-gray-300 px-2 py-2 focus:outline-none focus:border-gray-400 active:outline-none"
                         />
                         <input
                             aria-label="Enter your email address"
                             type="password"
                             placeholder="Password"
+                            onChange={({ target }) => setPassword(target.value)}
                             class="text-xs w-full mb-4 rounded border bg-gray-100 border-gray-300 px-2 py-2 focus:outline-none focus:border-gray-400 active:outline-none"
                         />
                         <button class=" text-sm text-center bg-blue-400 text-white py-1 rounded font-medium">
