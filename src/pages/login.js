@@ -38,7 +38,7 @@ export default function Login() {
                     <img
                         src="/images/logo.png"
                         alt="instagram logo"
-                        className="mt-5"
+                        className="mt-5 cursor-pointer"
                     />
                     {error ? (
                         <p className="text-center m-1 text-xs text-red-500">
@@ -106,11 +106,11 @@ export default function Login() {
                     <div className="flex justify-center mt-2">
                         <img
                             src="/images/playStore.png"
-                            className="h-12 mr-0.5"
+                            className="h-12 mr-0.5 cursor-pointer"
                         />
                         <img
                             src="/images/appStore.png"
-                            className="h-12 ml-0.5"
+                            className="h-12 ml-0.5 cursor-pointer"
                         />
                     </div>
                 </div>

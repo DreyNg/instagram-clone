@@ -8,9 +8,9 @@ export default function SignUp() {
     const navigate = useNavigate();
 
     const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
     const [username, setUsername] = useState("");
     const [fullname, setFullname] = useState("");
+    const [password, setPassword] = useState("");
 
     const [error, setError] = useState("");
     const isInvalid =
@@ -26,14 +26,14 @@ export default function SignUp() {
                 <img
                     src="/images/logo.png"
                     alt="instagram logo"
-                    className="mt-5"
+                    className="mt-5 cursor-pointer"
                 />
                 {error ? (
                     <p className="text-center m-1 text-xs text-red-500">
                         {error}
                     </p>
                 ) : (
-                    <div className="text-center p-2 text-gray-500 font-semibold">
+                    <div className="text-center py-2 px-6 text-gray-500 font-semibold">
                         Sign up to see photos and videos from your friends.
                     </div>
                 )}
@@ -132,8 +132,14 @@ export default function SignUp() {
             <div className=" text-center w-80 m-1">
                 Get the app.
                 <div className="flex justify-center mt-2 mb-4">
-                    <img src="/images/playStore.png" className="h-12 mr-0.5" />
-                    <img src="/images/appStore.png" className="h-12 ml-0.5" />
+                    <img
+                        src="/images/playStore.png"
+                        className="cursor-pointer h-12 mr-0.5"
+                    />
+                    <img
+                        src="/images/appStore.png"
+                        className="cursor-pointer h-12 ml-0.5"
+                    />
                 </div>
             </div>
         </div>
