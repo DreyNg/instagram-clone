@@ -21,12 +21,12 @@ export default function Login() {
                     alt="iphone with Ins"
                 />
             </div>
-            <div className="flex w-3/6">
-                <div className="flex flex-col items-center bg-white p-4 border rounded">
+            <div class="h-screen bg-gray-50 w-3/6 flex flex-col justify-center items-center">
+                <div class="bg-white border border-gray-300 w-80 py-8 flex items-center flex-col mb-3">
                     <img
                         src="/images/logo.png"
                         alt="instagram logo"
-                        className="mt-8"
+                        className="mt-5"
                     />
                     <form className="mt-8 w-64 flex flex-col">
                         <input
@@ -41,8 +41,45 @@ export default function Login() {
                             placeholder="Password"
                             class="text-xs w-full mb-4 rounded border bg-gray-100 border-gray-300 px-2 py-2 focus:outline-none focus:border-gray-400 active:outline-none"
                         />
-                        <button>login</button>
+                        <button class=" text-sm text-center bg-blue-400 text-white py-1 rounded font-medium">
+                            login
+                        </button>
                     </form>
+                    <div class="flex justify-evenly space-x-2 w-64 mt-4">
+                        <span class="bg-gray-300 h-px flex-grow t-2 relative top-2"></span>
+                        <span class="flex-none uppercase text-xs text-gray-400 font-semibold">
+                            or
+                        </span>
+                        <span class="bg-gray-300 h-px flex-grow t-2 relative top-2"></span>
+                    </div>
+                    <button className="flex mt-6">
+                        <img src="/images/fb-small-logo.png" />
+                        <span class="ml-2 text-xs text-blue-900 font-semibold">
+                            Log in with Facebook
+                        </span>
+                    </button>
+                    <a class="text-xs text-blue-900 mt-4 cursor-pointer -mb-4">
+                        Forgot password?
+                    </a>
+                </div>
+                <div class="bg-white border border-gray-300 text-center w-80 py-4">
+                    <span class="text-sm">Don't have an account? </span>
+                    <button class="text-blue-500 text-sm font-semibold">
+                        Sign up
+                    </button>
+                </div>
+                <div class=" text-center w-80 m-1">
+                    Get the app.
+                    <div className="flex justify-center mt-3">
+                        <img
+                            src="/images/playStore.png"
+                            className="h-12 mr-0.5"
+                        />
+                        <img
+                            src="/images/Microsoft.png"
+                            className="h-12 ml-0.5"
+                        />
+                    </div>
                 </div>
             </div>
         </div>
