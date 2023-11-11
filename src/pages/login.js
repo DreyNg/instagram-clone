@@ -10,7 +10,7 @@ export default function Login() {
     const [password, setPassword] = useState("");
 
     const [error, setError] = useState("");
-    const inValid = email === "" || password == "";
+    const isInvalid = password === "" || email === "";
 
     const handleLogin = () => {};
     return (
@@ -47,8 +47,12 @@ export default function Login() {
                             onChange={({ target }) => setPassword(target.value)}
                             class="text-xs w-full mb-4 rounded border bg-gray-100 border-gray-300 px-2 py-2 focus:outline-none focus:border-gray-400 active:outline-none"
                         />
-                        <button class=" text-sm text-center bg-blue-400 text-white py-1 rounded font-medium">
-                            login
+                        <button
+                            disabled={isInvalid}
+                            class={`text-sm text-center bg-blue-500 text-white py-1 rounded font-medium 
+                            ${isInvalid && "opacity-50"}`}
+                        >
+                            Log In
                         </button>
                     </form>
                     <div class="flex justify-evenly space-x-2 w-64 mt-4">
