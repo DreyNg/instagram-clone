@@ -22,7 +22,7 @@ export default function Login() {
                 />
             </div>
             <div class="h-screen bg-gray-50 w-3/6 flex flex-col justify-center items-center">
-                <div class="bg-white border border-gray-300 w-80 py-8 flex items-center flex-col mb-3">
+                <div class="bg-white border rounded border-gray-300 w-80 py-8 flex items-center flex-col mb-3">
                     <img
                         src="/images/logo.png"
                         alt="instagram logo"
@@ -62,7 +62,7 @@ export default function Login() {
                         Forgot password?
                     </a>
                 </div>
-                <div class="bg-white border border-gray-300 text-center w-80 py-4">
+                <div class="bg-white rounded border border-gray-300 text-center w-80 py-4">
                     <span class="text-sm">Don't have an account? </span>
                     <button class="text-blue-500 text-sm font-semibold">
                         Sign up
@@ -70,13 +70,13 @@ export default function Login() {
                 </div>
                 <div class=" text-center w-80 m-1">
                     Get the app.
-                    <div className="flex justify-center mt-3">
+                    <div className="flex justify-center mt-2">
                         <img
                             src="/images/playStore.png"
                             className="h-12 mr-0.5"
                         />
                         <img
-                            src="/images/Microsoft.png"
+                            src="/images/appStore.png"
                             className="h-12 ml-0.5"
                         />
                     </div>
