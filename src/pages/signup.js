@@ -39,7 +39,7 @@ export default function SignUp() {
                 )}
                 <button className="w-64 mt-2 p-1 border rounded flex items-center justify-center bg-blue-500">
                     <img src="/images/fb-logo-white.png" className="h-6 w-6" />
-                    <span className="ml-2 text-xs text-white font-semibold">
+                    <span className="ml-1 text-xs text-white font-semibold">
                         Log in with Facebook
                     </span>
                 </button>
