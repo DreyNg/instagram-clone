@@ -68,7 +68,7 @@ export default function Login() {
                         />
                         <button
                             disabled={isInvalid}
-                            className={`text-sm text-center bg-blue-500 text-white py-1 rounded font-medium 
+                            className={`text-sm text-center bg-ig-blue text-white py-1 rounded font-medium 
                             ${isInvalid && "opacity-50"}`}
                         >
                             Log In
@@ -95,7 +95,7 @@ export default function Login() {
                     <span className="text-sm">Don't have an account? </span>
 
                     <Link
-                        className="text-blue-500 text-sm font-semibold"
+                        className="text-ig-blue text-sm font-semibold"
                         to={ROUTER.SIGNUP}
                     >
                         Sign Up

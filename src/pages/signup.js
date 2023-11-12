@@ -18,6 +18,9 @@ export default function SignUp() {
 
     const handleSignup = async (e) => {
         e.preventDefault();
+
+        try {
+        } catch (error) {}
     };
 
     return (
@@ -37,7 +40,7 @@ export default function SignUp() {
                         Sign up to see photos and videos from your friends.
                     </div>
                 )}
-                <button className="w-64 mt-2 p-1 border rounded flex items-center justify-center bg-blue-500">
+                <button className="w-64 mt-2 p-1 border rounded flex items-center justify-center bg-ig-blue">
                     <img src="/images/fb-logo-white.png" className="h-6 w-6" />
                     <span className="ml-1 text-xs text-white font-semibold">
                         Log in with Facebook
@@ -88,7 +91,7 @@ export default function SignUp() {
                         <p className="text-gray-500 text-xs text-center">
                             People who use our service may have uploaded your
                             contact information to Instagram.
-                            <a className="  text-blue-500 ml-1 cursor-pointer">
+                            <a className="  text-ig-blue ml-1 cursor-pointer">
                                 Learn More
                             </a>
                         </p>
@@ -96,15 +99,15 @@ export default function SignUp() {
                     <div className="flex m-1">
                         <p className="text-gray-500 text-xs text-center">
                             By signing up, you agree to our
-                            <a className="text-blue-500 ml-1 cursor-pointer">
+                            <a className="text-ig-blue ml-1 cursor-pointer">
                                 Terms
                             </a>
                             ,
-                            <a className="text-blue-500 ml-1 cursor-pointer">
+                            <a className="text-ig-blue ml-1 cursor-pointer">
                                 Privacy Policy
                             </a>{" "}
                             and
-                            <a className="text-blue-500 ml-1 cursor-pointer">
+                            <a className="text-ig-blue ml-1 cursor-pointer">
                                 Cookie Policy
                             </a>
                         </p>
@@ -112,7 +115,7 @@ export default function SignUp() {
 
                     <button
                         disabled={isInvalid}
-                        className={`text-sm text-center bg-blue-500 text-white py-1 rounded font-medium mt-3
+                        className={`text-sm text-center bg-ig-blue text-white py-1 rounded font-medium mt-3
                             ${isInvalid && "opacity-50"}`}
                     >
                         Sign Up
@@ -123,7 +126,7 @@ export default function SignUp() {
                 <span className="text-sm">Have an account? </span>
 
                 <Link
-                    className="text-blue-500 text-sm font-semibold"
+                    className="text-ig-blue text-sm font-semibold"
                     to={ROUTER.LOGIN}
                 >
                     Log In
