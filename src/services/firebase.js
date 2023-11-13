@@ -1,12 +1,11 @@
 import { firebase, FieldValue } from "../lib/firebase";
 
-export async function createUserWithEmailAndPassword(
-    email,
-    password,
-    username
-) {
-    // check if username exist
-    // check email already taken
-    // create authentication on db, add display name
-    // store in firebase
+export async function doesUserExist(username) {
+    const querySnapshot = await firebase
+        .firestore()
+        .collection("users")
+        .where("username", "==", username.toLowerCase())
+        .get();
+
+    return querySnapshot.size ? true : false;
 }

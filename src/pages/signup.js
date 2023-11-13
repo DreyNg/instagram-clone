@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState, useContext } from "react";
 import FirebaseContext from "../context/firebase";
 import * as ROUTER from "../constants/route";
+import { doesUserExist } from "../services/firebase";
 
 export default function SignUp() {
     const { firebase } = useContext(FirebaseContext);
@@ -18,6 +19,9 @@ export default function SignUp() {
 
     const handleSignup = async (e) => {
         e.preventDefault();
+
+        let result = await doesUserExist(username);
+        console.log(result);
 
         try {
         } catch (error) {}
