@@ -32,6 +32,16 @@ export default function SignUp() {
                 });
 
                 // create instance on firestore
+                await firebase.firestore().collection("users").add({
+                    dateCreated: new Date(),
+                    email: email.toLowerCase(),
+                    followers: [],
+                    following: [],
+                    fullname: fullname.toLowerCase(),
+                    userId: createdUser.user.uid,
+                });
+
+                navigate(ROUTER.DASHBOARD);
             } catch (error) {
                 setPassword("");
                 setEmail("");
