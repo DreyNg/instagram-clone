@@ -20,11 +20,21 @@ export default function SignUp() {
     const handleSignup = async (e) => {
         e.preventDefault();
 
-        let result = await doesUserExist(username);
-        console.log(result);
-
-        try {
-        } catch (error) {}
+        if (!(await doesUserExist(username))) {
+            try {
+                const user = await firebase
+                    .auth()
+                    .createUserWithEmailAndPassword(email, password);
+            } catch (error) {
+                setPassword("");
+                setEmail("");
+                setUsername("");
+                setFullname("");
+                setError(error.message);
+            }
+        } else {
+            setError("This username is already taken");
+        }
     };
 
     return (
