@@ -22,9 +22,16 @@ export default function SignUp() {
 
         if (!(await doesUserExist(username))) {
             try {
-                const user = await firebase
+                // create auth to login
+                const createdUser = await firebase
                     .auth()
                     .createUserWithEmailAndPassword(email, password);
+
+                createdUser.user.updateProfile({
+                    displayName: username,
+                });
+
+                // create instance on firestore
             } catch (error) {
                 setPassword("");
                 setEmail("");
