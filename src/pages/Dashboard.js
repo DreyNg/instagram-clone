@@ -1,8 +1,17 @@
 import { useEffect } from "react";
+import Navigation from "../components/Navigation";
+import Sidebar from "../components/Sidebar";
+import Timeline from "../components/Timeline";
 
 export default function Dashboard() {
     useEffect(() => {
         document.title = "Instagram";
     });
-    return <h1> DASHBOARD</h1>;
+    return (
+        <div>
+            <Navigation />
+            <Timeline />
+            <Sidebar />
+        </div>
+    );
 }
