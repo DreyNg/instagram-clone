@@ -2,9 +2,9 @@ import { Suspense, lazy } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import * as ROUTER from "./constants/route";
 
-const Login = lazy(() => import("./pages/login"));
-const SignUp = lazy(() => import("./pages/signup"));
-const NotFound = lazy(() => import("./pages/notFound"));
+const Login = lazy(() => import("./pages/Login"));
+const SignUp = lazy(() => import("./pages/SignUp"));
+const NotFound = lazy(() => import("./pages/NotFound"));
 
 function App() {
     return (
