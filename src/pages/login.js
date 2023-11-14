@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import FirebaseContext from "../context/firebase";
 import * as ROUTER from "../constants/route";
 
@@ -13,6 +13,9 @@ export default function Login() {
     const [error, setError] = useState("");
     const isInvalid = password === "" || email === "";
 
+    useEffect(() => {
+        document.title = "Login • Insgragram";
+    });
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
