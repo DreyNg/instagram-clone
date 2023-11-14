@@ -94,6 +94,7 @@ export default function SignUp() {
                         aria-label="Enter your email address"
                         type="text"
                         placeholder="Email address"
+                        value={email}
                         onChange={({ target }) => setEmail(target.value)}
                         className="text-xs w-full mb-2 rounded border bg-gray-100 border-gray-300 px-2 py-2 focus:outline-none focus:border-gray-400 active:outline-none"
                     />
@@ -101,6 +102,7 @@ export default function SignUp() {
                         aria-label="Enter your full name"
                         type="text"
                         placeholder="Full Name"
+                        value={fullname}
                         onChange={({ target }) => setFullname(target.value)}
                         className="text-xs w-full mb-2 rounded border bg-gray-100 border-gray-300 px-2 py-2 focus:outline-none focus:border-gray-400 active:outline-none"
                     />
@@ -108,12 +110,14 @@ export default function SignUp() {
                         aria-label="Enter your username"
                         type="text"
                         placeholder="Username"
+                        value={username}
                         onChange={({ target }) => setUsername(target.value)}
                         className="text-xs w-full mb-2 rounded border bg-gray-100 border-gray-300 px-2 py-2 focus:outline-none focus:border-gray-400 active:outline-none"
                     />
                     <input
                         aria-label="Enter your password"
                         type="password"
+                        value={password}
                         placeholder="Password"
                         onChange={({ target }) => setPassword(target.value)}
                         className="text-xs w-full mb-2 rounded border bg-gray-100 border-gray-300 px-2 py-2 focus:outline-none focus:border-gray-400 active:outline-none"
