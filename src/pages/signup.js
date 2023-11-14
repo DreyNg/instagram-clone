@@ -43,6 +43,7 @@ export default function SignUp() {
                     following: [],
                     fullname: fullname.toLowerCase(),
                     userId: createdUser.user.uid,
+                    username: username,
                 });
 
                 navigate(ROUTER.DASHBOARD);
