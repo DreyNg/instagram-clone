@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import FirebaseContext from "../context/firebase";
 import * as ROUTER from "../constants/route";
 import { doesUserExist } from "../services/firebase";
@@ -12,6 +12,10 @@ export default function SignUp() {
     const [username, setUsername] = useState("");
     const [fullname, setFullname] = useState("");
     const [password, setPassword] = useState("");
+
+    useEffect(() => {
+        document.title = "Sign up • Insgragram";
+    });
 
     const [error, setError] = useState("");
     const isInvalid =
