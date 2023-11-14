@@ -4,7 +4,11 @@ module.exports = {
     },
     content: ["./src/**/*.{html,js}"],
     theme: {
-        extend: {},
+        extend: {
+            colors: {
+                "ig-blue": "#0894f4",
+            },
+        },
     },
     plugins: [],
 };

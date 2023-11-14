@@ -33,12 +33,12 @@ export default function Login() {
                     alt="iphone with Ins"
                 />
             </div>
-            <div class="h-screen bg-gray-50 w-3/6 flex flex-col justify-center items-center">
-                <div class="bg-white border rounded border-gray-300 w-80 py-8 flex items-center flex-col mb-3">
+            <div className="h-screen bg-gray-50 w-3/6 flex flex-col justify-center items-center">
+                <div className="bg-white border rounded border-gray-300 w-80 py-8 flex items-center flex-col mb-3">
                     <img
                         src="/images/logo.png"
                         alt="instagram logo"
-                        className="mt-5"
+                        className="mt-5 cursor-pointer"
                     />
                     {error ? (
                         <p className="text-center m-1 text-xs text-red-500">
@@ -55,62 +55,64 @@ export default function Login() {
                         <input
                             aria-label="Enter your email address"
                             type="text"
+                            value={email}
                             placeholder="Email address"
                             onChange={({ target }) => setEmail(target.value)}
-                            class="text-xs w-full mb-2 rounded border bg-gray-100 border-gray-300 px-2 py-2 focus:outline-none focus:border-gray-400 active:outline-none"
+                            className="text-xs w-full mb-2 rounded border bg-gray-100 border-gray-300 px-2 py-2 focus:outline-none focus:border-gray-400 active:outline-none"
                         />
                         <input
-                            aria-label="Enter your email address"
+                            aria-label="Enter your password"
                             type="password"
+                            value={password}
                             placeholder="Password"
                             onChange={({ target }) => setPassword(target.value)}
-                            class="text-xs w-full mb-4 rounded border bg-gray-100 border-gray-300 px-2 py-2 focus:outline-none focus:border-gray-400 active:outline-none"
+                            className="text-xs w-full mb-4 rounded border bg-gray-100 border-gray-300 px-2 py-2 focus:outline-none focus:border-gray-400 active:outline-none"
                         />
                         <button
                             disabled={isInvalid}
-                            class={`text-sm text-center bg-blue-500 text-white py-1 rounded font-medium 
+                            className={`text-sm text-center bg-ig-blue text-white py-1 rounded font-medium 
                             ${isInvalid && "opacity-50"}`}
                         >
                             Log In
                         </button>
                     </form>
-                    <div class="flex justify-evenly space-x-2 w-64 mt-4">
-                        <span class="bg-gray-300 h-px flex-grow t-2 relative top-2"></span>
-                        <span class="flex-none uppercase text-xs text-gray-400 font-semibold">
+                    <div className="flex justify-evenly space-x-2 w-64 mt-4">
+                        <span className="bg-gray-300 h-px flex-grow t-2 relative top-2"></span>
+                        <span className="flex-none uppercase text-xs text-gray-400 font-semibold">
                             or
                         </span>
-                        <span class="bg-gray-300 h-px flex-grow t-2 relative top-2"></span>
+                        <span className="bg-gray-300 h-px flex-grow t-2 relative top-2"></span>
                     </div>
                     <button className="flex mt-6">
                         <img src="/images/fb-small-logo.png" />
-                        <span class="ml-2 text-xs text-blue-900 font-semibold">
+                        <span className="ml-2 text-xs text-blue-900 font-semibold">
                             Log in with Facebook
                         </span>
                     </button>
-                    <a class="text-xs text-blue-900 mt-4 cursor-pointer -mb-4">
+                    <a className="text-xs text-blue-900 mt-4 cursor-pointer -mb-4">
                         Forgot password?
                     </a>
                 </div>
-                <div class="bg-white rounded border border-gray-300 text-center w-80 py-4">
-                    <span class="text-sm">Don't have an account? </span>
+                <div className="bg-white rounded border border-gray-300 text-center w-80 py-4">
+                    <span className="text-sm">Don't have an account? </span>
 
                     <Link
-                        class="text-blue-500 text-sm font-semibold"
-                        to="ROUTER.SIGNUP"
+                        className="text-ig-blue text-sm font-semibold"
+                        to={ROUTER.SIGNUP}
                     >
                         Sign Up
                     </Link>
                 </div>
-                <div class=" text-center w-80 m-1">
+                <div className=" text-center w-80 m-1">
                     Get the app.
                     <div className="flex justify-center mt-2">
                         <img
                             src="/images/playStore.png"
-                            className="h-12 mr-0.5"
+                            className="h-12 mr-0.5 cursor-pointer"
                         />
                         <img
                             src="/images/appStore.png"
-                            className="h-12 ml-0.5"
+                            className="h-12 ml-0.5 cursor-pointer"
                         />
                     </div>
                 </div>
