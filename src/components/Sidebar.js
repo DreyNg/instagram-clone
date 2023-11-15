@@ -1,3 +1,3 @@
 export default function Sidebar() {
-    return <h1 className="">this is sidebar</h1>;
+    return <div className="bg-blue-500 h-full">Profile</div>;
 }

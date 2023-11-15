@@ -6,7 +6,8 @@ import Timeline from "../components/Timeline";
 export default function Dashboard() {
     useEffect(() => {
         document.title = "Instagram";
-    });
+    }, []);
+
     return (
         <div className="flex h-screen">
             {/* Navigation - 1/10th of the screen width */}
@@ -14,11 +15,11 @@ export default function Dashboard() {
                 <Navigation />
             </div>
             {/* Timeline and Sidebar - 60% and 40% of the remaining screen width */}
-            <div className=" flex">
-                <div className="w-3/5">
+            <div className="flex w-full">
+                <div className="w-4/6">
                     <Timeline />
                 </div>
-                <div className="w-2/5">
+                <div className="w-2/6">
                     <Sidebar />
                 </div>
             </div>
