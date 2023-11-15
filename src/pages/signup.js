@@ -37,13 +37,14 @@ export default function SignUp() {
 
                 // create instance on firestore
                 await firebase.firestore().collection("users").add({
-                    dateCreated: new Date(),
+                    username: username,
                     email: email.toLowerCase(),
+                    fullname: fullname.toLowerCase(),
+                    profilePicture: "",
+                    dateCreated: new Date(),
                     followers: [],
                     following: [],
-                    fullname: fullname.toLowerCase(),
                     userId: createdUser.user.uid,
-                    username: username,
                 });
 
                 navigate(ROUTER.DASHBOARD);
