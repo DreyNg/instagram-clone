@@ -1,3 +1,3 @@
 export default function Timeline() {
-    return <h1>This is timeline</h1>;
+    return <h1 className="">This is timeline</h1>;
 }

@@ -8,11 +8,19 @@ export default function Dashboard() {
         document.title = "Instagram";
     });
     return (
-        <div className="">
-            <Navigation />
-            <div className="grid grid-cols-3 gap-4 justify-between mx-auto max-w-screen-lg">
-                <Timeline />
-                <Sidebar />
+        <div className="flex h-screen">
+            {/* Navigation - 1/10th of the screen width */}
+            <div className="w-20">
+                <Navigation />
+            </div>
+            {/* Timeline and Sidebar - 60% and 40% of the remaining screen width */}
+            <div className=" flex">
+                <div className="w-3/5">
+                    <Timeline />
+                </div>
+                <div className="w-2/5">
+                    <Sidebar />
+                </div>
             </div>
         </div>
     );
