@@ -225,7 +225,7 @@ export default function Navigation() {
                     {/* profile */}
                     <div className=" p-4 rounded-lg cursor-pointer">
                         <img
-                            src="https://i.imgur.com/BIRj8D2.png"
+                            src="https://i.imgur.com/k7bSvL1.png"
                             className="h-7 w-7 rounded-full"
                         />
                     </div>
