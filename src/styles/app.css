@@ -479,6 +479,9 @@ video {
   --tw-backdrop-sepia:  ;
 }
 @tailwind compontents;
+.static {
+  position: static;
+}
 .relative {
   position: relative;
 }
