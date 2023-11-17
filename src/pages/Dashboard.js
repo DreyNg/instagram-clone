@@ -15,7 +15,7 @@ export default function Dashboard() {
                 <Navigation />
             </div>
             {/* Timeline and Sidebar - 60% and 40% of the remaining screen width */}
-            <div className="flex w-full">
+            <div className="flex w-full px-16 bg-black">
                 <div className="w-4/6">
                     <Timeline />
                 </div>

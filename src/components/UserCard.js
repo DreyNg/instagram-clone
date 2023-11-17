@@ -14,7 +14,7 @@ const UserCard = ({ avatarSrc, username, subtitle, followText }) => {
                 <div className="text-white font-semibold text-sm">
                     {username}
                 </div>
-                <div className="text-ig-grey text-sm">{subtitle}</div>
+                <div className="text-ig-grey text-xs">{subtitle}</div>
             </div>
             <div className="flex-none text-ig-blue mx-2 text-xs font-semibold">
                 {followText}

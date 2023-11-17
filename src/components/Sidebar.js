@@ -3,24 +3,34 @@ import UserCard from "./UserCard";
 
 export default function Sidebar() {
     return (
-        <div className="bg-black h-full pt-5">
-            <div className="h-full mx-8 flex flex-col">
-                {/* Your other content */}
+        <div className="h-full pt-3 pl-10">
+            <div className="h-full flex flex-col">
+                {/* Profile card */}
+
+                <div className="w-full py-2 flex items-center">
+                    <UserCard
+                        avatarSrc="https://i.imgur.com/k7bSvL1.png"
+                        username="drey.ng"
+                        subtitle="Drey/hung long"
+                        followText="Switch"
+                    />
+                </div>
+                {/* Suggestion feed */}
                 <div className="flex-1">
                     <div className="flex my-2">
                         <div className="flex-grow font-semibold text-sm text-ig-grey">
                             Suggested for you
                         </div>
-                        <div className="text-sm text-white font-semibold text-sm cursor-pointer mx-2">
+                        <div className="text-sm text-white font-semibold text-xs cursor-pointer mx-2">
                             See All
                         </div>
                     </div>
                     <div>
-                        {/* Use the UserCard component */}
+                        {/* Suggestion cards */}
                         <UserCard
                             avatarSrc="https://static.vecteezy.com/system/resources/previews/009/273/280/non_2x/concept-of-loneliness-and-disappointment-in-love-sad-man-sitting-element-of-the-picture-is-decorated-by-nasa-free-photo.jpg"
                             username="abc.ng"
-                            subtitle="Followed by timothyhiew + 10"
+                            subtitle="Followed by timothyhiew + 10 people"
                             followText="Follow"
                         />
                         <UserCard
