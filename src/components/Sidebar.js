@@ -3,7 +3,7 @@ import UserCard from "./UserCard";
 
 export default function Sidebar() {
     return (
-        <div className="h-full pt-3 pl-10">
+        <div className="h-full pt-3 pl-20">
             <div className="h-full flex flex-col">
                 {/* Profile card */}
 
