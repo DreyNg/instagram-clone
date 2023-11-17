@@ -10,11 +10,11 @@ export default function Dashboard() {
 
     return (
         <div className="flex h-screen">
-            {/* Navigation - 1/10th of the screen width */}
+            {/* Navigation  */}
             <div className="w-20">
                 <Navigation />
             </div>
-            {/* Timeline and Sidebar - 60% and 40% of the remaining screen width */}
+            {/* Timeline and Sidebar */}
             <div className="flex w-full px-16 bg-black">
                 <div className="w-3/5">
                     <Timeline />

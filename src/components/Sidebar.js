@@ -28,19 +28,19 @@ export default function Sidebar() {
                     <div>
                         {/* Suggestion cards */}
                         <UserCard
-                            avatarSrc="https://static.vecteezy.com/system/resources/previews/009/273/280/non_2x/concept-of-loneliness-and-disappointment-in-love-sad-man-sitting-element-of-the-picture-is-decorated-by-nasa-free-photo.jpg"
+                            avatarSrc="https://math-media.byjusfutureschool.com/bfs-math/2022/07/04185628/Asset-1-8-300x300.png"
                             username="abc.ng"
                             subtitle="Followed by timothyhiew + 10 people"
                             followText="Follow"
                         />
                         <UserCard
-                            avatarSrc="https://media.wired.com/photos/598e35fb99d76447c4eb1f28/master/pass/phonepicutres-TA.jpg"
+                            avatarSrc="https://upload.wikimedia.org/wikipedia/commons/a/a5/Regular_polygon_4_annotated.svg"
                             username="Ngan"
                             subtitle="Followed by nganthropocene"
                             followText="Follow"
                         />
                         <UserCard
-                            avatarSrc="https://i.guim.co.uk/img/media/63de40b99577af9b867a9c57555a432632ba760b/0_266_5616_3370/master/5616.jpg?width=1200&quality=85&auto=format&fit=max&s=59ecca4b78e0bcb76a1f47dd3ab9ead7"
+                            avatarSrc="https://www.spotlightstores.com/medias/BP80445610-oak.jpg-SPOTWF-productHero?context=bWFzdGVyfGltYWdlc3w4NTUzOHxpbWFnZS9qcGVnfGltYWdlcy9oNjkvaDI3LzEzNjU2MzkyMzY4MTU4L0JQODA0NDU2MTAtb2FrLmpwZ19TUE9UV0ZfcHJvZHVjdEhlcm98Y2Q5YmU2ZWE5NjczOGFmNDMxNTQ4ZDZkMDZjYjI4YmE5NWI1ZTk5OWJhOTVkYzQ2ZDk0NzQ3OGQxYjZlNTU5OQ"
                             username="Jerome"
                             subtitle="Followed by jerome.ngx"
                             followText="Follow"
