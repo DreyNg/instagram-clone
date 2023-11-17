@@ -3,7 +3,7 @@ import { useState, useContext, useEffect } from "react";
 import FirebaseContext from "../context/firebase";
 import * as ROUTER from "../constants/route";
 import { doesUserExist } from "../services/firebase";
-import { BLACK_PROFILE_IMAGE } from "../constants/constants";
+import { BLANK_PROFILE_IMAGE } from "../constants/constants";
 
 export default function SignUp() {
     const { firebase } = useContext(FirebaseContext);
@@ -41,7 +41,7 @@ export default function SignUp() {
                     username: username,
                     email: email.toLowerCase(),
                     fullname: fullname.toLowerCase(),
-                    profilePicture: BLACK_PROFILE_IMAGE,
+                    profilePicture: BLANK_PROFILE_IMAGE,
                     dateCreated: new Date(),
                     followers: [],
                     following: [],

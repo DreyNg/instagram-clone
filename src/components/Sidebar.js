@@ -1,7 +1,10 @@
 import React from "react";
 import UserCard from "./UserCard";
+import { CurrentUserContext } from "../context/CurrentUserContext";
+import { useContext } from "react";
 
 export default function Sidebar() {
+    const { currentUser } = useContext(CurrentUserContext);
     return (
         <div className="h-full pt-3 pl-20">
             <div className="h-full flex flex-col">
@@ -9,9 +12,9 @@ export default function Sidebar() {
 
                 <div className="w-full py-2 flex items-center">
                     <UserCard
-                        avatarSrc="https://i.imgur.com/k7bSvL1.png"
-                        username="drey.ng"
-                        subtitle="Drey/hung long"
+                        avatarSrc={currentUser.profilePicture}
+                        username={currentUser.username}
+                        subtitle={currentUser.fullname}
                         followText="Switch"
                     />
                 </div>

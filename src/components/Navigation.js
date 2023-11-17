@@ -1,4 +1,8 @@
+import { useContext } from "react";
+import { CurrentUserContext } from "../context/CurrentUserContext";
+
 export default function Navigation() {
+    const { currentUser } = useContext(CurrentUserContext);
     return (
         <nav className="bg-black h-full py-4 border-r border-gray-500 ">
             <div className="flex items-center justify-center pt-1 pb-6">
@@ -225,7 +229,7 @@ export default function Navigation() {
                     {/* profile */}
                     <div className=" p-4 rounded-lg cursor-pointer">
                         <img
-                            src="https://i.imgur.com/k7bSvL1.png"
+                            src={currentUser.profilePicture}
                             className="h-7 w-7 rounded-full"
                         />
                     </div>
