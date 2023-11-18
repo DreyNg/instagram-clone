@@ -2,9 +2,11 @@ import React from "react";
 import UserCard from "./UserCard";
 import { CurrentUserContext } from "../context/CurrentUserContext";
 import { useContext } from "react";
+import { getUserSuggestion } from "../services/firebase";
 
 export default function Sidebar() {
     const { currentUser } = useContext(CurrentUserContext);
+    getUserSuggestion(currentUser);
     return (
         <div className="h-full pt-3 pl-20">
             <div className="h-full flex flex-col">

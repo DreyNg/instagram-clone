@@ -28,3 +28,9 @@ export async function getUserById(uid) {
         throw new Error("uid does not exist");
     }
 }
+
+export async function getUserSuggestion(user) {
+    const following = user.following;
+    const followers = user.followers;
+    console.log(following);
+}
