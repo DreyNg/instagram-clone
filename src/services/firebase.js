@@ -203,6 +203,7 @@ export async function handleUnfollowUser(followingUserId, followedUserId) {
 }
 
 export async function getUserSuggestion(user) {
+    const SUGGESTION_NUMBER = 3;
     const following = user.following;
     const followers = user.followers;
 
@@ -214,7 +215,7 @@ export async function getUserSuggestion(user) {
                 .collection("users")
                 .where("userId", "!=", user.userId)
                 // .orderBy("userId") // Order by userId for consistent pagination
-                .limit(3)
+                .limit(SUGGESTION_NUMBER)
                 .get();
 
             const suggestedUsers = [];
