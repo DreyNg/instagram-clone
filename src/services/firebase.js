@@ -41,7 +41,7 @@ export async function getUserSuggestion(user) {
                 .collection("users")
                 .where("userId", "!=", user.userId)
                 .orderBy("userId") // Order by userId for consistent pagination
-                .limit(5)
+                .limit(3)
                 .get();
 
             const suggestedUsers = [];

@@ -49,24 +49,14 @@ export default function Sidebar() {
                     </div>
                     <div>
                         {/* Suggestion cards */}
-                        <UserCard
-                            avatarSrc="https://math-media.byjusfutureschool.com/bfs-math/2022/07/04185628/Asset-1-8-300x300.png"
-                            username="abc.ng"
-                            subtitle="Followed by timothyhiew + 10 people"
-                            followText="Follow"
-                        />
-                        <UserCard
-                            avatarSrc="https://upload.wikimedia.org/wikipedia/commons/a/a5/Regular_polygon_4_annotated.svg"
-                            username="Ngan"
-                            subtitle="Followed by nganthropocene"
-                            followText="Follow"
-                        />
-                        <UserCard
-                            avatarSrc="https://www.spotlightstores.com/medias/BP80445610-oak.jpg-SPOTWF-productHero?context=bWFzdGVyfGltYWdlc3w4NTUzOHxpbWFnZS9qcGVnfGltYWdlcy9oNjkvaDI3LzEzNjU2MzkyMzY4MTU4L0JQODA0NDU2MTAtb2FrLmpwZ19TUE9UV0ZfcHJvZHVjdEhlcm98Y2Q5YmU2ZWE5NjczOGFmNDMxNTQ4ZDZkMDZjYjI4YmE5NWI1ZTk5OWJhOTVkYzQ2ZDk0NzQ3OGQxYjZlNTU5OQ"
-                            username="Jerome"
-                            subtitle="Followed by jerome.ngx"
-                            followText="Follow"
-                        />
+                        {suggestions.map((user) => (
+                            <UserCard
+                                avatarSrc={user.profilePicture}
+                                username={user.username}
+                                subtitle={user.fullname}
+                                followText="Follow"
+                            />
+                        ))}
                     </div>
                 </div>
             </div>
