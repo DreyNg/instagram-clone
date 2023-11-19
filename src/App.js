@@ -19,6 +19,7 @@ function App() {
     const [currentUser, setCurrentUser] = useState(null);
     const [loading, setLoading] = useState(true);
     const userId = localStorage.getItem("userId");
+    // localStorage.removeItem("userId");
 
     useEffect(() => {
         let unsubscribe;
