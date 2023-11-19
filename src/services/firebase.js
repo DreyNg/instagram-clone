@@ -113,6 +113,94 @@ export async function handleFollowUser(followingUserId, followedUserId) {
         console.error("Error handling follow user:", error);
     }
 }
+export async function handleUnfollowUser(followingUserId, followedUserId) {
+    if (followingUserId === followedUserId) return;
+    const firestore = firebase.firestore();
+
+    try {
+        // Append followedUserId into currentUser's following
+        const followingUser = await getUserById(followingUserId);
+        let currentFollowingArray = followingUser.following || [];
+
+        if (currentFollowingArray.includes(followedUserId)) {
+            const updatedFollowing = currentFollowingArray.filter(
+                (userId) => userId !== followedUserId
+            );
+
+            // Get the reference for the document matching the followingUserId
+            const currentUserQuery = firebase
+                .firestore()
+                .collection("users")
+                .where("userId", "==", followingUserId);
+
+            const snapshot = await currentUserQuery.get();
+
+            if (snapshot.empty) {
+                console.error("No matching document");
+                return;
+            }
+
+            snapshot.forEach(async (doc) => {
+                try {
+                    // Get the reference of the document and update it
+                    const currentUserRef = firebase
+                        .firestore()
+                        .collection("users")
+                        .doc(doc.id);
+                    await currentUserRef.update({
+                        following: updatedFollowing,
+                    });
+                } catch (error) {
+                    console.error("Error updating followers array:", error);
+                }
+            });
+        }
+    } catch (error) {
+        console.error("Error handling follow user:", error);
+    }
+
+    try {
+        // Append currentUser into followedUserId's followers
+        const followedUser = await getUserById(followedUserId);
+        let currentFollowersArray = followedUser.followers || [];
+
+        if (currentFollowersArray.includes(followingUserId)) {
+            const updatedFollowers = currentFollowersArray.filter(
+                (userId) => userId !== followingUserId
+            );
+
+            // Get the reference for the document matching the followingUserId
+            const currentUserQuery = firebase
+                .firestore()
+                .collection("users")
+                .where("userId", "==", followedUserId);
+
+            const snapshot = await currentUserQuery.get();
+
+            if (snapshot.empty) {
+                console.error("No matching document");
+                return;
+            }
+
+            snapshot.forEach(async (doc) => {
+                try {
+                    // Get the reference of the document and update it
+                    const currentUserRef = firebase
+                        .firestore()
+                        .collection("users")
+                        .doc(doc.id);
+                    await currentUserRef.update({
+                        followers: updatedFollowers,
+                    });
+                } catch (error) {
+                    console.error("Error updating followers array:", error);
+                }
+            });
+        }
+    } catch (error) {
+        console.error("Error handling follow user:", error);
+    }
+}
 
 export async function getUserSuggestion(user) {
     const following = user.following;

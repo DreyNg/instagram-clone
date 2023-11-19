@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { handleFollowUser } from "../services/firebase";
+import { handleFollowUser, handleUnfollowUser } from "../services/firebase";
 import CurrentUserContext from "../context/CurrentUserContext";
 
 const UserCard = ({ avatarSrc, username, subtitle, followText, userId }) => {
@@ -14,7 +14,12 @@ const UserCard = ({ avatarSrc, username, subtitle, followText, userId }) => {
                 />
             </div>
             <div className="mx-2 flex-grow">
-                <div className="text-white font-semibold text-sm">
+                <div
+                    className="text-white font-semibold text-sm cursor-pointer"
+                    onClick={() => {
+                        handleUnfollowUser(currentUser.userId, userId);
+                    }}
+                >
                     {username}
                 </div>
                 <div className="text-ig-grey text-xs">{subtitle}</div>
