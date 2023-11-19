@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import { handleFollowUser } from "../services/firebase";
+import CurrentUserContext from "../context/CurrentUserContext";
 
-const UserCard = ({ avatarSrc, username, subtitle, followText }) => {
+const UserCard = ({ avatarSrc, username, subtitle, followText, userId }) => {
+    const { currentUser } = useContext(CurrentUserContext);
     return (
         <div className="w-full py-2 flex items-center">
             <div className="p-1 rounded-lg flex-none cursor-pointer">
@@ -20,10 +22,7 @@ const UserCard = ({ avatarSrc, username, subtitle, followText }) => {
             <button
                 className="flex-none text-ig-blue mx-2 text-xs font-semibold cursor-pointer"
                 onClick={() => {
-                    handleFollowUser(
-                        "lafmrIiovnMrqdY9mogQ6XVsXgq2",
-                        "Lt7DrQhIyMgUZHXEHs81rTLnBPm1"
-                    );
+                    handleFollowUser(currentUser.userId, userId);
                 }}
             >
                 {followText}

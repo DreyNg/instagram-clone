@@ -54,6 +54,7 @@ export default function Sidebar() {
                                 username={user.username}
                                 subtitle={user.fullname}
                                 followText="Follow"
+                                userId={user.userId}
                             />
                         ))}
                     </div>

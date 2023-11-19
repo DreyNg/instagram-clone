@@ -30,6 +30,7 @@ export async function getUserById(uid) {
 }
 
 export async function handleFollowUser(followingUserId, followedUserId) {
+    if (followingUserId === followedUserId) return;
     const firestore = firebase.firestore();
 
     try {
