@@ -31,13 +31,11 @@ export async function getUserById(uid) {
 
 export async function handleFollowUser(followingUserId, followedUserId) {
     if (followingUserId === followedUserId) return;
-    const firestore = firebase.firestore();
 
     try {
         // Append followedUserId into currentUser's following
         const followingUser = await getUserById(followingUserId);
         let currentFollowingArray = followingUser.following;
-        console.log(followingUser);
 
         if (!currentFollowingArray.includes(followedUserId)) {
             currentFollowingArray.push(followedUserId);
@@ -116,7 +114,6 @@ export async function handleFollowUser(followingUserId, followedUserId) {
 }
 export async function handleUnfollowUser(followingUserId, followedUserId) {
     if (followingUserId === followedUserId) return;
-    const firestore = firebase.firestore();
 
     try {
         // Append followedUserId into currentUser's following
@@ -235,7 +232,11 @@ export async function getUserSuggestion(user) {
         return shuffled.slice(0, numElements);
     }
 
-    const randomElements = getRandomElementsFromArray(following, 5);
+    const randomElements = getRandomElementsFromArray(
+        following,
+        SUGGESTION_NUMBER
+    );
+
     console.log(randomElements);
 
     // write getUserSuggestion function where it returns 5 user's userId

@@ -47,7 +47,7 @@ export default function Sidebar() {
                         </div>
                     </div>
                     <div>
-                        {/* Suggestion cards */}
+                        {/* Suggestion cards
                         {suggestions.map((user) => (
                             <UserCard
                                 avatarSrc={user.profilePicture}
@@ -56,7 +56,7 @@ export default function Sidebar() {
                                 followText="Follow"
                                 userId={user.userId}
                             />
-                        ))}
+                        ))} */}
                     </div>
                 </div>
             </div>
