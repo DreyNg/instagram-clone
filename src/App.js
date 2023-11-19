@@ -35,14 +35,17 @@ function App() {
                         const querySnapshot = await userRef.get();
                         if (!querySnapshot.empty) {
                             querySnapshot.forEach((doc) => {
-                                setCurrentUser({ uid: doc.id, ...doc.data() });
+                                setCurrentUser({
+                                    firestoreId: doc.id,
+                                    ...doc.data(),
+                                });
                             });
                         }
                         unsubscribe = userRef.onSnapshot((snapshot) => {
                             snapshot.docChanges().forEach((change) => {
                                 if (change.type === "modified") {
                                     setCurrentUser({
-                                        uid: change.doc.id,
+                                        firestoreId: change.doc.id,
                                         ...change.doc.data(),
                                     });
                                 }

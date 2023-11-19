@@ -1,4 +1,5 @@
 import React from "react";
+import { handleFollowUser } from "../services/firebase";
 
 const UserCard = ({ avatarSrc, username, subtitle, followText }) => {
     return (
@@ -16,7 +17,15 @@ const UserCard = ({ avatarSrc, username, subtitle, followText }) => {
                 </div>
                 <div className="text-ig-grey text-xs">{subtitle}</div>
             </div>
-            <button className="flex-none text-ig-blue mx-2 text-xs font-semibold cursor-pointer">
+            <button
+                className="flex-none text-ig-blue mx-2 text-xs font-semibold cursor-pointer"
+                onClick={() => {
+                    handleFollowUser(
+                        "lafmrIiovnMrqdY9mogQ6XVsXgq2",
+                        "Lt7DrQhIyMgUZHXEHs81rTLnBPm1"
+                    );
+                }}
+            >
                 {followText}
             </button>
         </div>

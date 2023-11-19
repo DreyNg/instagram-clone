@@ -6,7 +6,6 @@ export default function NotFound() {
     const { currentUser } = useContext(CurrentUserContext);
 
     const navigate = useNavigate();
-    console.log("notfound", currentUser);
     useEffect(() => {
         document.title = "Not Found • Insgragram";
     });
