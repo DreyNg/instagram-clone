@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import UserCard from "./UserCard";
-import { CurrentUserContext } from "../context/CurrentUserContext";
+import CurrentUserContext from "../context/CurrentUserContext";
 import { useContext } from "react";
 import { getUserSuggestion } from "../services/firebase";
 

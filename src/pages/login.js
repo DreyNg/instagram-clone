@@ -28,7 +28,7 @@ export default function Login() {
                     const authUser = userCredential.user;
                     const uid = authUser.uid;
                     const user = await getUserById(uid);
-                    localStorage.setItem("currentUser", JSON.stringify(user));
+                    localStorage.setItem("userId", user.userId);
                 });
             // TODO:store logged user
 
