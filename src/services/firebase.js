@@ -29,6 +29,11 @@ export async function getUserById(uid) {
     }
 }
 
+export async function handleFollowUser(currentUser, userToFollow) {
+    // append userToFollow into currentUser's followed
+    // append currentUser userToFollow's following
+}
+
 export async function getUserSuggestion(user) {
     const following = user.following;
     const followers = user.followers;
@@ -40,7 +45,7 @@ export async function getUserSuggestion(user) {
                 .firestore()
                 .collection("users")
                 .where("userId", "!=", user.userId)
-                .orderBy("userId") // Order by userId for consistent pagination
+                // .orderBy("userId") // Order by userId for consistent pagination
                 .limit(3)
                 .get();
 
