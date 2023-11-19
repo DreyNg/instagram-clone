@@ -39,6 +39,16 @@ function App() {
                         } else {
                             setCurrentUser(null);
                         }
+                        unsubscribe = userRef.onSnapshot((snapshot) => {
+                            snapshot.docChanges().forEach((change) => {
+                                if (change.type === "modified") {
+                                    setCurrentUser({
+                                        uid: change.doc.id,
+                                        ...change.doc.data(),
+                                    });
+                                }
+                            });
+                        });
                     }
                 } catch (error) {
                     // Handle error if fetching user fails
