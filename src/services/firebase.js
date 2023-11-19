@@ -36,7 +36,8 @@ export async function handleFollowUser(followingUserId, followedUserId) {
     try {
         // Append followedUserId into currentUser's following
         const followingUser = await getUserById(followingUserId);
-        let currentFollowingArray = followingUser.followers || [];
+        let currentFollowingArray = followingUser.following;
+        console.log(followingUser);
 
         if (!currentFollowingArray.includes(followedUserId)) {
             currentFollowingArray.push(followedUserId);
@@ -76,7 +77,7 @@ export async function handleFollowUser(followingUserId, followedUserId) {
     try {
         // Append currentUser into followedUserId's followers
         const followedUser = await getUserById(followedUserId);
-        let currentFollowersArray = followedUser.followers || [];
+        let currentFollowersArray = followedUser.followers;
 
         if (!currentFollowersArray.includes(followingUserId)) {
             currentFollowersArray.push(followingUserId);
@@ -120,7 +121,7 @@ export async function handleUnfollowUser(followingUserId, followedUserId) {
     try {
         // Append followedUserId into currentUser's following
         const followingUser = await getUserById(followingUserId);
-        let currentFollowingArray = followingUser.following || [];
+        let currentFollowingArray = followingUser.following;
 
         if (currentFollowingArray.includes(followedUserId)) {
             const updatedFollowing = currentFollowingArray.filter(
@@ -162,7 +163,7 @@ export async function handleUnfollowUser(followingUserId, followedUserId) {
     try {
         // Append currentUser into followedUserId's followers
         const followedUser = await getUserById(followedUserId);
-        let currentFollowersArray = followedUser.followers || [];
+        let currentFollowersArray = followedUser.followers;
 
         if (currentFollowersArray.includes(followingUserId)) {
             const updatedFollowers = currentFollowersArray.filter(
@@ -228,6 +229,14 @@ export async function getUserSuggestion(user) {
             return [];
         }
     }
+
+    function getRandomElementsFromArray(arr, numElements) {
+        const shuffled = arr.slice().sort(() => 0.5 - Math.random());
+        return shuffled.slice(0, numElements);
+    }
+
+    const randomElements = getRandomElementsFromArray(following, 5);
+    console.log(randomElements);
 
     // write getUserSuggestion function where it returns 5 user's userId
     // How it works is:
