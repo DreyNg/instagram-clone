@@ -36,8 +36,6 @@ function App() {
                             querySnapshot.forEach((doc) => {
                                 setCurrentUser({ uid: doc.id, ...doc.data() });
                             });
-                        } else {
-                            setCurrentUser(null);
                         }
                         unsubscribe = userRef.onSnapshot((snapshot) => {
                             snapshot.docChanges().forEach((change) => {
