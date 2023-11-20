@@ -24,8 +24,8 @@ export default function Timeline() {
     return (
         <div className="h-full">
             <div className="bg-green-500 h-full flex flex-col">
-                <div className="bg-orange-500 h-24 flex items-center justify-between">
-                    <button className="absolute" onClick={scrollLeft}>
+                <div className="bg-orange-500 relative h-24 flex items-center justify-between">
+                    <button className="absolute left-0" onClick={scrollLeft}>
                         &lt;
                     </button>
                     <div
