@@ -15,7 +15,7 @@ export default function Dashboard() {
                 <Navigation />
             </div>
             {/* Timeline and Sidebar */}
-            <div className="pl-36 flex w-full px-16 bg-black">
+            <div className="pl-36 flex w-full px-16 bg-black overflow-auto flex scroll-container">
                 <div className="w-3/5">
                     <Timeline />
                 </div>
