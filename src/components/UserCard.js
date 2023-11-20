@@ -7,11 +7,13 @@ const UserCard = ({ avatarSrc, username, subtitle, followText, userId }) => {
     return (
         <div className="w-full py-2 flex items-center">
             <div className="p-1 rounded-lg flex-none cursor-pointer">
-                <img
-                    src={avatarSrc}
-                    className="h-11 w-11 rounded-full"
-                    alt={`Avatar of ${username}`}
-                />
+                <div className="h-11 w-11 rounded-full overflow-hidden">
+                    <img
+                        src={avatarSrc}
+                        className="w-full h-auto"
+                        alt={`Avatar of ${username}`}
+                    />
+                </div>
             </div>
             <div className="mx-2 flex-grow">
                 <div
