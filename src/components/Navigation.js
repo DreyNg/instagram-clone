@@ -4,7 +4,7 @@ import CurrentUserContext from "../context/CurrentUserContext";
 export default function Navigation() {
     const { currentUser } = useContext(CurrentUserContext);
     return (
-        <nav className="bg-black h-full py-4 border-r border-gray-500 ">
+        <nav className="bg-black h-full py-4 border-r border-gray-800 ">
             <div className="flex items-center justify-center pt-1 pb-6">
                 {/* Instagram Logo */}
                 <div className=" p-3 rounded-lg cursor-pointer">

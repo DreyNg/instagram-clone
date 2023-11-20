@@ -10,8 +10,8 @@ export default function Dashboard() {
 
     return (
         <div className="flex h-screen">
-            {/* Navigation  */}
-            <div className="w-20">
+            {/* Navigation */}
+            <div className="w-20 flex-shrink-0">
                 <Navigation />
             </div>
             {/* Timeline and Sidebar */}
