@@ -201,12 +201,11 @@ export async function handleUnfollowUser(followingUserId, followedUserId) {
 }
 
 export async function getUserSuggestion(user) {
-    const SUGGESTION_NUMBER = 3;
+    const SUGGESTION_NUMBER = 5;
     const following = user.following;
     const followers = user.followers;
 
-    // follows no one:
-    if (following.length === 0) {
+    async function getNewSuggestion() {
         try {
             const snapshot = await firebase
                 .firestore()
@@ -227,6 +226,10 @@ export async function getUserSuggestion(user) {
             console.error("Error getting random users:", error);
             return [];
         }
+    }
+    // follows no one:
+    if (following.length === 0) {
+        return getNewSuggestion();
     }
 
     function getRandomElementsFromArray(arr, numElements) {
@@ -263,7 +266,9 @@ export async function getUserSuggestion(user) {
                 suggestionUser;
         }
     }
-
+    if (Object.keys(suggestedUsers).length === 0) {
+        return getNewSuggestion();
+    }
     return suggestedUsers;
 
     // write getUserSuggestion function where it returns 5 user's userId
