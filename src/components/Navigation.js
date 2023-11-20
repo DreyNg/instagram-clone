@@ -225,12 +225,12 @@ export default function Navigation() {
                         </svg>
                     </div>
                 </div>
-                <div className="flex items-center justify-center">
+                <div className="flex items-center p-4 justify-center">
                     {/* profile */}
-                    <div className=" p-4 rounded-lg cursor-pointer">
+                    <div className="h-7 w-7 cursor-pointer rounded-full overflow-hidden">
                         <img
                             src={currentUser.profilePicture}
-                            className="h-7 w-7 rounded-full"
+                            className="w-full h-auto"
                         />
                     </div>
                 </div>
