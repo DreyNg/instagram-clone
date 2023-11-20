@@ -217,10 +217,11 @@ export async function getUserSuggestion(user) {
                 .get();
 
             const suggestedUsers = {};
+            const temp = [];
             snapshot.forEach((doc) => {
-                suggestedUsers["Suggested to you"] = doc.data();
-                // suggestedUsers.push(doc.data());
+                temp.push(doc.data());
             });
+            suggestedUsers["Suggested to you"] = temp;
             return suggestedUsers;
         } catch (error) {
             console.error("Error getting random users:", error);

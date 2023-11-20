@@ -22,6 +22,7 @@ export default function Sidebar() {
             fetchUserSuggestions();
         }
     }, []);
+    console.log(suggestions);
 
     return (
         <div className="h-full pt-3 pl-20">
@@ -50,14 +51,18 @@ export default function Sidebar() {
                         <div>
                             {/* Suggestion cards */}
                             {Object.entries(suggestions).map(([key, value]) => (
-                                <UserCard
-                                    key={key} // Ensure to set a unique key for each component in the list
-                                    avatarSrc={value[0].profilePicture}
-                                    username={value[0].username}
-                                    subtitle={value[0].fullname}
-                                    followText="Follow"
-                                    userId={value[0].userId}
-                                />
+                                <div key={key}>
+                                    {value.map((user, index) => (
+                                        <UserCard
+                                            key={index} // Ensure to set a unique key for each component in the list
+                                            avatarSrc={user.profilePicture}
+                                            username={user.username}
+                                            subtitle={key}
+                                            followText="Follow"
+                                            userId={user.userId}
+                                        />
+                                    ))}
+                                </div>
                             ))}
                         </div>
                     </div>
