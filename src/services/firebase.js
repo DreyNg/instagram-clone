@@ -237,7 +237,26 @@ export async function getUserSuggestion(user) {
         SUGGESTION_NUMBER
     );
 
-    console.log(randomElements);
+    const suggestedUsers = [];
+    randomElements.forEach(async (id) => {
+        const targetUser = await getUserById(id);
+        const targetUserFollowing = targetUser.following;
+
+        // filter followed
+        const removeFollowing = targetUserFollowing.filter(
+            (element) => !following.includes(element)
+        );
+
+        // filter currentUser
+        const removeCurrentUser = removeFollowing.filter(
+            (element) => element !== user.userId
+        );
+
+        console.log("hi", removeCurrentUser);
+        // console.log("b", targetUserFollowing);
+        // suggestedUsers.push(removeCurrentUser);
+    });
+    // console.log(suggestedUsers);
 
     // write getUserSuggestion function where it returns 5 user's userId
     // How it works is:
