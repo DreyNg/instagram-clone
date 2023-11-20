@@ -48,9 +48,6 @@ export default function Sidebar() {
                     </div>
                     <div>
                         <div>
-                            {/* Logging the content of suggestions */}
-                            {console.log(suggestions)}
-
                             {/* Suggestion cards */}
                             {Object.entries(suggestions).map(([key, value]) => (
                                 <UserCard
