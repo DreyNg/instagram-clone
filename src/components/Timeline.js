@@ -93,7 +93,11 @@ export default function Timeline() {
                 </div>
                 <div className="bg-red-500 flex-1 flex flex-col justify-center px-20 ">
                     <div className="bg-blue-500 w-full ">
-                        <div className="bg-green-500 h-12">head</div>
+                        <div className="bg-green-500 h-12">
+                            <div>ava</div>
+                            <div>user</div>
+                            <div>option</div>
+                        </div>
                         <div className="bg-orange-500">
                             <img src="https://i.pinimg.com/1200x/8d/b9/9e/8db99e91cfbd85574ce47305e5924f6b.jpg" />
                         </div>
