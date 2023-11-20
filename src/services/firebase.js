@@ -216,9 +216,10 @@ export async function getUserSuggestion(user) {
                 .limit(SUGGESTION_NUMBER)
                 .get();
 
-            const suggestedUsers = [];
+            const suggestedUsers = {};
             snapshot.forEach((doc) => {
-                suggestedUsers.push(doc.data());
+                suggestedUsers["Suggested to you"] = doc.data();
+                // suggestedUsers.push(doc.data());
             });
             return suggestedUsers;
         } catch (error) {
@@ -237,26 +238,32 @@ export async function getUserSuggestion(user) {
         SUGGESTION_NUMBER
     );
 
-    const suggestedUsers = [];
-    randomElements.forEach(async (id) => {
+    const suggestedUsers = {};
+
+    for (const id of randomElements) {
         const targetUser = await getUserById(id);
         const targetUserFollowing = targetUser.following;
 
-        // filter followed
         const removeFollowing = targetUserFollowing.filter(
             (element) => !following.includes(element)
         );
 
-        // filter currentUser
         const removeCurrentUser = removeFollowing.filter(
             (element) => element !== user.userId
         );
 
-        console.log("hi", removeCurrentUser);
-        // console.log("b", targetUserFollowing);
-        // suggestedUsers.push(removeCurrentUser);
-    });
-    // console.log(suggestedUsers);
+        const suggestionUser = [];
+        for (const id of removeCurrentUser) {
+            const tempUser = await getUserById(id);
+            suggestionUser.push(tempUser);
+        }
+        if (suggestionUser.length) {
+            suggestedUsers[`Followed by ${targetUser.username}`] =
+                suggestionUser;
+        }
+    }
+
+    return suggestedUsers;
 
     // write getUserSuggestion function where it returns 5 user's userId
     // How it works is:

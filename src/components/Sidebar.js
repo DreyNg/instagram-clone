@@ -47,16 +47,22 @@ export default function Sidebar() {
                         </div>
                     </div>
                     <div>
-                        Suggestion cards
-                        {/* {suggestions.map((user) => (
-                            <UserCard
-                                avatarSrc={user.profilePicture}
-                                username={user.username}
-                                subtitle={user.fullname}
-                                followText="Follow"
-                                userId={user.userId}
-                            />
-                        ))} */}
+                        <div>
+                            {/* Logging the content of suggestions */}
+                            {console.log(suggestions)}
+
+                            {/* Suggestion cards */}
+                            {Object.entries(suggestions).map(([key, value]) => (
+                                <UserCard
+                                    key={key} // Ensure to set a unique key for each component in the list
+                                    avatarSrc={value[0].profilePicture}
+                                    username={value[0].username}
+                                    subtitle={value[0].fullname}
+                                    followText="Follow"
+                                    userId={value[0].userId}
+                                />
+                            ))}
+                        </div>
                     </div>
                 </div>
             </div>
