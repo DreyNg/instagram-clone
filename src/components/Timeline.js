@@ -1,4 +1,9 @@
+import { useContext } from "react";
+import FollowingUsersContext from "../context/FollowingUsersContext";
+
 export default function Timeline() {
+    const { followingUsers } = useContext(FollowingUsersContext);
+    console.log("s", followingUsers);
     return (
         <div className="h-full ">
             <div className="bg-green-500 h-full flex flex-col">

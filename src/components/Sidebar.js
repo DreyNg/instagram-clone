@@ -22,7 +22,6 @@ export default function Sidebar() {
             fetchUserSuggestions();
         }
     }, []);
-    console.log(suggestions);
 
     return (
         <div className="h-full pt-3 pl-20">
