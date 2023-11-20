@@ -25,7 +25,9 @@ export default function Timeline() {
         <div className="h-full">
             <div className="bg-green-500 h-full flex flex-col">
                 <div className="bg-orange-500 h-24 flex items-center justify-between">
-                    <button onClick={scrollLeft}>&lt;</button>
+                    <button className="absolute" onClick={scrollLeft}>
+                        &lt;
+                    </button>
                     <div
                         ref={scrollContainerRef}
                         className="overflow-hidden flex scroll-container"
@@ -47,7 +49,9 @@ export default function Timeline() {
                         ))}
                         {/* ... Repeat your avatar and username components as needed */}
                     </div>
-                    <button onClick={scrollRight}>&gt;</button>
+                    <button className="absolute right-0" onClick={scrollRight}>
+                        &gt;
+                    </button>
                 </div>
                 <div className="bg-red-500 flex-1">This is timeline</div>
             </div>
