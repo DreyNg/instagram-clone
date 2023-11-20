@@ -25,8 +25,26 @@ export default function Timeline() {
         <div className="h-full">
             <div className="h-full flex flex-col ">
                 <div className="relative h-24 flex items-center justify-between mb-4 mt-4">
-                    <button className="absolute left-0" onClick={scrollLeft}>
-                        &lt;
+                    <button
+                        className="absolute left-5 pb-3"
+                        onClick={scrollLeft}
+                    >
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            className="h-7 w-7"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="none"
+                        >
+                            <circle cx="12" cy="12" r="11" fill="#fff" />
+                            <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth="2"
+                                d="M14 9l-4 3 4 3"
+                                stroke="rgba(0, 0, 0, 0.2)"
+                            />
+                        </svg>
                     </button>
                     <div
                         ref={scrollContainerRef}
@@ -51,8 +69,26 @@ export default function Timeline() {
                         ))}
                         {/* ... Repeat your avatar and username components as needed */}
                     </div>
-                    <button className="absolute right-0" onClick={scrollRight}>
-                        &gt;
+                    <button
+                        className="absolute right-2 pb-3"
+                        onClick={scrollRight}
+                    >
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            className="h-7 w-7"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="none"
+                        >
+                            <circle cx="12" cy="12" r="11" fill="#fff" />
+                            <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth="2"
+                                d="M12 9l3 3-3 3"
+                                stroke="rgba(0, 0, 0, 0.2)"
+                            />
+                        </svg>
                     </button>
                 </div>
                 <div className="bg-red-500 flex-1">This is timeline</div>
