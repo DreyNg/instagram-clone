@@ -11,11 +11,11 @@ export default function Dashboard() {
     return (
         <div className="flex h-screen">
             {/* Navigation */}
-            <div className="w-20 flex-shrink-0">
+            <div className="fixed top-0 left-0 w-20 h-screen overflow-y-auto">
                 <Navigation />
             </div>
             {/* Timeline and Sidebar */}
-            <div className="flex w-full px-16 bg-black">
+            <div className="pl-36 flex w-full px-16 bg-black">
                 <div className="w-3/5">
                     <Timeline />
                 </div>
