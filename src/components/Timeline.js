@@ -92,11 +92,12 @@ export default function Timeline() {
                     </button>
                 </div>
                 <div className="flex-1 flex justify-center">
-                    <div className="bg-blue-500 w-[460px] ">
+                    <div className="w-[480px] ">
                         {/* header */}
-                        <div className="bg-green-500 h-12">
-                            <div className="p-1 rounded-lg flex-none cursor-pointer">
-                                <div className="h-10 w-10 rounded-full overflow-hidden">
+                        <div className="flex items-center h-12">
+                            {/* Ava */}
+                            <div className="p-1 flex-none cursor-pointer">
+                                <div className="h-8 w-8 rounded-full overflow-hidden">
                                     <img
                                         src="https://i.pinimg.com/1200x/8d/b9/9e/8db99e91cfbd85574ce47305e5924f6b.jpg"
                                         className="w-full h-auto"
@@ -104,12 +105,59 @@ export default function Timeline() {
                                     />
                                 </div>
                             </div>
-                            <div>user</div>
-                            <div>option</div>
+                            {/* UserName */}
+                            <div className="mx-2  flex items-center h-full flex-grow">
+                                <div className="text-white font-semibold text-sm cursor-pointer pb-1">
+                                    whatsonmelb
+                                </div>
+                                <svg
+                                    aria-label="Verified"
+                                    class="mx-1"
+                                    fill="rgb(0, 149, 246)"
+                                    height="12"
+                                    role="img"
+                                    viewBox="0 0 40 40"
+                                    width="12"
+                                >
+                                    <title>Verified</title>
+                                    <path
+                                        d="M19.998 3.094 14.638 0l-2.972 5.15H5.432v6.354L0 14.64 3.094 20 0 25.359l5.432 3.137v5.905h5.975L14.638 40l5.36-3.094L25.358 40l3.232-5.6h6.162v-6.01L40 25.359 36.905 20 40 14.641l-5.248-3.03v-6.46h-6.419L25.358 0l-5.36 3.094Zm7.415 11.225 2.254 2.287-11.43 11.5-6.835-6.93 2.244-2.258 4.587 4.581 9.18-9.18Z"
+                                        fill-rule="evenodd"
+                                    ></path>
+                                </svg>
+                                <title>Verified</title>
+                                <path
+                                    d="M19.998 3.094 14.638 0l-2.972 5.15H5.432v6.354L0 14.64 3.094 20 0 25.359l5.432 3.137v5.905h5.975L14.638 40l5.36-3.094L25.358 40l3.232-5.6h6.162v-6.01L40 25.359 36.905 20 40 14.641l-5.248-3.03v-6.46h-6.419L25.358 0l-5.36 3.094Zm7.415 11.225 2.254 2.287-11.43 11.5-6.835-6.93 2.244-2.258 4.587 4.581 9.18-9.18Z"
+                                    fill-rule="evenodd"
+                                ></path>
+                                <div className="text-ig-grey cursor-pointer">
+                                    •
+                                </div>
+                                <div className="text-ig-grey mx-1  text-sm cursor-pointer ">
+                                    22h
+                                </div>
+                            </div>
+                            <svg
+                                aria-label="More options"
+                                fill="white"
+                                height="24"
+                                role="img"
+                                viewBox="0 0 24 24"
+                                width="24"
+                            >
+                                <title>More options</title>
+                                <circle cx="12" cy="12" r="1.5"></circle>
+                                <circle cx="6" cy="12" r="1.5"></circle>
+                                <circle cx="18" cy="12" r="1.5"></circle>
+                            </svg>
                         </div>
+
                         {/* Image */}
-                        <div className="bg-orange-500">
-                            <img src="https://i.pinimg.com/1200x/8d/b9/9e/8db99e91cfbd85574ce47305e5924f6b.jpg" />
+                        <div className=" rounded overflow-hidden">
+                            <img
+                                src="https://i.pinimg.com/1200x/8d/b9/9e/8db99e91cfbd85574ce47305e5924f6b.jpg"
+                                className="w-full h-auto"
+                            />
                         </div>
                         {/* comment */}
                         <div className="bg-gray-500">comment</div>

@@ -42,10 +42,12 @@ export default function SignUp() {
                     email: email.toLowerCase(),
                     fullname: fullname.toLowerCase(),
                     profilePicture: BLANK_PROFILE_IMAGE,
+                    // TODO: serverTimestamp()
                     dateCreated: new Date(),
                     followers: [],
                     following: [],
                     userId: createdUser.user.uid,
+                    verified: false,
                 });
 
                 navigate(ROUTER.DASHBOARD);
