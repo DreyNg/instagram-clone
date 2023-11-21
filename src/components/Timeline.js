@@ -91,16 +91,27 @@ export default function Timeline() {
                         </svg>
                     </button>
                 </div>
-                <div className="bg-red-500 flex-1 flex flex-col justify-center px-20 ">
-                    <div className="bg-blue-500 w-full ">
+                <div className="flex-1 flex justify-center">
+                    <div className="bg-blue-500 w-[460px] ">
+                        {/* header */}
                         <div className="bg-green-500 h-12">
-                            <div>ava</div>
+                            <div className="p-1 rounded-lg flex-none cursor-pointer">
+                                <div className="h-10 w-10 rounded-full overflow-hidden">
+                                    <img
+                                        src="https://i.pinimg.com/1200x/8d/b9/9e/8db99e91cfbd85574ce47305e5924f6b.jpg"
+                                        className="w-full h-auto"
+                                        alt={`Avatar of `}
+                                    />
+                                </div>
+                            </div>
                             <div>user</div>
                             <div>option</div>
                         </div>
+                        {/* Image */}
                         <div className="bg-orange-500">
                             <img src="https://i.pinimg.com/1200x/8d/b9/9e/8db99e91cfbd85574ce47305e5924f6b.jpg" />
                         </div>
+                        {/* comment */}
                         <div className="bg-gray-500">comment</div>
                     </div>
                 </div>
