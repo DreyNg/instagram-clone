@@ -16,7 +16,7 @@ export default function Post() {
     const truncatedCaption = captionText.slice(0, 20) + "...";
     const displayedCaption = showFullCaption ? captionText : truncatedCaption;
     return (
-        <div className="mb-6 pb-6 border-b border-zinc-800">
+        <div className="mb-4 pb-4 border-b border-zinc-800">
             {/* header */}
             <div className="flex items-center h-12">
                 {/* Ava */}

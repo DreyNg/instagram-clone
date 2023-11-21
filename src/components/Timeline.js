@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import Post from "./Post";
 
 export default function Timeline() {
@@ -94,6 +94,8 @@ export default function Timeline() {
                 </div>
                 <div className="flex-1 flex justify-center">
                     <div className="w-[480px]">
+                        <Post />
+                        <Post />
                         <Post />
                     </div>
                 </div>
