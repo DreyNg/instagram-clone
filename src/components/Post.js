@@ -18,12 +18,12 @@ export default function Post() {
     return (
         <div className="mb-4 pb-4 border-b border-zinc-800">
             {/* header */}
-            <div className="flex items-center h-12">
+            <div className="flex items-center h-14">
                 {/* Ava */}
                 <div className="p-1 flex-none cursor-pointer">
                     <div className="h-8 w-8 rounded-full overflow-hidden">
                         <img
-                            src="https://i.pinimg.com/1200x/8d/b9/9e/8db99e91cfbd85574ce47305e5924f6b.jpg"
+                            src="https://media.licdn.com/dms/image/C5603AQEoU_6p7eFO8A/profile-displayphoto-shrink_800_800/0/1639044381219?e=2147483647&v=beta&t=HXXH1TEH1ag1TKV4kd2RbbKQeaBR3Yl6vX42pUQxsws"
                             className="w-full h-auto"
                             alt={`Avatar of `}
                         />
@@ -32,7 +32,7 @@ export default function Post() {
                 {/* UserName */}
                 <div className="mx-2  flex items-center h-full flex-grow">
                     <div className="text-white font-semibold text-sm cursor-pointer pb-1">
-                        whatsonmelb
+                        harvey.tr
                     </div>
                     <svg
                         aria-label="Verified"
@@ -77,7 +77,7 @@ export default function Post() {
             {/* Image */}
             <div className=" rounded overflow-hidden">
                 <img
-                    src="https://i.pinimg.com/1200x/8d/b9/9e/8db99e91cfbd85574ce47305e5924f6b.jpg"
+                    src="https://media.licdn.com/dms/image/D5603AQFdxp9zzeMUZQ/profile-displayphoto-shrink_800_800/0/1678692083900?e=2147483647&v=beta&t=JOcVZWBNgC3ogYVyAd_AV0Aiu5NxAFzA3a9cMLWzbmY"
                     className="w-full h-auto"
                 />
             </div>
@@ -174,7 +174,7 @@ export default function Post() {
                     style={{ overflowWrap: "break-word" }}
                     onClick={toggleCaption}
                 >
-                    <span className="font-semibold">hatkhongbietnhay.g9</span>{" "}
+                    <span className="font-semibold">harvey.tr</span>{" "}
                     {displayedCaption}
                     {!showFullCaption && (
                         <span className="text-ig-grey ml-1">more</span>
