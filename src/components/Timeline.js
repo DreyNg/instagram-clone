@@ -1,8 +1,15 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 export default function Timeline() {
     const scrollContainerRef = useRef(null);
-
+    const [showFullCaption, setShowFullCaption] = useState(false);
+    const [inputValue, setInputValue] = useState("");
+    const handleInputChange = (e) => {
+        setInputValue(e.target.value);
+    };
+    const toggleCaption = () => {
+        setShowFullCaption(true);
+    };
     const scrollLeft = () => {
         if (scrollContainerRef.current) {
             scrollContainerRef.current.scrollBy({
@@ -20,7 +27,11 @@ export default function Timeline() {
             });
         }
     };
+    const captionText =
+        "ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss"; // Your caption text goes here
 
+    const truncatedCaption = captionText.slice(0, 20) + "...";
+    const displayedCaption = showFullCaption ? captionText : truncatedCaption;
     return (
         <div className="h-full ">
             <div className="h-full flex flex-col ">
@@ -92,7 +103,7 @@ export default function Timeline() {
                     </button>
                 </div>
                 <div className="flex-1 flex justify-center">
-                    <div className="w-[480px] ">
+                    <div className="w-[480px] mb-6 pb-6 border-b border-zinc-800">
                         {/* header */}
                         <div className="flex items-center h-12">
                             {/* Ava */}
@@ -160,13 +171,13 @@ export default function Timeline() {
                             />
                         </div>
                         {/* comment */}
-                        <div className="bg-gray-500">
-                            <div className="flex py-1">
+                        <div className="">
+                            <div className="flex py-2">
                                 <div className="flex flex-grow">
                                     <svg
                                         aria-label="Like"
-                                        class="x1lliihq x1n2onr6 xyb1xck"
-                                        fill="currentColor"
+                                        class="mr-1"
+                                        fill="white"
                                         height="24"
                                         role="img"
                                         viewBox="0 0 24 24"
@@ -177,8 +188,8 @@ export default function Timeline() {
                                     </svg>
                                     <svg
                                         aria-label="Comment"
-                                        class="x1lliihq x1n2onr6 x5n08af"
-                                        fill="currentColor"
+                                        class="mx-3"
+                                        fill="white"
                                         height="24"
                                         role="img"
                                         viewBox="0 0 24 24"
@@ -188,15 +199,15 @@ export default function Timeline() {
                                         <path
                                             d="M20.656 17.008a9.993 9.993 0 1 0-3.59 3.615L22 22Z"
                                             fill="none"
-                                            stroke="currentColor"
+                                            stroke="white"
                                             stroke-linejoin="round"
                                             stroke-width="2"
                                         ></path>
                                     </svg>
                                     <svg
                                         aria-label="Share Post"
-                                        class="x1lliihq x1n2onr6 x5n08af"
-                                        fill="currentColor"
+                                        class="mx-1"
+                                        fill="white"
                                         height="24"
                                         role="img"
                                         viewBox="0 0 24 24"
@@ -205,7 +216,7 @@ export default function Timeline() {
                                         <title>Share Post</title>
                                         <line
                                             fill="none"
-                                            stroke="currentColor"
+                                            stroke="white"
                                             stroke-linejoin="round"
                                             stroke-width="2"
                                             x1="22"
@@ -216,7 +227,7 @@ export default function Timeline() {
                                         <polygon
                                             fill="none"
                                             points="11.698 20.334 22 3.001 2 3.001 9.218 10.084 11.698 20.334"
-                                            stroke="currentColor"
+                                            stroke="white"
                                             stroke-linejoin="round"
                                             stroke-width="2"
                                         ></polygon>
@@ -226,7 +237,7 @@ export default function Timeline() {
                                     <svg
                                         aria-label="Save"
                                         class="x1lliihq x1n2onr6 x5n08af"
-                                        fill="currentColor"
+                                        fill="white"
                                         height="24"
                                         role="img"
                                         viewBox="0 0 24 24"
@@ -236,7 +247,7 @@ export default function Timeline() {
                                         <polygon
                                             fill="none"
                                             points="20 21 12 13.44 4 21 4 3 20 3 20 21"
-                                            stroke="currentColor"
+                                            stroke="white"
                                             stroke-linecap="round"
                                             stroke-linejoin="round"
                                             stroke-width="2"
@@ -244,10 +255,37 @@ export default function Timeline() {
                                     </svg>
                                 </div>
                             </div>
-                            <div>like counts</div>
-                            <div>caption</div>
-                            <div>Comments</div>
-                            <div>Add a comment</div>
+                            <div className="text-sm text-white py-1">
+                                Liked by ismailolol and others
+                            </div>
+                            <div
+                                className="text-sm text-white mr-5 cursor-pointer"
+                                style={{ overflowWrap: "break-word" }}
+                                onClick={toggleCaption}
+                            >
+                                <span className="font-semibold">
+                                    hatkhongbietnhay.g9
+                                </span>{" "}
+                                {displayedCaption}
+                                {!showFullCaption && (
+                                    <span className="text-ig-grey ml-1">
+                                        more
+                                    </span>
+                                )}
+                            </div>
+                            <div className="text-sm text-ig-grey py-1">
+                                View all 168 comments
+                            </div>
+                            <input
+                                type="text"
+                                className="placeholder-ig-grey text-sm pt-1 outline-none border-none bg-transparent"
+                                placeholder="Add a comment..."
+                                value={inputValue}
+                                onChange={handleInputChange}
+                                style={{
+                                    color: "white",
+                                }}
+                            />
                         </div>
                     </div>
                 </div>
