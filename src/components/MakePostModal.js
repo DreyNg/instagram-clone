@@ -66,7 +66,7 @@ const MakePostModal = ({ closeModal }) => {
                         </div>
                         <textarea
                             type="text"
-                            className="placeholder-ig-grey h-full pt-1 overflow-auto outline-none border-none bg-transparent"
+                            className="placeholder-ig-grey mt-2 h-full pt-1 overflow-auto outline-none border-none bg-transparent"
                             placeholder="Write a caption..."
                             value={inputValue}
                             onChange={handleInputChange}
