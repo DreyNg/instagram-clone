@@ -1,8 +1,18 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import CurrentUserContext from "../context/CurrentUserContext";
+import MakePostModal from "./MakePostModal";
 
 export default function Navigation() {
     const { currentUser } = useContext(CurrentUserContext);
+
+    const [openUploadModal, setOpenUploadModal] = useState(false);
+    const openUpload = () => {
+        setOpenUploadModal(true);
+    };
+
+    const closeModal = () => {
+        setOpenUploadModal(false);
+    };
     return (
         <nav className="bg-black h-full py-4 border-r border-zinc-800 ">
             <div className="flex items-center justify-center pt-1 pb-6">
@@ -186,7 +196,12 @@ export default function Navigation() {
                 </div>
                 <div className="flex items-center justify-center">
                     {/* Upload */}
-                    <div className=" p-3 rounded-lg cursor-pointer">
+                    <div
+                        className=" p-3 rounded-lg cursor-pointer"
+                        onClick={() => {
+                            openUpload();
+                        }}
+                    >
                         <svg
                             className="w-7 h-7 fill-current text-gray-100 "
                             viewBox="0 0 24 24"
@@ -282,6 +297,8 @@ export default function Navigation() {
                     </div>
                 </div>
             </div>
+            {/* <MakePostModal closeModal={closeModal} /> */}
+            {openUploadModal && <MakePostModal closeModal={closeModal} />}
         </nav>
     );
 }
