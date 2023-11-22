@@ -1,10 +1,16 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import ReactDom from "react-dom";
+import CurrentUserContext from "../context/CurrentUserContext";
 
 const MakePostModal = ({ closeModal }) => {
+    const { currentUser } = useContext(CurrentUserContext);
+    const [inputValue, setInputValue] = useState("");
+    const handleInputChange = (e) => {
+        setInputValue(e.target.value);
+    };
     return ReactDom.createPortal(
         <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-60">
-            <div className="flex flex-col h-[400px] w-[710px] rounded-md">
+            <div className="flex flex-col h-[400px] w-[710px] rounded-md overflow-hidden">
                 <div className="flex bg-ig-grey-bg h-12 border-zinc-600 border-b items-center">
                     <div className="flex-none pl-5 mt-1">
                         <svg
@@ -42,7 +48,33 @@ const MakePostModal = ({ closeModal }) => {
                     </div>
                     <div className="pr-5 text-ig-blue font-semibold">Share</div>
                 </div>
-                <div className="bg-ig-grey-bg h-full"></div>
+                <div className="bg-ig-grey-bg flex flex-row h-full">
+                    <div className="w-1/2 bg-red-500">upload section</div>
+                    <div className="w-1/2 p-4 flex flex-col">
+                        <div className=" h-10 items-center flex">
+                            <div className=" h-7 w-7 cursor-pointer rounded-full overflow-hidden">
+                                <img
+                                    src={currentUser.profilePicture}
+                                    className="w-full h-auto"
+                                />
+                            </div>
+                            <div className="text-white ml-4 font-semibold text-sm">
+                                {currentUser.username}
+                            </div>
+                        </div>
+                        <input
+                            type="text"
+                            className="placeholder-ig-grey flex-grow text-sm pt-1 outline-none border-none bg-transparent"
+                            placeholder="Write a caption..."
+                            value={inputValue}
+                            onChange={handleInputChange}
+                            style={{
+                                color: "white",
+                            }}
+                        />
+                        <div className="">footer</div>
+                    </div>
+                </div>
                 <button
                     className="text-white fixed top-3 right-8 text-xl"
                     onClick={closeModal}

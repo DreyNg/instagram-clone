@@ -603,6 +603,9 @@ video {
 .mt-1 {
   margin-top: 0.25rem;
 }
+.ml-4 {
+  margin-left: 1rem;
+}
 .flex {
   display: flex;
 }
@@ -708,6 +711,9 @@ video {
 .w-\[710px\] {
   width: 710px;
 }
+.w-1\/2 {
+  width: 50%;
+}
 .max-w-screen-md {
   max-width: 768px;
 }
@@ -722,6 +728,9 @@ video {
 }
 .cursor-pointer {
   cursor: pointer;
+}
+.flex-row {
+  flex-direction: row;
 }
 .flex-col {
   flex-direction: column;
