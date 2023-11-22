@@ -1,4 +1,5 @@
 import { firebase, FieldValue } from "../lib/firebase";
+import { serverTimestamp } from "firebase/firestore";
 
 export async function doesUserExist(username) {
     const querySnapshot = await firebase
@@ -197,6 +198,33 @@ export async function handleUnfollowUser(followingUserId, followedUserId) {
         }
     } catch (error) {
         console.error("Error handling follow user:", error);
+    }
+}
+
+export async function createPost() {
+    try {
+        const postsRef = firebase.firestore().collection("posts");
+        // Get the current timestamp
+
+        // Create a new post object
+        const newPost = {
+            userId: "userId",
+            imageUrl: "url",
+            caption: "caption",
+            likes: [],
+            likeCounts: 0,
+            comments: [],
+            commentCounts: 0,
+            timestamp: serverTimestamp(),
+            verified: false,
+        };
+
+        // Add the new post to Firestore
+        const docRef = await postsRef.add(newPost);
+        console.log(docRef.id);
+    } catch (error) {
+        console.error("Error adding post: ", error);
+        throw error; // Throw the error for handling in the calling code
     }
 }
 

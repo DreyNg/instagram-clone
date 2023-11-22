@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { createPost } from "../services/firebase";
 
 export default function Post() {
     const [showFullCaption, setShowFullCaption] = useState(false);
@@ -26,6 +27,7 @@ export default function Post() {
                             src="https://media.licdn.com/dms/image/C5603AQEoU_6p7eFO8A/profile-displayphoto-shrink_800_800/0/1639044381219?e=2147483647&v=beta&t=HXXH1TEH1ag1TKV4kd2RbbKQeaBR3Yl6vX42pUQxsws"
                             className="w-full h-auto"
                             alt={`Avatar of `}
+                            onClick={createPost}
                         />
                     </div>
                 </div>
