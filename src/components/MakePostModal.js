@@ -18,15 +18,15 @@ const MakePostModal = ({ closeModal }) => {
     return ReactDom.createPortal(
         <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-60">
             <div className="flex flex-col h-[400px] w-[710px] rounded-lg overflow-hidden">
-                <div className="flex bg-ig-grey-bg h-12 border-zinc-600 border-b items-center">
+                <div className="flex bg-ig-grey-bg h-12 pb-1 border-zinc-600 border-b items-center">
                     <div className="flex-none pl-5 mt-1">
                         <svg
                             aria-label="Back"
                             fill="white"
-                            height="24"
+                            height="20"
                             role="img"
                             viewBox="0 0 24 24"
-                            width="24"
+                            width="20"
                         >
                             <title>Back</title>
                             <line
@@ -114,13 +114,13 @@ const MakePostModal = ({ closeModal }) => {
                     </div>
                     <div className="w-1/2 p-4 flex flex-col">
                         <div className=" h-10 items-center flex">
-                            <div className=" h-7 w-7 cursor-pointer rounded-full overflow-hidden">
+                            <div className=" h-8 w-8 cursor-pointer rounded-full overflow-hidden">
                                 <img
                                     src={currentUser.profilePicture}
                                     className="w-full h-auto"
                                 />
                             </div>
-                            <div className="text-white ml-4 font-semibold text-sm">
+                            <div className="text-white ml-4 font-semibold">
                                 {currentUser.username}
                             </div>
                         </div>
