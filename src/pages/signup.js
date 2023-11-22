@@ -48,6 +48,7 @@ export default function SignUp() {
                     following: [],
                     userId: createdUser.user.uid,
                     verified: false,
+                    posts: [],
                 });
 
                 navigate(ROUTER.DASHBOARD);

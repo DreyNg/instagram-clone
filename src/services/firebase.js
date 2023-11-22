@@ -222,6 +222,8 @@ export async function createPost() {
         // Add the new post to Firestore
         const docRef = await postsRef.add(newPost);
         console.log(docRef.id);
+
+        // append to user posts
     } catch (error) {
         console.error("Error adding post: ", error);
         throw error; // Throw the error for handling in the calling code
