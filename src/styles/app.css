@@ -729,6 +729,9 @@ video {
 .cursor-pointer {
   cursor: pointer;
 }
+.resize {
+  resize: both;
+}
 .flex-row {
   flex-direction: row;
 }
@@ -757,6 +760,9 @@ video {
 }
 .overflow-hidden {
   overflow: hidden;
+}
+.overflow-scroll {
+  overflow: scroll;
 }
 .overflow-y-auto {
   overflow-y: auto;

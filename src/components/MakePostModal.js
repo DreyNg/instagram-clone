@@ -49,7 +49,9 @@ const MakePostModal = ({ closeModal }) => {
                     <div className="pr-5 text-ig-blue font-semibold">Share</div>
                 </div>
                 <div className="bg-ig-grey-bg flex flex-row h-full">
-                    <div className="w-1/2 bg-red-500">upload section</div>
+                    <div className="w-1/2 bg-red-500 border-r border-zinc-600">
+                        upload section
+                    </div>
                     <div className="w-1/2 p-4 flex flex-col">
                         <div className=" h-10 items-center flex">
                             <div className=" h-7 w-7 cursor-pointer rounded-full overflow-hidden">
@@ -62,16 +64,18 @@ const MakePostModal = ({ closeModal }) => {
                                 {currentUser.username}
                             </div>
                         </div>
-                        <input
+                        <textarea
                             type="text"
-                            className="placeholder-ig-grey flex-grow text-sm pt-1 outline-none border-none bg-transparent"
+                            className="placeholder-ig-grey h-full pt-1 overflow-auto outline-none border-none bg-transparent"
                             placeholder="Write a caption..."
                             value={inputValue}
                             onChange={handleInputChange}
                             style={{
                                 color: "white",
+                                resize: "none", // Disable resizing
                             }}
                         />
+
                         <div className="">footer</div>
                     </div>
                 </div>
