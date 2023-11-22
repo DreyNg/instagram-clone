@@ -51,8 +51,7 @@ export default function Timeline() {
                         ref={scrollContainerRef}
                         className="overflow-hidden flex scroll-container "
                     >
-                        {/* Your avatar and username components go here */}
-                        {/* Example placeholders */}
+                        {/* story */}
                         {Array.from({ length: 15 }, (_, index) => (
                             <div
                                 key={index}
