@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import ReactDom from "react-dom";
 import CurrentUserContext from "../context/CurrentUserContext";
+import { uploadToImgurl } from "../services/firebase";
 
 const MakePostModal = ({ closeModal }) => {
     const { currentUser } = useContext(CurrentUserContext);
@@ -19,7 +20,10 @@ const MakePostModal = ({ closeModal }) => {
         <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-60">
             <div className="flex flex-col h-[400px] w-[710px] rounded-lg overflow-hidden">
                 <div className="flex bg-ig-grey-bg h-12 pb-1 border-zinc-600 border-b items-center">
-                    <div className="flex-none pl-5 mt-1">
+                    <div
+                        className="flex-none pl-5 mt-1 cursor-pointer"
+                        onClick={closeModal}
+                    >
                         <svg
                             aria-label="Back"
                             fill="white"
@@ -53,7 +57,12 @@ const MakePostModal = ({ closeModal }) => {
                     <div className="flex-grow text-white text-center font-semibold">
                         Create new post
                     </div>
-                    <div className="pr-5 text-ig-blue font-semibold">Share</div>
+                    <div
+                        className="pr-5 text-ig-blue font-semibold cursor-pointer"
+                        onClick={uploadToImgurl(selectedFile)}
+                    >
+                        Share
+                    </div>
                 </div>
                 <div className="bg-ig-grey-bg flex overflow-hidden flex-row h-full ">
                     <div className="w-1/2 bg-ig-grey-bg items-center justify-center border-r border-zinc-600  flex flex-col">
@@ -142,41 +151,6 @@ const MakePostModal = ({ closeModal }) => {
                         </div>
                     </div>
                 </div>
-                <button
-                    className="text-white fixed top-3 right-8 text-xl"
-                    onClick={closeModal}
-                >
-                    <svg
-                        aria-label="Close"
-                        class="x1lliihq x1n2onr6 x9bdzbf"
-                        fill="white"
-                        height="18"
-                        role="img"
-                        viewBox="0 0 24 24"
-                        width="18"
-                    >
-                        <title>Close</title>
-                        <polyline
-                            fill="none"
-                            points="20.643 3.357 12 12 3.353 20.647"
-                            stroke="white"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="3"
-                        ></polyline>
-                        <line
-                            fill="none"
-                            stroke="white"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="3"
-                            x1="20.649"
-                            x2="3.354"
-                            y1="20.649"
-                            y2="3.354"
-                        ></line>
-                    </svg>
-                </button>
             </div>
         </div>,
         document.getElementById("portal")

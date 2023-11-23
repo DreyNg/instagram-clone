@@ -201,6 +201,32 @@ export async function handleUnfollowUser(followingUserId, followedUserId) {
     }
 }
 
+export async function uploadToImgurl(file) {
+    try {
+        const imgData = new FormData();
+        imgData.append("image", file);
+
+        const response = await fetch("https://api.imgur.com/3/image", {
+            method: "POST",
+            headers: {
+                Authorization: "Client-ID c6c382becb757ad", // Replace with your Imgur Client ID
+            },
+            body: imgData,
+        });
+
+        if (!response.ok) {
+            throw new Error("Network response was not ok.");
+        }
+
+        const data = await response.json();
+        console.log(data);
+        return data; // Return the response data if needed
+    } catch (error) {
+        console.error("Error uploading image:", error);
+        throw error;
+    }
+}
+
 export async function createPost() {
     try {
         const postsRef = firebase.firestore().collection("posts");
