@@ -201,7 +201,7 @@ export async function handleUnfollowUser(followingUserId, followedUserId) {
     }
 }
 
-export async function uploadToImgur(file) {
+export async function uploadToImgur(img) {
     // Client ID
     const clientId = "c6c382becb757ad",
         auth = "Client-ID " + clientId;
@@ -210,22 +210,30 @@ export async function uploadToImgur(file) {
     const formData = new FormData();
 
     // Adding our image to formData
-    formData.append("file", file);
+    formData.append("image", img);
 
     // Making the post request
-    await fetch("https://api.imgur.com/3/image/", {
-        // API Endpoint
-        method: "POST", // HTTP Method
-        body: formData, // Data to be sent
-        headers: {
-            // Setting header
-            Authorization: "Client-ID c6c382becb757ad",
-            Accept: "application/json",
-        },
-    })
+    try {
+        const res = await fetch("https://api.imgur.com/3/image/", {
+            // API Endpoint
+            method: "POST", // HTTP Method
+            body: formData, // Data to be sent
+            headers: {
+                // Setting header
+                Authorization: "Client-ID c6c382becb757ad",
+                Accept: "application/json",
+            },
+        });
         // Handling success
-        .then((res) => alert("image uploaded") && console.log(res))
-        .catch((err) => alert("Failed") && console.log(err));
+        // .then((res) => alert("image uploaded") && console.log(res))
+        // .catch((err) => alert("Failed") && console.log(err));
+        const jsonlink = await res.json();
+        const link = jsonlink.data.link;
+        return link;
+    } catch (err) {
+        alert("Failed");
+        console.log(err);
+    }
 
     // try {
     //     const formdata = new FormData();
