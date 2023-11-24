@@ -19,8 +19,8 @@
     "scripts": {
         "build:css": "postcss src/styles/tailwind.css -o src/styles/app.css",
         "watch:css": "postcss src/styles/tailwind.css -o src/styles/app.css --watch",
-        "react-scripts:start": "timeout /t 5 && react-scripts start",
-        "start": "set HOST=0.0.0.0 && npm-run-all -p watch:css react-scripts:start",
+        "react-scripts:start": "timeout /t 5 && react-scripts start --host 0.0.0.0",
+        "start": "npm-run-all -p watch:css react-scripts:start ",
         "build": "npm-run-all -s build:css react-scripts:dist",
         "test": "react-scripts test",
         "eject": "react-scripts eject"
