@@ -201,30 +201,56 @@ export async function handleUnfollowUser(followingUserId, followedUserId) {
     }
 }
 
-export async function uploadToImgurl(file) {
-    try {
-        const imgData = new FormData();
-        imgData.append("image", file);
+export async function uploadToImgur(file) {
+    // Client ID
+    const clientId = "c6c382becb757ad",
+        auth = "Client-ID " + clientId;
 
-        const response = await fetch("https://api.imgur.com/3/image", {
-            method: "POST",
-            headers: {
-                Authorization: "Client-ID c6c382becb757ad", // Replace with your Imgur Client ID
-            },
-            body: imgData,
-        });
+    // Creating an object of formData
+    const formData = new FormData();
 
-        if (!response.ok) {
-            throw new Error("Network response was not ok.");
-        }
+    // Adding our image to formData
+    formData.append("file", file);
 
-        const data = await response.json();
-        console.log(data);
-        return data; // Return the response data if needed
-    } catch (error) {
-        console.error("Error uploading image:", error);
-        throw error;
-    }
+    // Making the post request
+    await fetch("https://api.imgur.com/3/image/", {
+        // API Endpoint
+        method: "POST", // HTTP Method
+        body: formData, // Data to be sent
+        headers: {
+            // Setting header
+            Authorization: "Client-ID c6c382becb757ad",
+            Accept: "application/json",
+        },
+    })
+        // Handling success
+        .then((res) => alert("image uploaded") && console.log(res))
+        .catch((err) => alert("Failed") && console.log(err));
+
+    // try {
+    //     const formdata = new FormData();
+    //     formdata.append("image", file);
+    //     const response = await fetch("https://api.imgur.com/3/image/", {
+    //         method: "post",
+    //         headers: {
+    //             Authorization: "Client-ID c6c382becb757ad",
+    //             Accept: "application/json",
+    //         },
+    //         body: formdata,
+    //     });
+
+    //     // if (!response.ok) {
+    //     //     throw new Error("Network response was not ok.");
+    //     // }
+
+    //     const data = await response.json();
+    //     console.log(data);
+    //     return data; // Return the response data if needed
+    // } catch (error) {
+    //     alert("error", error);
+    //     // console.error("Error uploading image:", error);
+    //     // throw error;
+    // }
 }
 
 export async function createPost() {

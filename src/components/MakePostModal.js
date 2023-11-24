@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import ReactDom from "react-dom";
 import CurrentUserContext from "../context/CurrentUserContext";
-import { uploadToImgurl } from "../services/firebase";
+import { uploadToImgur } from "../services/firebase";
 
 const MakePostModal = ({ closeModal }) => {
     const { currentUser } = useContext(CurrentUserContext);
@@ -14,7 +14,33 @@ const MakePostModal = ({ closeModal }) => {
 
     const handleFileChange = (e) => {
         const file = e.target.files[0];
+        // const formdata = new FormData();
+        // formdata.append("image", e.target.files[0]);
+        // fetch("https://api.imgur.com/3/image", {
+        //     method: "post",
+        //     headers: {
+        //         Authorization: "Client-ID c6c382becb757ad", // Replace with you
+        //     },
+        //     body: formdata,
+        // })
+        //     .then((data) => data.json())
+        //     .then((data) => console.log(data));
         setSelectedFile(file);
+    };
+
+    const handleShareClick = async () => {
+        if (selectedFile) {
+            try {
+                const imgurResponse = await uploadToImgur(selectedFile);
+                console.log("Image uploaded to Imgur:", imgurResponse);
+                // Handle the response as needed
+            } catch (error) {
+                console.error("Error uploading image to Imgur:", error);
+                // Handle errors
+            }
+        } else {
+            // Handle case when no file is selected
+        }
     };
     return ReactDom.createPortal(
         <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-60">
@@ -59,7 +85,7 @@ const MakePostModal = ({ closeModal }) => {
                     </div>
                     <div
                         className="pr-5 text-ig-blue font-semibold cursor-pointer"
-                        onClick={uploadToImgurl(selectedFile)}
+                        onClick={handleShareClick}
                     >
                         Share
                     </div>
