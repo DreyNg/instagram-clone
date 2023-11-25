@@ -143,7 +143,7 @@ export async function createPost(userId, caption, img, verified) {
         const docRef = await postsRef.add(newPost);
         // console.log(docRef.id);
 
-        // TODO: append to user field: posts
+        // append to user field: posts
         const currentUserQuery = firebase
             .firestore()
             .collection("users")
