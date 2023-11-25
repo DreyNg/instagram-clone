@@ -172,11 +172,10 @@ export async function createPost(userId, caption, img, verified) {
         const currentUserQuery = firebase
             .firestore()
             .collection("users")
-            .where("userId", "==", userId)
-            .doc();
+            .doc(userId);
 
         await currentUserQuery.update({
-            posts: firebase.firestore.FieldValue.arrayUnion("docRef.id"),
+            posts: FieldValue.arrayUnion(docRef.id),
         });
     } catch (error) {
         console.error("Error adding post: ", error);
