@@ -1,6 +1,6 @@
 import { firebase, FieldValue } from "../lib/firebase";
 import { serverTimestamp } from "firebase/firestore";
-
+import "firebase/firestore";
 export async function doesUserExist(username) {
     const querySnapshot = await firebase
         .firestore()
@@ -115,88 +115,28 @@ export async function handleFollowUser(followingUserId, followedUserId) {
 }
 export async function handleUnfollowUser(followingUserId, followedUserId) {
     if (followingUserId === followedUserId) return;
-
     try {
-        // Append followedUserId into currentUser's following
-        const followingUser = await getUserById(followingUserId);
-        let currentFollowingArray = followingUser.following;
-
-        if (currentFollowingArray.includes(followedUserId)) {
-            const updatedFollowing = currentFollowingArray.filter(
-                (userId) => userId !== followedUserId
-            );
-
-            // Get the reference for the document matching the followingUserId
-            const currentUserQuery = firebase
-                .firestore()
-                .collection("users")
-                .where("userId", "==", followingUserId);
-
-            const snapshot = await currentUserQuery.get();
-
-            if (snapshot.empty) {
-                console.error("No matching document");
-                return;
-            }
-
-            snapshot.forEach(async (doc) => {
-                try {
-                    // Get the reference of the document and update it
-                    const currentUserRef = firebase
-                        .firestore()
-                        .collection("users")
-                        .doc(doc.id);
-                    await currentUserRef.update({
-                        following: currentFollowingArray,
-                    });
-                } catch (error) {
-                    console.error("Error updating followers array:", error);
-                }
-            });
-        }
+        const currentUserRef = firebase
+            .firestore()
+            .collection("users")
+            .doc(followingUserId);
+        await currentUserRef.update({
+            following: FieldValue.arrayRemove(followedUserId),
+        });
     } catch (error) {
-        console.error("Error handling follow user:", error);
+        console.error("Error handling unfollow user:", error);
     }
 
     try {
-        // Append currentUser into followedUserId's followers
-        const followedUser = await getUserById(followedUserId);
-        let currentFollowersArray = followedUser.followers;
-
-        if (currentFollowersArray.includes(followingUserId)) {
-            const updatedFollowers = currentFollowersArray.filter(
-                (userId) => userId !== followingUserId
-            );
-
-            // Get the reference for the document matching the followingUserId
-            const currentUserQuery = firebase
-                .firestore()
-                .collection("users")
-                .where("userId", "==", followedUserId);
-
-            const snapshot = await currentUserQuery.get();
-
-            if (snapshot.empty) {
-                console.error("No matching document");
-                return;
-            }
-
-            snapshot.forEach(async (doc) => {
-                try {
-                    // Get the reference of the document and update it
-                    const currentUserRef = firebase
-                        .firestore()
-                        .collection("users")
-                        .doc(doc.id);
-                    await currentUserRef.update({
-                        followers: updatedFollowers,
-                    });
-                } catch (error) {
-                    console.error("Error updating followers array:", error);
-                }
-            });
-        }
+        const currentUserRef = firebase
+            .firestore()
+            .collection("users")
+            .doc(followedUserId);
+        await currentUserRef.update({
+            followers: FieldValue.arrayRemove(followingUserId),
+        });
     } catch (error) {
+        alert(error);
         console.error("Error handling follow user:", error);
     }
 }

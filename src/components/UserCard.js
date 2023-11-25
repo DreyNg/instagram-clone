@@ -20,6 +20,7 @@ const UserCard = ({ avatarSrc, username, subtitle, followText, userId }) => {
                     className="text-white font-semibold text-sm cursor-pointer"
                     onClick={() => {
                         handleUnfollowUser(currentUser.userId, userId);
+                        // alert("here");
                     }}
                 >
                     {username}
