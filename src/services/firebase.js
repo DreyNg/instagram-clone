@@ -147,7 +147,7 @@ export async function handleUnfollowUser(followingUserId, followedUserId) {
                         .collection("users")
                         .doc(doc.id);
                     await currentUserRef.update({
-                        following: updatedFollowing,
+                        following: currentFollowingArray,
                     });
                 } catch (error) {
                     console.error("Error updating followers array:", error);
@@ -231,8 +231,8 @@ export async function uploadToImgur(img) {
         const link = jsonlink.data.link;
         return link;
     } catch (err) {
-        alert("Failed");
-        console.log(err);
+        console.error("Error uploading image:", err);
+        // console.log(err);
     }
 
     // try {
@@ -261,29 +261,39 @@ export async function uploadToImgur(img) {
     // }
 }
 
-export async function createPost() {
+export async function createPost(userId, caption, img, verified) {
     try {
         const postsRef = firebase.firestore().collection("posts");
-        // Get the current timestamp
+
+        const imgUrl = await uploadToImgur(img);
 
         // Create a new post object
         const newPost = {
-            userId: "userId",
-            imageUrl: "url",
-            caption: "caption",
+            userId: userId,
+            imageUrl: imgUrl,
+            caption: caption,
             likes: [],
             likeCounts: 0,
             comments: [],
             commentCounts: 0,
             timestamp: serverTimestamp(),
-            verified: false,
+            verified: verified,
         };
 
         // Add the new post to Firestore
         const docRef = await postsRef.add(newPost);
-        console.log(docRef.id);
+        // console.log(docRef.id);
 
-        // append to user posts
+        // TODO: append to user field: posts
+        const currentUserQuery = firebase
+            .firestore()
+            .collection("users")
+            .where("userId", "==", userId)
+            .doc();
+
+        await currentUserQuery.update({
+            posts: firebase.firestore.FieldValue.arrayUnion("docRef.id"),
+        });
     } catch (error) {
         console.error("Error adding post: ", error);
         throw error; // Throw the error for handling in the calling code

@@ -37,19 +37,23 @@ export default function SignUp() {
                 });
 
                 // create instance on firestore
-                await firebase.firestore().collection("users").add({
-                    username: username,
-                    email: email.toLowerCase(),
-                    fullname: fullname.toLowerCase(),
-                    profilePicture: BLANK_PROFILE_IMAGE,
-                    // TODO: serverTimestamp()
-                    dateCreated: new Date(),
-                    followers: [],
-                    following: [],
-                    userId: createdUser.user.uid,
-                    verified: false,
-                    posts: [],
-                });
+                await firebase
+                    .firestore()
+                    .collection("users")
+                    .doc(createdUser.user.uid)
+                    .set({
+                        username: username,
+                        email: email.toLowerCase(),
+                        fullname: fullname.toLowerCase(),
+                        profilePicture: BLANK_PROFILE_IMAGE,
+                        // TODO: serverTimestamp()
+                        dateCreated: new Date(),
+                        followers: [],
+                        following: [],
+                        userId: createdUser.user.uid,
+                        verified: false,
+                        posts: [],
+                    });
 
                 navigate(ROUTER.DASHBOARD);
             } catch (error) {

@@ -1,41 +1,37 @@
 import React, { useContext, useState } from "react";
 import ReactDom from "react-dom";
 import CurrentUserContext from "../context/CurrentUserContext";
-import { uploadToImgur } from "../services/firebase";
+import { createPost, uploadToImgur } from "../services/firebase";
 
 const MakePostModal = ({ closeModal }) => {
     const { currentUser } = useContext(CurrentUserContext);
-    const [inputValue, setInputValue] = useState("");
+    const [postCaption, setPostCaption] = useState("");
     const [selectedFile, setSelectedFile] = useState(null);
 
     const handleInputChange = (e) => {
-        setInputValue(e.target.value);
+        setPostCaption(e.target.value);
     };
 
     const handleFileChange = (e) => {
         const file = e.target.files[0];
-        // const formdata = new FormData();
-        // formdata.append("image", e.target.files[0]);
-        // fetch("https://api.imgur.com/3/image", {
-        //     method: "post",
-        //     headers: {
-        //         Authorization: "Client-ID c6c382becb757ad", // Replace with you
-        //     },
-        //     body: formdata,
-        // })
-        //     .then((data) => data.json())
-        //     .then((data) => console.log(data));
+
         setSelectedFile(file);
     };
 
     const handleShareClick = async () => {
         if (selectedFile) {
             try {
-                const imgurResponse = await uploadToImgur(selectedFile);
-                console.log("Image uploaded to Imgur:", imgurResponse);
                 // Handle the response as needed
+                await createPost(
+                    currentUser.userId,
+                    postCaption,
+                    selectedFile,
+                    currentUser.verified
+                );
+                closeModal();
             } catch (error) {
-                console.error("Error uploading image to Imgur:", error);
+                console.error("Error uploading image", error);
+                alert(error);
                 // Handle errors
             }
         } else {
@@ -163,7 +159,7 @@ const MakePostModal = ({ closeModal }) => {
                             type="text"
                             className="placeholder-ig-grey mt-2 h-full pt-1 overflow-auto outline-none border-none bg-transparent"
                             placeholder="Write a caption..."
-                            value={inputValue}
+                            value={postCaption}
                             onChange={handleInputChange}
                             maxlength="500"
                             style={{
@@ -173,7 +169,7 @@ const MakePostModal = ({ closeModal }) => {
                         />
 
                         <div className="text-ig-grey text-xs">
-                            {inputValue.length}/500
+                            {postCaption.length}/500
                         </div>
                     </div>
                 </div>
