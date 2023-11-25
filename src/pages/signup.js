@@ -3,6 +3,7 @@ import { useState, useContext, useEffect } from "react";
 import FirebaseContext from "../context/firebase";
 import * as ROUTER from "../constants/route";
 import { doesUserExist } from "../services/firebase";
+import { BLANK_PROFILE_IMAGE } from "../constants/constants";
 
 export default function SignUp() {
     const { firebase } = useContext(FirebaseContext);
@@ -36,14 +37,23 @@ export default function SignUp() {
                 });
 
                 // create instance on firestore
-                await firebase.firestore().collection("users").add({
-                    dateCreated: new Date(),
-                    email: email.toLowerCase(),
-                    followers: [],
-                    following: [],
-                    fullname: fullname.toLowerCase(),
-                    userId: createdUser.user.uid,
-                });
+                await firebase
+                    .firestore()
+                    .collection("users")
+                    .doc(createdUser.user.uid)
+                    .set({
+                        username: username,
+                        email: email.toLowerCase(),
+                        fullname: fullname.toLowerCase(),
+                        profilePicture: BLANK_PROFILE_IMAGE,
+                        // TODO: serverTimestamp()
+                        dateCreated: new Date(),
+                        followers: [],
+                        following: [],
+                        userId: createdUser.user.uid,
+                        verified: false,
+                        posts: [],
+                    });
 
                 navigate(ROUTER.DASHBOARD);
             } catch (error) {

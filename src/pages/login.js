@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState, useContext, useEffect } from "react";
 import FirebaseContext from "../context/firebase";
 import * as ROUTER from "../constants/route";
+import { getUserById } from "../services/firebase";
 
 export default function Login() {
     const { firebase } = useContext(FirebaseContext);
@@ -19,7 +20,18 @@ export default function Login() {
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
-            await firebase.auth().signInWithEmailAndPassword(email, password);
+            await firebase
+                .auth()
+                .signInWithEmailAndPassword(email, password)
+                .then(async (userCredential) => {
+                    // Signed in
+                    const authUser = userCredential.user;
+                    const uid = authUser.uid;
+                    const user = await getUserById(uid);
+                    localStorage.setItem("userId", user.userId);
+                });
+            // TODO:store logged user
+
             navigate(ROUTER.DASHBOARD);
         } catch (error) {
             setPassword("");
