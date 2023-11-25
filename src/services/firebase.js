@@ -118,31 +118,6 @@ export async function uploadToImgur(img) {
         console.error("Error uploading image:", err);
         // console.log(err);
     }
-
-    // try {
-    //     const formdata = new FormData();
-    //     formdata.append("image", file);
-    //     const response = await fetch("https://api.imgur.com/3/image/", {
-    //         method: "post",
-    //         headers: {
-    //             Authorization: "Client-ID c6c382becb757ad",
-    //             Accept: "application/json",
-    //         },
-    //         body: formdata,
-    //     });
-
-    //     // if (!response.ok) {
-    //     //     throw new Error("Network response was not ok.");
-    //     // }
-
-    //     const data = await response.json();
-    //     console.log(data);
-    //     return data; // Return the response data if needed
-    // } catch (error) {
-    //     alert("error", error);
-    //     // console.error("Error uploading image:", error);
-    //     // throw error;
-    // }
 }
 
 export async function createPost(userId, caption, img, verified) {
