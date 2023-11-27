@@ -26,7 +26,9 @@ const MakePostModal = ({ closeModal }) => {
                     currentUser.userId,
                     postCaption,
                     selectedFile,
-                    currentUser.verified
+                    currentUser.verified,
+                    currentUser.username,
+                    currentUser.profilePicture
                 );
                 closeModal();
             } catch (error) {

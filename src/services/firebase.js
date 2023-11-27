@@ -26,7 +26,7 @@ export async function getUserById(uid) {
         return userData;
     } else {
         // If no user found
-        throw new Error("uid does not exist");
+        console.error("uid does not exist");
     }
 }
 
@@ -120,7 +120,34 @@ export async function uploadToImgur(img) {
     }
 }
 
-export async function createPost(userId, caption, img, verified) {
+export async function getFeed(currentUser) {
+    try {
+        const following = currentUser.following;
+        following.push(currentUser.userId);
+        const posts = await firebase
+            .firestore()
+            .collection("posts")
+            .orderBy("timestamp")
+            .where("userId", "in", following)
+            .get();
+
+        const temp = [...posts.docs];
+        const result = [];
+        temp.forEach((e) => result.push(e.data()));
+        return result;
+    } catch (error) {
+        console.error("Error adding post: ", error);
+    }
+}
+
+export async function createPost(
+    userId,
+    caption,
+    img,
+    verified,
+    userUsername,
+    userAva
+) {
     try {
         const postsRef = firebase.firestore().collection("posts");
 
@@ -128,6 +155,8 @@ export async function createPost(userId, caption, img, verified) {
 
         // Create a new post object
         const newPost = {
+            userUsername: userUsername,
+            userAva: userAva,
             userId: userId,
             imageUrl: imgUrl,
             caption: caption,
@@ -154,7 +183,6 @@ export async function createPost(userId, caption, img, verified) {
         });
     } catch (error) {
         console.error("Error adding post: ", error);
-        throw error; // Throw the error for handling in the calling code
     }
 }
 

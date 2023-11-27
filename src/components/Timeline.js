@@ -1,9 +1,29 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import Post from "./Post";
+import { getFeed } from "../services/firebase";
+import CurrentUserContext from "../context/CurrentUserContext";
+import { useContext } from "react";
 
 export default function Timeline() {
+    const { currentUser } = useContext(CurrentUserContext);
+
     const scrollContainerRef = useRef(null);
 
+    useEffect(() => {
+        const fetchFeed = async () => {
+            try {
+                const posts = await getFeed(currentUser);
+                console.log(posts);
+                console.log("posts");
+            } catch (error) {
+                console.error("Error fetching suggestions:", error);
+            }
+        };
+
+        if (currentUser) {
+            fetchFeed();
+        }
+    }, []);
     const scrollLeft = () => {
         if (scrollContainerRef.current) {
             scrollContainerRef.current.scrollBy({
