@@ -127,7 +127,7 @@ export async function getFeed(currentUser) {
         const posts = await firebase
             .firestore()
             .collection("posts")
-            .orderBy("timestamp")
+            .orderBy("timestamp", "desc") // Sort by timestamp in descending order
             .where("userId", "in", following)
             .get();
 
@@ -199,7 +199,7 @@ export async function getUserSuggestion(user) {
             const snapshot = await firebase
                 .firestore()
                 .collection("users")
-                .where("userId", "!=", filterList)
+                .where("userId", "not-in", filterList)
                 // .orderBy("userId") // Order by userId for consistent pagination
                 .limit(SUGGESTION_NUMBER)
                 .get();
