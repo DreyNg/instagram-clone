@@ -1,7 +1,14 @@
 import { useState } from "react";
 import { createPost } from "../services/firebase";
 
-export default function Post() {
+export default function Post({
+    captionText,
+    avatar,
+    username,
+    verified,
+    imageUrl,
+    timestamp,
+}) {
     const [showFullCaption, setShowFullCaption] = useState(false);
     const [inputValue, setInputValue] = useState("");
     const handleInputChange = (e) => {
@@ -11,7 +18,7 @@ export default function Post() {
         setShowFullCaption(!showFullCaption);
     };
 
-    const captionText = "sssssss"; // Your caption text goes here
+    // const captionText = "sssssss"; // Your caption text goes here
 
     const shouldTruncate = captionText.length > 20;
     const truncatedCaption = shouldTruncate
@@ -29,17 +36,17 @@ export default function Post() {
                 <div className="p-1 flex-none cursor-pointer">
                     <div className="h-8 w-8 rounded-full overflow-hidden">
                         <img
-                            src="https://media.licdn.com/dms/image/C5603AQEoU_6p7eFO8A/profile-displayphoto-shrink_800_800/0/1639044381219?e=2147483647&v=beta&t=HXXH1TEH1ag1TKV4kd2RbbKQeaBR3Yl6vX42pUQxsws"
+                            src={avatar}
                             className="w-full h-auto"
                             alt={`Avatar of `}
-                            onClick={createPost}
+                            // onClick={createPost}
                         />
                     </div>
                 </div>
                 {/* UserName */}
                 <div className="mx-2  flex items-center h-full flex-grow">
                     <div className="text-white font-semibold text-sm cursor-pointer pb-1">
-                        harvey.tr
+                        {username}
                     </div>
                     <svg
                         aria-label="Verified"
@@ -83,10 +90,7 @@ export default function Post() {
 
             {/* Image */}
             <div className=" rounded overflow-hidden">
-                <img
-                    src="https://media.licdn.com/dms/image/D5603AQFdxp9zzeMUZQ/profile-displayphoto-shrink_800_800/0/1678692083900?e=2147483647&v=beta&t=JOcVZWBNgC3ogYVyAd_AV0Aiu5NxAFzA3a9cMLWzbmY"
-                    className="w-full h-auto"
-                />
+                <img src={imageUrl} className="w-full h-auto" />
             </div>
             {/* comment */}
             <div className="">
@@ -181,7 +185,7 @@ export default function Post() {
                     style={{ overflowWrap: "break-word" }}
                     onClick={toggleCaption}
                 >
-                    <span className="font-semibold">harvey.tr</span>{" "}
+                    <span className="font-semibold">{username}</span>{" "}
                     {displayedCaption}
                     {displayMore && (
                         <span className="text-ig-grey ml-1">more</span>
