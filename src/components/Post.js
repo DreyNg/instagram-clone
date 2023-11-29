@@ -9,6 +9,7 @@ export default function Post({
     verified,
     imageUrl,
     timestamp,
+    commentList,
 }) {
     const [showFullCaption, setShowFullCaption] = useState(false);
     const [inputValue, setInputValue] = useState("");
@@ -193,9 +194,16 @@ export default function Post({
                         )}
                     </div>
                 )}
-                <div className="text-sm text-ig-grey py-1">
-                    View all 168 comments
-                </div>
+                {commentList.length > 1 && (
+                    <div className="text-sm text-ig-grey py-1">
+                        View all {commentList.length} comments
+                    </div>
+                )}
+                {commentList.length == 1 && (
+                    <div className="text-sm text-ig-grey py-1">
+                        View 1 comment
+                    </div>
+                )}
                 <input
                     type="text"
                     className="placeholder-ig-grey text-sm pt-1 outline-none border-none bg-transparent"

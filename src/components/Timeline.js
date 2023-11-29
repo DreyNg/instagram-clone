@@ -122,6 +122,7 @@ export default function Timeline() {
                                     verified={post.verified}
                                     imageUrl={post.imageUrl}
                                     timestamp={post.timestamp}
+                                    commentList={post.comments}
                                 />
                             </div>
                         ))}
