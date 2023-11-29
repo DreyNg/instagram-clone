@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { createPost } from "../services/firebase";
+import { calculateTimeDifference } from "../services/helper";
 
 export default function Post({
     captionText,
@@ -27,39 +28,8 @@ export default function Post({
 
     const displayedCaption = showFullCaption ? captionText : truncatedCaption;
     const displayMore = shouldTruncate && !showFullCaption;
-    const calculateTimeDifference = () => {
-        const currentDate = new Date();
-        const postDate = timestamp.toDate(); // Convert Firebase timestamp to JavaScript Date object
 
-        const differenceInMilliseconds = currentDate - postDate;
-        const millisecondsInMinute = 60 * 1000;
-        const millisecondsInHour = 60 * millisecondsInMinute;
-        const millisecondsInDay = 24 * millisecondsInHour;
-        const millisecondsInWeek = 7 * millisecondsInDay;
-
-        if (differenceInMilliseconds < millisecondsInHour) {
-            const minutes = Math.floor(
-                differenceInMilliseconds / millisecondsInMinute
-            );
-            return `${minutes}m`;
-        } else if (differenceInMilliseconds < millisecondsInDay) {
-            const hours = Math.floor(
-                differenceInMilliseconds / millisecondsInHour
-            );
-            return `${hours}h`;
-        } else if (differenceInMilliseconds < millisecondsInWeek) {
-            const days = Math.floor(
-                differenceInMilliseconds / millisecondsInDay
-            );
-            return `${days}d`;
-        } else {
-            // Format date to 'Month Day, Year' format
-            const options = { year: "numeric", month: "long", day: "numeric" };
-            return postDate.toLocaleDateString(undefined, options);
-        }
-    };
-
-    const formattedTimestamp = calculateTimeDifference();
+    const formattedTimestamp = calculateTimeDifference(timestamp);
     return (
         <div className="mb-4 pb-4 border-b border-zinc-800">
             {/* header */}
