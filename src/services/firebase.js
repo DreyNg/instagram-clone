@@ -191,12 +191,15 @@ export async function getUserSuggestion(user) {
     const following = user.following;
     const followers = user.followers;
 
+    const filterList = following;
+    filterList.push(user.userId);
+
     async function getNewSuggestion() {
         try {
             const snapshot = await firebase
                 .firestore()
                 .collection("users")
-                .where("userId", "!=", user.userId)
+                .where("userId", "!=", filterList)
                 // .orderBy("userId") // Order by userId for consistent pagination
                 .limit(SUGGESTION_NUMBER)
                 .get();

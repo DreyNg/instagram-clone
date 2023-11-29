@@ -22,13 +22,21 @@ const MakePostModal = ({ closeModal }) => {
         if (selectedFile) {
             try {
                 // Handle the response as needed
+                // await createPost(
+                //     currentUser.userId,
+                //     postCaption,
+                //     selectedFile,
+                //     currentUser.verified,
+                //     currentUser.username,
+                //     currentUser.profilePicture
+                // );
                 await createPost(
-                    currentUser.userId,
+                    "k2OvM3AnB1TbdkqcOdmjY0GJoGh2",
                     postCaption,
                     selectedFile,
-                    currentUser.verified,
-                    currentUser.username,
-                    currentUser.profilePicture
+                    false,
+                    "1",
+                    "https://i.imgur.com/k7bSvL1.png"
                 );
                 closeModal();
             } catch (error) {
