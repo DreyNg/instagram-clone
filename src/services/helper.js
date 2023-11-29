@@ -12,6 +12,8 @@ export const calculateTimeDifference = (timestamp) => {
         const minutes = Math.floor(
             differenceInMilliseconds / millisecondsInMinute
         );
+
+        if (minutes < 2) return `just now`;
         return `${minutes}m`;
     } else if (differenceInMilliseconds < millisecondsInDay) {
         const hours = Math.floor(differenceInMilliseconds / millisecondsInHour);

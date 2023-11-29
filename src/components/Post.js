@@ -180,17 +180,19 @@ export default function Post({
                 <div className="text-sm text-white py-1">
                     Liked by ismailolol and others
                 </div>
-                <div
-                    className="text-sm text-white mr-5 cursor-pointer"
-                    style={{ overflowWrap: "break-word" }}
-                    onClick={toggleCaption}
-                >
-                    <span className="font-semibold">{username}</span>{" "}
-                    {displayedCaption}
-                    {displayMore && (
-                        <span className="text-ig-grey ml-1">more</span>
-                    )}
-                </div>
+                {captionText && (
+                    <div
+                        className="text-sm text-white mr-5 cursor-pointer"
+                        style={{ overflowWrap: "break-word" }}
+                        onClick={toggleCaption}
+                    >
+                        <span className="font-semibold">{username}</span>{" "}
+                        {displayedCaption}
+                        {displayMore && (
+                            <span className="text-ig-grey ml-1">more</span>
+                        )}
+                    </div>
+                )}
                 <div className="text-sm text-ig-grey py-1">
                     View all 168 comments
                 </div>
