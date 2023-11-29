@@ -8,14 +8,19 @@ export default function Post() {
         setInputValue(e.target.value);
     };
     const toggleCaption = () => {
-        setShowFullCaption(true);
+        setShowFullCaption(!showFullCaption);
     };
 
-    const captionText =
-        "ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss"; // Your caption text goes here
+    const captionText = "sssssss"; // Your caption text goes here
 
-    const truncatedCaption = captionText.slice(0, 20) + "...";
+    const shouldTruncate = captionText.length > 20;
+    const truncatedCaption = shouldTruncate
+        ? captionText.slice(0, 20) + "..."
+        : captionText;
+
     const displayedCaption = showFullCaption ? captionText : truncatedCaption;
+    const displayMore = shouldTruncate && !showFullCaption;
+
     return (
         <div className="mb-4 pb-4 border-b border-zinc-800">
             {/* header */}
@@ -178,7 +183,7 @@ export default function Post() {
                 >
                     <span className="font-semibold">harvey.tr</span>{" "}
                     {displayedCaption}
-                    {!showFullCaption && (
+                    {displayMore && (
                         <span className="text-ig-grey ml-1">more</span>
                     )}
                 </div>
