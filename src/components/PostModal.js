@@ -6,22 +6,21 @@ import { createPost, uploadToImgur } from "../services/firebase";
 const PostModal = ({ closeModal, imageUrl }) => {
     const { currentUser } = useContext(CurrentUserContext);
 
-    // const imageUrl = `
-    // https://thumbs.dreamstime.com/b/vertical-panorama-country-road-9905521.jpg
-    // `;
-    // // const imageUrl = `
-    // // https://images.unsplash.com/photo-1587387119725-9d6bac0f22fb?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8aG9yaXpvbnRhbHxlbnwwfHwwfHx8MA%3D%3D
-    // // `;
-    console.log(imageUrl);
-
     return ReactDOM.createPortal(
         <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-60">
             <div className="flex h-[520px] w-[970px] overflow-hidden">
                 <div className="bg-red-500 h-full max-w-[485px] flex items-center justify-center">
                     <img src={imageUrl} className="h-fit w-fit object-cover" />
                 </div>
-                <div className="bg-green-500 h-full w-[485px] flex items-center justify-center">
-                    Caption
+                <div className="bg-green-500 h-full w-[485px] flex flex-col">
+                    <div className="h-16 bg-black  border-b border-zinc-800">
+                        u
+                    </div>
+
+                    <div className="bg-black flex-grow">cm</div>
+
+                    <div className="bg-black h-20 border-t border-zinc-800"></div>
+                    <div className="bg-black h-14 border-t border-zinc-800"></div>
                 </div>
             </div>
             <div
