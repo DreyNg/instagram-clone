@@ -41,6 +41,7 @@ export default function Post({
     const closeModal = () => {
         setOpenPostModal(false);
     };
+
     return (
         <div className="mb-4 pb-4 border-b border-zinc-800">
             {/* header */}
@@ -228,7 +229,9 @@ export default function Post({
                     }}
                 />
             </div>
-            {openPostModal && <PostModal closeModal={closeModal} />}
+            {openPostModal && (
+                <PostModal closeModal={closeModal} imageUrl={imageUrl} />
+            )}
         </div>
     );
 }
