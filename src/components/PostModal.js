@@ -33,8 +33,8 @@ const PostModal = ({
                             </div>
                         </div>
                         {/* UserName */}
-                        <div className="mx-2 flex items-center h-full flex-grow">
-                            <div className="mr-1 text-white font-semibold text-sm cursor-pointer pb-1">
+                        <div className="mx-3 flex items-center h-full flex-grow">
+                            <div className="mr-2 text-white font-semibold text-sm cursor-pointer pb-1">
                                 {username}
                             </div>
                             {verified && (
