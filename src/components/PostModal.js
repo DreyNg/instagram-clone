@@ -23,6 +23,41 @@ const PostModal = ({ closeModal }) => {
                     Caption
                 </div>
             </div>
+            <div
+                className="absolute top-0 right-0 m-4 mr-9 cursor-pointer"
+                onClick={closeModal}
+            >
+                <svg
+                    aria-label="Close"
+                    class="x1lliihq x1n2onr6 x9bdzbf"
+                    fill="white"
+                    height="18"
+                    role="img"
+                    viewBox="0 0 24 24"
+                    width="18"
+                >
+                    <title>Close</title>
+                    <polyline
+                        fill="white"
+                        points="20.643 3.357 12 12 3.353 20.647"
+                        stroke="white"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="3"
+                    ></polyline>
+                    <line
+                        fill="white"
+                        stroke="white"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="3"
+                        x1="20.649"
+                        x2="3.354"
+                        y1="20.649"
+                        y2="3.354"
+                    ></line>
+                </svg>
+            </div>
         </div>,
         document.getElementById("portal")
     );
