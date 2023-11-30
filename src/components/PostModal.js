@@ -3,7 +3,14 @@ import ReactDOM from "react-dom";
 import CurrentUserContext from "../context/CurrentUserContext";
 import { createPost, uploadToImgur } from "../services/firebase";
 
-const PostModal = ({ closeModal, imageUrl }) => {
+const PostModal = ({
+    closeModal,
+    imageUrl,
+    username,
+    avatar,
+    verified,
+    formattedTimestamp,
+}) => {
     const { currentUser } = useContext(CurrentUserContext);
 
     return ReactDOM.createPortal(
@@ -12,9 +19,55 @@ const PostModal = ({ closeModal, imageUrl }) => {
                 <div className="bg-red-500 h-full max-w-[485px] flex items-center justify-center">
                     <img src={imageUrl} className="h-fit w-fit object-cover" />
                 </div>
-                <div className="bg-green-500 h-full w-[485px] flex flex-col">
-                    <div className="h-16 bg-black  border-b border-zinc-800">
-                        u
+                <div className="h-full w-[485px] flex flex-col">
+                    <div className="px-2 h-16 bg-black border-b border-zinc-800 flex items-center ">
+                        {/* Ava */}
+                        <div className="p-1 flex-none cursor-pointer">
+                            <div className="h-8 w-8 rounded-full overflow-hidden">
+                                <img
+                                    src={avatar}
+                                    className="w-full h-auto"
+                                    alt={`Avatar of `}
+                                    // onClick={createPost}
+                                />
+                            </div>
+                        </div>
+                        {/* UserName */}
+                        <div className="mx-2 flex items-center h-full flex-grow">
+                            <div className="mr-1 text-white font-semibold text-sm cursor-pointer pb-1">
+                                {username}
+                            </div>
+                            {verified && (
+                                <svg
+                                    aria-label="Verified"
+                                    className="mr-1"
+                                    fill="rgb(0, 149, 246)"
+                                    height="12"
+                                    role="img"
+                                    viewBox="0 0 40 40"
+                                    width="12"
+                                >
+                                    <title>Verified</title>
+                                    <path
+                                        d="M19.998 3.094 14.638 0l-2.972 5.15H5.432v6.354L0 14.64 3.094 20 0 25.359l5.432 3.137v5.905h5.975L14.638 40l5.36-3.094L25.358 40l3.232-5.6h6.162v-6.01L40 25.359 36.905 20 40 14.641l-5.248-3.03v-6.46h-6.419L25.358 0l-5.36 3.094Zm7.415 11.225 2.254 2.287-11.43 11.5-6.835-6.93 2.244-2.258 4.587 4.581 9.18-9.18Z"
+                                        fill-rule="evenodd"
+                                    ></path>
+                                </svg>
+                            )}
+                        </div>
+                        <svg
+                            aria-label="More options"
+                            fill="white"
+                            height="24"
+                            role="img"
+                            viewBox="0 0 24 24"
+                            width="24"
+                        >
+                            <title>More options</title>
+                            <circle cx="12" cy="12" r="1.5"></circle>
+                            <circle cx="6" cy="12" r="1.5"></circle>
+                            <circle cx="18" cy="12" r="1.5"></circle>
+                        </svg>
                     </div>
 
                     <div className="bg-black flex-grow">cm</div>

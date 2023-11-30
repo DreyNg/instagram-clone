@@ -230,7 +230,14 @@ export default function Post({
                 />
             </div>
             {openPostModal && (
-                <PostModal closeModal={closeModal} imageUrl={imageUrl} />
+                <PostModal
+                    closeModal={closeModal}
+                    imageUrl={imageUrl}
+                    avatar={avatar}
+                    username={username}
+                    verified={verified}
+                    formattedTimestamp={formattedTimestamp}
+                />
             )}
         </div>
     );
