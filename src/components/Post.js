@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { createPost } from "../services/firebase";
 import { calculateTimeDifference } from "../services/helper";
+import PostModal from "./PostModal";
 
 export default function Post({
     captionText,
@@ -31,6 +32,15 @@ export default function Post({
     const displayMore = shouldTruncate && !showFullCaption;
 
     const formattedTimestamp = calculateTimeDifference(timestamp);
+
+    const [openPostModal, setOpenPostModal] = useState(false);
+    const openUpload = () => {
+        setOpenPostModal(true);
+    };
+
+    const closeModal = () => {
+        setOpenPostModal(false);
+    };
     return (
         <div className="mb-4 pb-4 border-b border-zinc-800">
             {/* header */}
@@ -117,6 +127,9 @@ export default function Post({
                             role="img"
                             viewBox="0 0 24 24"
                             width="24"
+                            onClick={() => {
+                                openUpload();
+                            }}
                         >
                             <title>Comment</title>
                             <path
@@ -215,6 +228,7 @@ export default function Post({
                     }}
                 />
             </div>
+            {openPostModal && <PostModal closeModal={closeModal} />}
         </div>
     );
 }
