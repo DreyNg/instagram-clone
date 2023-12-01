@@ -72,13 +72,13 @@ const PostModal = ({
                     </div>
 
                     {/* comment section */}
-                    <div className="bg-red-500 flex-grow">
+                    <div className="bg-red-500 flex-grow p-2">
                         {/* each section */}
                         <div className="bg-black">
                             {/* Comment content */}
                             <div className="flex flex-row">
                                 {/* Ava */}
-                                <div className="p-1 flex-none cursor-pointer">
+                                <div className="pr-3 flex-none cursor-pointer">
                                     <div className="h-8 w-8 rounded-full overflow-hidden">
                                         <img
                                             src={avatar}
@@ -88,12 +88,15 @@ const PostModal = ({
                                         />
                                     </div>
                                 </div>
-                                {/* content */}
-                                <div className="text-white flex-grow bg-green-500">
-                                    DreyNg asdasdas
+                                {/* CMT content */}
+                                <div className="text-white flex-grow flex flex-col bg-green-500">
+                                    {/*  CMT content */}
+                                    <div className="text-sm">drey: abc</div>
+                                    {/* CMT time, like counts */}
+                                    <div className="text-xs"> 14h</div>
                                 </div>
                                 {/* heart */}
-                                <div className="">
+                                <div className="pl-2">
                                     <svg
                                         aria-label="Like"
                                         class="x1lliihq x1n2onr6 xyb1xck"
@@ -110,7 +113,10 @@ const PostModal = ({
                             </div>
 
                             {/* replies */}
-                            <div className=""></div>
+                            <div className="text-xs ml-12 py-4 text-white flex">
+                                <div className="text-xs pr-2">━━━━━ </div>
+                                view all replies
+                            </div>
                         </div>
                     </div>
 
