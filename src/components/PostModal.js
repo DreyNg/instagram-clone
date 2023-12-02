@@ -14,12 +14,12 @@ const PostModal = ({
     const { currentUser } = useContext(CurrentUserContext);
 
     return ReactDOM.createPortal(
-        <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-60">
-            <div className="flex h-[520px] w-[970px] overflow-hidden">
-                <div className="bg-black h-full max-w-[485px] flex items-center justify-center">
+        <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-green-500 bg-opacity-60">
+            <div className="items-center justify-center flex h-[90%] w-[80%] overflow-hidden">
+                <div className="bg-black h-full max-w-[50%] flex items-center justify-center">
                     <img src={imageUrl} className="h-fit w-fit object-cover" />
                 </div>
-                <div className="h-full w-[485px] flex flex-col">
+                <div className="h-full w-[50%] flex flex-col">
                     {/* header */}
                     <div className="px-2 h-16 bg-black border-b border-zinc-800 flex items-center ">
                         {/* Ava */}
@@ -72,7 +72,7 @@ const PostModal = ({
                     </div>
 
                     {/* comment section */}
-                    <div className="bg-red-500 flex-grow p-4">
+                    <div className="bg-red-500 flex-grow p-2">
                         {/* each section */}
                         <div className="bg-black">
                             {/* Comment content */}
