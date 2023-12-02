@@ -80,7 +80,7 @@ const PostModal = ({
                     >
                         <div className="bg-red-500 p-2 ">
                             {/* caption section */}
-                            <div className="bg-black mb-4">
+                            <div className="bg-black mb-4 pr-6">
                                 {/* caption content */}
                                 <div className="flex flex-row">
                                     {/* Ava */}
