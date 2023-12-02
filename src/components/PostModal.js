@@ -17,6 +17,7 @@ const PostModal = ({
     return ReactDOM.createPortal(
         <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-green-500 bg-opacity-60">
             <div className="items-center justify-center flex h-[90%] w-[80%] overflow-hidden">
+                {/* COMMENT IMAGE */}
                 <div className="bg-black h-full max-w-[50%] flex items-center justify-center">
                     <img src={imageUrl} className="h-fit w-fit object-cover" />
                 </div>
@@ -35,7 +36,7 @@ const PostModal = ({
                             </div>
                         </div>
                         {/* UserName */}
-                        <div className="mx-3 flex items-center h-full flex-grow">
+                        <div className="mx-3 flex items-center h-full flex-grow ">
                             <div className="mr-2 text-white font-semibold text-sm cursor-pointer pb-1">
                                 {username}
                             </div>
@@ -73,10 +74,10 @@ const PostModal = ({
                     </div>
 
                     {/* comment section */}
-                    <div className="bg-red-500 flex-grow p-2">
-                        {/* comment section */}
+                    <div className="bg-red-500 flex-grow p-2 overflow-y-auto">
+                        {/* caption section */}
                         <div className="bg-black mb-4">
-                            {/* Comment content */}
+                            {/* caption content */}
                             <div className="flex flex-row">
                                 {/* Ava */}
                                 <div className="pr-3 flex-none cursor-pointer">
@@ -85,14 +86,13 @@ const PostModal = ({
                                             src={avatar}
                                             className="w-full h-auto"
                                             alt={`Avatar of `}
-                                            // onClick={createPost}
                                         />
                                     </div>
                                 </div>
-                                {/* CMT content */}
+                                {/* caption content */}
                                 <div className="text-white flex-grow overflow-hidden flex flex-col">
-                                    {/*  CMT content */}
-                                    <p className="text-sm mb-1">
+                                    {/*  caption content */}
+                                    <p className="text-sm mb-1 break-words">
                                         <span class="inline-flex items-baseline text-sm font-semibold">
                                             <span className="mr-1">
                                                 Drey.ng
@@ -115,8 +115,8 @@ const PostModal = ({
                                                 </svg>
                                             )}
                                         </span>
-                                        {/* aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa */}
-                                        caption
+                                        aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                                        {/* caption */}
                                     </p>
                                     {/* CMT time, like counts */}
                                     <div className="text-xs text-ig-grey flex">
@@ -126,6 +126,146 @@ const PostModal = ({
                             </div>
                         </div>
 
+                        <CommentPost
+                            username={"username1"}
+                            avatar={
+                                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYAbdxO5KlG7ClKFO0oCNNefItucipE9Siz-FKYzTqoevtbdFDjUzGNSnwIyKZuX-OZJw&usqp=CAU"
+                            }
+                            verified={true}
+                            commentContent={
+                                "co2mmenttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt"
+                            }
+                        />
+                        <CommentPost
+                            username={"username1"}
+                            avatar={
+                                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYAbdxO5KlG7ClKFO0oCNNefItucipE9Siz-FKYzTqoevtbdFDjUzGNSnwIyKZuX-OZJw&usqp=CAU"
+                            }
+                            verified={true}
+                            commentContent={
+                                "co2mmenttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt"
+                            }
+                        />
+                        <CommentPost
+                            username={"username1"}
+                            avatar={
+                                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYAbdxO5KlG7ClKFO0oCNNefItucipE9Siz-FKYzTqoevtbdFDjUzGNSnwIyKZuX-OZJw&usqp=CAU"
+                            }
+                            verified={true}
+                            commentContent={
+                                "co2mmenttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt"
+                            }
+                        />
+                        <CommentPost
+                            username={"username1"}
+                            avatar={
+                                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYAbdxO5KlG7ClKFO0oCNNefItucipE9Siz-FKYzTqoevtbdFDjUzGNSnwIyKZuX-OZJw&usqp=CAU"
+                            }
+                            verified={true}
+                            commentContent={
+                                "co2mmenttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt"
+                            }
+                        />
+                        <CommentPost
+                            username={"username1"}
+                            avatar={
+                                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYAbdxO5KlG7ClKFO0oCNNefItucipE9Siz-FKYzTqoevtbdFDjUzGNSnwIyKZuX-OZJw&usqp=CAU"
+                            }
+                            verified={true}
+                            commentContent={
+                                "co2mmenttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt"
+                            }
+                        />
+                        <CommentPost
+                            username={"username1"}
+                            avatar={
+                                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYAbdxO5KlG7ClKFO0oCNNefItucipE9Siz-FKYzTqoevtbdFDjUzGNSnwIyKZuX-OZJw&usqp=CAU"
+                            }
+                            verified={true}
+                            commentContent={
+                                "co2mmenttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt"
+                            }
+                        />
+                        <CommentPost
+                            username={"username1"}
+                            avatar={
+                                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYAbdxO5KlG7ClKFO0oCNNefItucipE9Siz-FKYzTqoevtbdFDjUzGNSnwIyKZuX-OZJw&usqp=CAU"
+                            }
+                            verified={true}
+                            commentContent={
+                                "co2mmenttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt"
+                            }
+                        />
+                        <CommentPost
+                            username={"username1"}
+                            avatar={
+                                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYAbdxO5KlG7ClKFO0oCNNefItucipE9Siz-FKYzTqoevtbdFDjUzGNSnwIyKZuX-OZJw&usqp=CAU"
+                            }
+                            verified={true}
+                            commentContent={
+                                "co2mmenttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt"
+                            }
+                        />
+                        <CommentPost
+                            username={"username1"}
+                            avatar={
+                                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYAbdxO5KlG7ClKFO0oCNNefItucipE9Siz-FKYzTqoevtbdFDjUzGNSnwIyKZuX-OZJw&usqp=CAU"
+                            }
+                            verified={true}
+                            commentContent={
+                                "co2mmenttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt"
+                            }
+                        />
+                        <CommentPost
+                            username={"username1"}
+                            avatar={
+                                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYAbdxO5KlG7ClKFO0oCNNefItucipE9Siz-FKYzTqoevtbdFDjUzGNSnwIyKZuX-OZJw&usqp=CAU"
+                            }
+                            verified={true}
+                            commentContent={
+                                "co2mmenttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt"
+                            }
+                        />
+                        <CommentPost
+                            username={"username1"}
+                            avatar={
+                                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYAbdxO5KlG7ClKFO0oCNNefItucipE9Siz-FKYzTqoevtbdFDjUzGNSnwIyKZuX-OZJw&usqp=CAU"
+                            }
+                            verified={true}
+                            commentContent={
+                                "co2mmenttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt"
+                            }
+                        />
+                        <CommentPost
+                            username={"username1"}
+                            avatar={
+                                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYAbdxO5KlG7ClKFO0oCNNefItucipE9Siz-FKYzTqoevtbdFDjUzGNSnwIyKZuX-OZJw&usqp=CAU"
+                            }
+                            verified={true}
+                            commentContent={
+                                "co2mmenttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt"
+                            }
+                        />
+                        <CommentPost
+                            username={"username1"}
+                            avatar={
+                                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYAbdxO5KlG7ClKFO0oCNNefItucipE9Siz-FKYzTqoevtbdFDjUzGNSnwIyKZuX-OZJw&usqp=CAU"
+                            }
+                            verified={true}
+                            commentContent={
+                                "co2mmenttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt"
+                            }
+                        />
+                        <CommentPost
+                            username={"username1"}
+                            avatar={
+                                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYAbdxO5KlG7ClKFO0oCNNefItucipE9Siz-FKYzTqoevtbdFDjUzGNSnwIyKZuX-OZJw&usqp=CAU"
+                            }
+                            verified={true}
+                            commentContent={
+                                "co2mmenttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt"
+                            }
+                        />
                         <CommentPost
                             username={"username1"}
                             avatar={

@@ -686,6 +686,9 @@ video {
 .h-screen {
   height: 100vh;
 }
+.h-32 {
+  height: 8rem;
+}
 .w-1\/2 {
   width: 50%;
 }
@@ -794,8 +797,21 @@ video {
 .overflow-hidden {
   overflow: hidden;
 }
+.overflow-visible {
+  overflow: visible;
+}
+.overflow-scroll {
+  overflow: scroll;
+}
 .overflow-y-auto {
   overflow-y: auto;
+}
+.break-normal {
+  overflow-wrap: normal;
+  word-break: normal;
+}
+.break-words {
+  overflow-wrap: break-word;
 }
 .rounded {
   border-radius: 0.25rem;

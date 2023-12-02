@@ -21,7 +21,7 @@ export default function CommentPost({
                 {/* CMT content */}
                 <div className="text-white flex-grow overflow-hidden flex flex-col">
                     {/*  CMT content */}
-                    <p className="text-sm mb-1">
+                    <p className="text-sm mb-1 break-words">
                         <span class="inline-flex items-baseline text-sm font-semibold">
                             <span className="mr-1">Drey.ng</span>
                             {verified && (
@@ -42,7 +42,8 @@ export default function CommentPost({
                                 </svg>
                             )}
                         </span>
-                        {commentContent}
+                        {/* {commentContent} */}
+                        aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
                     </p>
                     {/* CMT time, like counts */}
                     <div className="text-xs text-ig-grey flex">
