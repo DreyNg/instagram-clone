@@ -556,6 +556,9 @@ video {
 .-mb-4 {
   margin-bottom: -1rem;
 }
+.mb-1 {
+  margin-bottom: 0.25rem;
+}
 .mb-2 {
   margin-bottom: 0.5rem;
 }
@@ -622,9 +625,6 @@ video {
 .mt-6 {
   margin-top: 1.5rem;
 }
-.mb-1 {
-  margin-bottom: 0.25rem;
-}
 .flex {
   display: flex;
 }
@@ -685,9 +685,6 @@ video {
 }
 .h-screen {
   height: 100vh;
-}
-.h-32 {
-  height: 8rem;
 }
 .w-1\/2 {
   width: 50%;
@@ -797,18 +794,8 @@ video {
 .overflow-hidden {
   overflow: hidden;
 }
-.overflow-visible {
-  overflow: visible;
-}
-.overflow-scroll {
-  overflow: scroll;
-}
 .overflow-y-auto {
   overflow-y: auto;
-}
-.break-normal {
-  overflow-wrap: normal;
-  word-break: normal;
 }
 .break-words {
   overflow-wrap: break-word;
