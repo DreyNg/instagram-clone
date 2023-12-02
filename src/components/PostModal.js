@@ -16,7 +16,7 @@ const PostModal = ({
     return ReactDOM.createPortal(
         <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-60">
             <div className="flex h-[520px] w-[970px] overflow-hidden">
-                <div className="bg-red-500 h-full max-w-[485px] flex items-center justify-center">
+                <div className="bg-black h-full max-w-[485px] flex items-center justify-center">
                     <img src={imageUrl} className="h-fit w-fit object-cover" />
                 </div>
                 <div className="h-full w-[485px] flex flex-col">
@@ -72,7 +72,7 @@ const PostModal = ({
                     </div>
 
                     {/* comment section */}
-                    <div className="bg-red-500 flex-grow p-2">
+                    <div className="bg-red-500 flex-grow p-4">
                         {/* each section */}
                         <div className="bg-black">
                             {/* Comment content */}
@@ -89,17 +89,34 @@ const PostModal = ({
                                     </div>
                                 </div>
                                 {/* CMT content */}
-                                <div className="text-white flex-grow flex flex-col bg-green-500">
+                                <div className="text-white flex-grow overflow-hidden flex flex-col">
                                     {/*  CMT content */}
-                                    <div className="text-sm">drey: abc</div>
+                                    <div
+                                        className="text-sm text-white mb-2"
+                                        style={{ overflowWrap: "break-word" }}
+                                    >
+                                        <span className="font-semibold">
+                                            {/* {username} */}
+                                            Drey.ng
+                                        </span>{" "}
+                                        capationnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn
+                                        caption
+                                    </div>
                                     {/* CMT time, like counts */}
-                                    <div className="text-xs"> 14h</div>
+                                    <div className="text-xs text-ig-grey flex">
+                                        <div className="mr-3">9h</div>
+                                        <div className="mr-3 font-semibold">
+                                            70 likes
+                                        </div>
+                                        <div className="mr-3 font-semibold">
+                                            Reply
+                                        </div>
+                                    </div>
                                 </div>
                                 {/* heart */}
-                                <div className="pl-2">
+                                <div className="pl-2 m-1">
                                     <svg
                                         aria-label="Like"
-                                        class="x1lliihq x1n2onr6 xyb1xck"
                                         fill="white"
                                         height="12"
                                         role="img"
@@ -113,9 +130,9 @@ const PostModal = ({
                             </div>
 
                             {/* replies */}
-                            <div className="text-xs ml-12 py-4 text-white flex">
-                                <div className="text-xs pr-2">━━━━━ </div>
-                                view all replies
+                            <div className="text-xs ml-12 py-4 text-ig-grey flex">
+                                <div className="text-xs pr-4">━━━━ </div>
+                                View replies (1)
                             </div>
                         </div>
                     </div>
