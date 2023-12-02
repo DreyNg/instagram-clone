@@ -74,7 +74,10 @@ const PostModal = ({
                     </div>
 
                     {/* comment section */}
-                    <div className=" flex-grow overflow-y-auto">
+                    <div
+                        className="flex-grow overflow-y-auto"
+                        style={{ marginRight: "-17px" }}
+                    >
                         <div className="bg-red-500 p-2 ">
                             {/* caption section */}
                             <div className="bg-black mb-4">
