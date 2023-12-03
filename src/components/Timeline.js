@@ -123,7 +123,7 @@ export default function Timeline() {
                                     timestamp={post.timestamp}
                                     commentList={post.comments}
                                     postId={post.postId}
-                                    likeList={post.likes}
+                                    likes={post.likes}
                                 />
                             </div>
                         ))}

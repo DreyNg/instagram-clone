@@ -36,7 +36,6 @@ const PostModal = ({
 
         if (currentUser) {
             fetchComment();
-            console.log(comments);
         }
     }, []);
 

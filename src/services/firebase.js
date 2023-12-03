@@ -108,15 +108,12 @@ export async function uploadToImgur(img) {
                 Accept: "application/json",
             },
         });
-        // Handling success
-        // .then((res) => alert("image uploaded") && console.log(res))
-        // .catch((err) => alert("Failed") && console.log(err));
+
         const jsonlink = await res.json();
         const link = jsonlink.data.link;
         return link;
     } catch (err) {
         console.error("Error uploading image:", err);
-        // console.log(err);
     }
 }
 
@@ -257,7 +254,6 @@ export async function createComment(
 
         // Add the new post to Firestore
         const docRef = await commentsRef.add(newComment);
-        // console.log(docRef.id);
         await docRef.update({
             commentId: docRef.id,
         });
@@ -305,7 +301,6 @@ export async function createPost(
 
         // Add the new post to Firestore
         const docRef = await postsRef.add(newPost);
-        // console.log(docRef.id);
 
         // append to user field: posts
         const currentUserQuery = firebase

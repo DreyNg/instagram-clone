@@ -23,7 +23,7 @@ export default function Post({
     const { currentUser } = useContext(CurrentUserContext);
 
     const [showFullCaption, setShowFullCaption] = useState(false);
-    const [likeList, setLikeList] = useState(likes || []);
+    const [likeList, setLikeList] = useState(likes);
     const [commentText, setCommentText] = useState("");
     const handleInputChange = (e) => {
         setCommentText(e.target.value);
