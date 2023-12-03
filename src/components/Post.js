@@ -276,19 +276,28 @@ export default function Post({
                         </svg>
                     </div>
                 </div>
-                <div className="text-sm text-white py-1">
-                    Liked by ismailolol and others
-                </div>
+                {likeList.length != 0 && (
+                    <div className="text-sm text-white py-1">
+                        Liked by {likeList.length}{" "}
+                        <span className="font-semibold cursor-pointer">
+                            others
+                        </span>
+                    </div>
+                )}
                 {captionText && (
                     <div
-                        className="text-sm text-white mr-5 cursor-pointer"
+                        className="text-sm text-white mr-5 "
                         style={{ overflowWrap: "break-word" }}
                         onClick={toggleCaption}
                     >
-                        <span className="font-semibold">{username}</span>{" "}
+                        <span className="font-semibold cursor-pointer">
+                            {username}
+                        </span>{" "}
                         {displayedCaption}
                         {displayMore && (
-                            <span className="text-ig-grey ml-1">more</span>
+                            <span className="text-ig-grey ml-1 cursor-pointer">
+                                more
+                            </span>
                         )}
                     </div>
                 )}

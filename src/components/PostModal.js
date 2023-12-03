@@ -308,9 +308,18 @@ const PostModal = ({
                                     </div>
                                 </div>
                             </div>
-                            <div className="text-sm text-white py-1">
-                                Liked by ismailolol and others
-                            </div>
+                            {likeList.length != 0 ? (
+                                <div className="text-sm text-white py-1">
+                                    Liked by {likeList.length}{" "}
+                                    <span className="font-semibold cursor-pointer">
+                                        others
+                                    </span>
+                                </div>
+                            ) : (
+                                <div className="text-sm text-white py-1">
+                                    Be the first person to like this post
+                                </div>
+                            )}
                             <div className="text-ig-grey text-xs">
                                 {formattedTimestamp}
                             </div>
