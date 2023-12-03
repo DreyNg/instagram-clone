@@ -244,6 +244,7 @@ export default function Post({
                     username={username}
                     verified={verified}
                     formattedTimestamp={formattedTimestamp}
+                    captionText={captionText}
                 />
             )}
         </div>

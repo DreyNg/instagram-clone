@@ -11,12 +11,13 @@ const PostModal = ({
     avatar,
     verified,
     formattedTimestamp,
+    captionText,
 }) => {
     const { currentUser } = useContext(CurrentUserContext);
 
     return ReactDOM.createPortal(
         <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-green-500 bg-opacity-60">
-            <div className="items-center justify-center flex h-[90%] w-[80%] overflow-hidden rounded-lg">
+            <div className="items-center justify-center flex h-[90%] w-[80%] overflow-hidden rounded">
                 {/* COMMENT IMAGE */}
                 <div className="bg-black h-full max-w-[50%] flex items-center justify-center">
                     <img src={imageUrl} className="h-fit w-fit object-cover" />
@@ -25,7 +26,7 @@ const PostModal = ({
                     {/* header */}
                     <div className="px-2 h-16 flex-none border-b border-zinc-800 flex items-center ">
                         {/* Ava */}
-                        <div className="p-1 flex-none cursor-pointer">
+                        <div className=" flex-none cursor-pointer">
                             <div className="h-8 w-8 rounded-full overflow-hidden">
                                 <img
                                     src={avatar}
@@ -75,7 +76,7 @@ const PostModal = ({
 
                     {/* comment section */}
                     <div className="flex-grow overflow-y-auto no-scrollbar">
-                        <div className="bg-red-500 p-2 ">
+                        <div className="p-2 ">
                             {/* caption section */}
                             <div className="bg-black mb-4 pr-6">
                                 {/* caption content */}
@@ -96,7 +97,7 @@ const PostModal = ({
                                         <p className="text-sm mb-1 break-words">
                                             <span class="inline-flex items-baseline text-sm font-semibold">
                                                 <span className="mr-1">
-                                                    Drey.ng
+                                                    {username}
                                                 </span>
                                                 {verified && (
                                                     <svg
@@ -116,7 +117,7 @@ const PostModal = ({
                                                     </svg>
                                                 )}
                                             </span>
-                                            aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                                            {captionText}
                                             {/* caption */}
                                         </p>
                                         {/* CMT time, like counts */}
@@ -127,7 +128,7 @@ const PostModal = ({
                                 </div>
                             </div>
 
-                            <CommentPost
+                            {/* <CommentPost
                                 username={"username1"}
                                 avatar={
                                     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYAbdxO5KlG7ClKFO0oCNNefItucipE9Siz-FKYzTqoevtbdFDjUzGNSnwIyKZuX-OZJw&usqp=CAU"
@@ -254,7 +255,7 @@ const PostModal = ({
                                 }
                                 verified={true}
                                 commentContent={
-                                    "co2mmenttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt"
+                                    "co2mmenttttttttttttttttttttttttttttttttt tttttttttttttttttttttttttttttttttttttt"
                                 }
                             />
                             <CommentPost
@@ -276,7 +277,7 @@ const PostModal = ({
                                 commentContent={
                                     "co2mmenttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt"
                                 }
-                            />
+                            /> */}
                         </div>
                     </div>
 
@@ -373,13 +374,13 @@ const PostModal = ({
                                 Liked by ismailolol and others
                             </div>
                             <div className="text-ig-grey text-xs">
-                                1 day ago
+                                {formattedTimestamp}
                             </div>
                         </div>
                         <div className="h-14 flex border-t border-zinc-800 ">
                             <input
                                 type="text"
-                                className="h-full w-full placeholder-ig-grey text-sm pt-1 outline-none border-none bg-transparent"
+                                className="h-full w-full ml-3 placeholder-ig-grey text-sm pt-1 outline-none border-none bg-transparent"
                                 placeholder="Add a comment..."
                                 // value={inputValue}
                                 // onChange={handleInputChange}

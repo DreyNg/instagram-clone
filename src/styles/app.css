@@ -625,6 +625,9 @@ video {
 .mt-6 {
   margin-top: 1.5rem;
 }
+.ml-3 {
+  margin-left: 0.75rem;
+}
 .flex {
   display: flex;
 }
@@ -805,6 +808,9 @@ video {
 }
 .rounded-lg {
   border-radius: 0.5rem;
+}
+.rounded-sm {
+  border-radius: 0.125rem;
 }
 .border {
   border-width: 1px;
