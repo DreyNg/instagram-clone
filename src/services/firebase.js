@@ -140,6 +140,49 @@ export async function getFeed(currentUser) {
     }
 }
 
+export async function createComment(
+    postId,
+    userId,
+    username,
+    profilePicture,
+    verified,
+    commentText
+) {
+    try {
+        const commentsRef = firebase.firestore().collection("comments");
+
+        // Create a new comment object
+        const newComment = {
+            postId: postId,
+            likeCounts: 0,
+            replies: [],
+
+            userId: userId,
+            username: username,
+            profilePicture: profilePicture,
+            verified: verified,
+            commentText: commentText,
+            timestamp: serverTimestamp(),
+        };
+
+        // Add the new post to Firestore
+        const docRef = await commentsRef.add(newComment);
+        // console.log(docRef.id);
+
+        // append to user field: posts
+        const currentUserQuery = firebase
+            .firestore()
+            .collection("posts")
+            .doc(postId);
+
+        await currentUserQuery.update({
+            comments: FieldValue.arrayUnion(docRef.id),
+        });
+    } catch (error) {
+        console.error("Error adding comment: ", error);
+    }
+}
+
 export async function createPost(
     userId,
     caption,
@@ -177,7 +220,10 @@ export async function createPost(
             .firestore()
             .collection("users")
             .doc(userId);
-
+        // Update the post document with the post's ID
+        await docRef.update({
+            postId: docRef.id,
+        });
         await currentUserQuery.update({
             posts: FieldValue.arrayUnion(docRef.id),
         });

@@ -1,7 +1,8 @@
-import { useState } from "react";
-import { createPost } from "../services/firebase";
+import { useContext, useState } from "react";
+import { createComment, createPost } from "../services/firebase";
 import { calculateTimeDifference } from "../services/helper";
 import PostModal from "./PostModal";
+import CurrentUserContext from "../context/CurrentUserContext";
 
 export default function Post({
     captionText,
@@ -11,18 +12,20 @@ export default function Post({
     imageUrl,
     timestamp,
     commentList,
+    postId,
 }) {
+    const { currentUser } = useContext(CurrentUserContext);
+
     const [showFullCaption, setShowFullCaption] = useState(false);
-    const [inputValue, setInputValue] = useState("");
+    const [commentText, setCommentText] = useState("");
     const handleInputChange = (e) => {
-        setInputValue(e.target.value);
+        setCommentText(e.target.value);
     };
     const toggleCaption = () => {
         setShowFullCaption(!showFullCaption);
     };
 
     // const captionText = "sssssss"; // Your caption text goes here
-    console.log(timestamp);
     const shouldTruncate = captionText.length > 20;
     const truncatedCaption = shouldTruncate
         ? captionText.slice(0, 20) + "..."
@@ -34,12 +37,34 @@ export default function Post({
     const formattedTimestamp = calculateTimeDifference(timestamp);
 
     const [openPostModal, setOpenPostModal] = useState(false);
-    const openUpload = () => {
+    const handleOpenPostModal = () => {
         setOpenPostModal(true);
     };
 
-    const closeModal = () => {
+    const handleClosePostModal = () => {
         setOpenPostModal(false);
+    };
+
+    const handleCreateComment = async () => {
+        if (commentText) {
+            try {
+                // // Handle the response as needed
+                await createComment(
+                    postId,
+                    currentUser.userId,
+                    currentUser.username,
+                    currentUser.profilePicture,
+                    currentUser.verified,
+                    commentText
+                );
+            } catch (error) {
+                console.error("Error uploading image", error);
+                alert(error);
+                // Handle errors
+            }
+        } else {
+            // Handle case when no file is selected
+        }
     };
 
     return (
@@ -53,7 +78,7 @@ export default function Post({
                             src={avatar}
                             className="w-full h-auto"
                             alt={`Avatar of `}
-                            // onClick={createPost}
+                            onClick={handleCreateComment}
                         />
                     </div>
                 </div>
@@ -129,7 +154,7 @@ export default function Post({
                             viewBox="0 0 24 24"
                             width="24"
                             onClick={() => {
-                                openUpload();
+                                handleOpenPostModal();
                             }}
                         >
                             <title>Comment</title>
@@ -223,14 +248,17 @@ export default function Post({
                         type="text"
                         className="placeholder-ig-grey w-full text-sm pt-1 outline-none border-none bg-transparent"
                         placeholder="Add a comment..."
-                        value={inputValue}
+                        value={commentText}
                         onChange={handleInputChange}
                         style={{
                             color: "white",
                         }}
                     />
-                    {inputValue && (
-                        <button className="text-ig-blue mx-3 text-sm font-semibold">
+                    {commentText && (
+                        <button
+                            className="text-ig-blue mx-3 text-sm font-semibold"
+                            onClick={handleCreateComment}
+                        >
                             Post
                         </button>
                     )}
@@ -238,7 +266,7 @@ export default function Post({
             </div>
             {openPostModal && (
                 <PostModal
-                    closeModal={closeModal}
+                    closeModal={handleClosePostModal}
                     imageUrl={imageUrl}
                     avatar={avatar}
                     username={username}

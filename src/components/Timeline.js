@@ -40,7 +40,6 @@ export default function Timeline() {
             });
         }
     };
-
     return (
         <div className="h-full ">
             <div className="h-full flex flex-col ">
@@ -123,6 +122,7 @@ export default function Timeline() {
                                     imageUrl={post.imageUrl}
                                     timestamp={post.timestamp}
                                     commentList={post.comments}
+                                    postId={post.postId}
                                 />
                             </div>
                         ))}
