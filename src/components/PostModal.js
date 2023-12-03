@@ -1,7 +1,7 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import CurrentUserContext from "../context/CurrentUserContext";
-import { createPost, uploadToImgur } from "../services/firebase";
+import { createPost, getComments, uploadToImgur } from "../services/firebase";
 import CommentPost from "./CommentPost";
 
 const PostModal = ({
@@ -12,9 +12,25 @@ const PostModal = ({
     verified,
     formattedTimestamp,
     captionText,
+    postId,
 }) => {
-    const { currentUser } = useContext(CurrentUserContext);
+    const [comments, setComments] = useState([]);
 
+    const { currentUser } = useContext(CurrentUserContext);
+    useEffect(() => {
+        const fetchComment = async () => {
+            try {
+                setComments(await getComments(postId));
+            } catch (error) {
+                console.error("Error fetching suggestions:", error);
+            }
+        };
+
+        if (currentUser) {
+            fetchComment();
+            console.log(comments);
+        }
+    }, []);
     return ReactDOM.createPortal(
         <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-green-500 bg-opacity-60">
             <div className="items-center justify-center flex h-[90%] w-[80%] overflow-hidden rounded">
@@ -127,158 +143,19 @@ const PostModal = ({
                                     </div>
                                 </div>
                             </div>
-
-                            {/* <CommentPost
-                                username={"username1"}
-                                avatar={
-                                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYAbdxO5KlG7ClKFO0oCNNefItucipE9Siz-FKYzTqoevtbdFDjUzGNSnwIyKZuX-OZJw&usqp=CAU"
-                                }
-                                verified={true}
-                                commentContent={
-                                    "co2mmenttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt"
-                                }
-                            />
-                            <CommentPost
-                                username={"username1"}
-                                avatar={
-                                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYAbdxO5KlG7ClKFO0oCNNefItucipE9Siz-FKYzTqoevtbdFDjUzGNSnwIyKZuX-OZJw&usqp=CAU"
-                                }
-                                verified={true}
-                                commentContent={
-                                    "co2mmenttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt"
-                                }
-                            />
-                            <CommentPost
-                                username={"username1"}
-                                avatar={
-                                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYAbdxO5KlG7ClKFO0oCNNefItucipE9Siz-FKYzTqoevtbdFDjUzGNSnwIyKZuX-OZJw&usqp=CAU"
-                                }
-                                verified={true}
-                                commentContent={
-                                    "co2mmenttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt"
-                                }
-                            />
-                            <CommentPost
-                                username={"username1"}
-                                avatar={
-                                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYAbdxO5KlG7ClKFO0oCNNefItucipE9Siz-FKYzTqoevtbdFDjUzGNSnwIyKZuX-OZJw&usqp=CAU"
-                                }
-                                verified={true}
-                                commentContent={
-                                    "co2mmenttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt"
-                                }
-                            />
-                            <CommentPost
-                                username={"username1"}
-                                avatar={
-                                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYAbdxO5KlG7ClKFO0oCNNefItucipE9Siz-FKYzTqoevtbdFDjUzGNSnwIyKZuX-OZJw&usqp=CAU"
-                                }
-                                verified={true}
-                                commentContent={
-                                    "co2mmenttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt"
-                                }
-                            />
-                            <CommentPost
-                                username={"username1"}
-                                avatar={
-                                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYAbdxO5KlG7ClKFO0oCNNefItucipE9Siz-FKYzTqoevtbdFDjUzGNSnwIyKZuX-OZJw&usqp=CAU"
-                                }
-                                verified={true}
-                                commentContent={
-                                    "co2mmenttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt"
-                                }
-                            />
-                            <CommentPost
-                                username={"username1"}
-                                avatar={
-                                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYAbdxO5KlG7ClKFO0oCNNefItucipE9Siz-FKYzTqoevtbdFDjUzGNSnwIyKZuX-OZJw&usqp=CAU"
-                                }
-                                verified={true}
-                                commentContent={
-                                    "co2mmenttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt"
-                                }
-                            />
-                            <CommentPost
-                                username={"username1"}
-                                avatar={
-                                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYAbdxO5KlG7ClKFO0oCNNefItucipE9Siz-FKYzTqoevtbdFDjUzGNSnwIyKZuX-OZJw&usqp=CAU"
-                                }
-                                verified={true}
-                                commentContent={
-                                    "co2mmenttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt"
-                                }
-                            />
-                            <CommentPost
-                                username={"username1"}
-                                avatar={
-                                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYAbdxO5KlG7ClKFO0oCNNefItucipE9Siz-FKYzTqoevtbdFDjUzGNSnwIyKZuX-OZJw&usqp=CAU"
-                                }
-                                verified={true}
-                                commentContent={
-                                    "co2mmenttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt"
-                                }
-                            />
-                            <CommentPost
-                                username={"username1"}
-                                avatar={
-                                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYAbdxO5KlG7ClKFO0oCNNefItucipE9Siz-FKYzTqoevtbdFDjUzGNSnwIyKZuX-OZJw&usqp=CAU"
-                                }
-                                verified={true}
-                                commentContent={
-                                    "co2mmenttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt"
-                                }
-                            />
-                            <CommentPost
-                                username={"username1"}
-                                avatar={
-                                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYAbdxO5KlG7ClKFO0oCNNefItucipE9Siz-FKYzTqoevtbdFDjUzGNSnwIyKZuX-OZJw&usqp=CAU"
-                                }
-                                verified={true}
-                                commentContent={
-                                    "co2mmenttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt"
-                                }
-                            />
-                            <CommentPost
-                                username={"username1"}
-                                avatar={
-                                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYAbdxO5KlG7ClKFO0oCNNefItucipE9Siz-FKYzTqoevtbdFDjUzGNSnwIyKZuX-OZJw&usqp=CAU"
-                                }
-                                verified={true}
-                                commentContent={
-                                    "co2mmenttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt"
-                                }
-                            />
-                            <CommentPost
-                                username={"username1"}
-                                avatar={
-                                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYAbdxO5KlG7ClKFO0oCNNefItucipE9Siz-FKYzTqoevtbdFDjUzGNSnwIyKZuX-OZJw&usqp=CAU"
-                                }
-                                verified={true}
-                                commentContent={
-                                    "co2mmenttttttttttttttttttttttttttttttttt tttttttttttttttttttttttttttttttttttttt"
-                                }
-                            />
-                            <CommentPost
-                                username={"username1"}
-                                avatar={
-                                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYAbdxO5KlG7ClKFO0oCNNefItucipE9Siz-FKYzTqoevtbdFDjUzGNSnwIyKZuX-OZJw&usqp=CAU"
-                                }
-                                verified={true}
-                                commentContent={
-                                    "co2mmenttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt"
-                                }
-                            />
-                            <CommentPost
-                                username={"username1"}
-                                avatar={
-                                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYAbdxO5KlG7ClKFO0oCNNefItucipE9Siz-FKYzTqoevtbdFDjUzGNSnwIyKZuX-OZJw&usqp=CAU"
-                                }
-                                verified={true}
-                                commentContent={
-                                    "co2mmenttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt"
-                                }
-                            /> */}
                         </div>
+
+                        {comments.map((comment, index) => (
+                            <div key={index}>
+                                <CommentPost
+                                    username={comment.username}
+                                    verified={comment.verified}
+                                    commentContent={comment.commentText}
+                                    avatar={comment.profilePicture}
+                                    likeCount={comment.likeCount}
+                                />
+                            </div>
+                        ))}
                     </div>
 
                     {/* end dcomment  SEction */}

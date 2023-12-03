@@ -3,6 +3,7 @@ export default function CommentPost({
     verified,
     commentContent,
     avatar,
+    likeCount,
 }) {
     return (
         <div className="bg-black">
@@ -23,7 +24,7 @@ export default function CommentPost({
                     {/*  CMT content */}
                     <p className="text-sm mb-1 break-words">
                         <span class="inline-flex items-baseline text-sm font-semibold">
-                            <span className="mr-1">Drey.ng</span>
+                            <span className="mr-1">{username}</span>
                             {verified && (
                                 <svg
                                     aria-label="Verified"
@@ -43,12 +44,16 @@ export default function CommentPost({
                             )}
                         </span>
                         {/* {commentContent} */}
-                        aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                        {commentContent}
                     </p>
                     {/* CMT time, like counts */}
                     <div className="text-xs text-ig-grey flex">
                         <div className="mr-3">9h</div>
-                        <div className="mr-3 font-semibold">70 likes</div>
+                        {likeCount && (
+                            <div className="mr-3 font-semibold">
+                                {likeCount} likes
+                            </div>
+                        )}
                         <div className="mr-3 font-semibold">Reply</div>
                     </div>
                 </div>

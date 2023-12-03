@@ -274,6 +274,7 @@ export default function Post({
                     verified={verified}
                     formattedTimestamp={formattedTimestamp}
                     captionText={captionText}
+                    postId={postId}
                 />
             )}
         </div>

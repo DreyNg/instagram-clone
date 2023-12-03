@@ -140,6 +140,23 @@ export async function getFeed(currentUser) {
     }
 }
 
+export async function getComments(postId) {
+    try {
+        const comments = await firebase
+            .firestore()
+            .collection("comments")
+            .where("postId", "==", postId)
+            .get();
+
+        const temp = [...comments.docs];
+        const result = [];
+        temp.forEach((e) => result.push(e.data()));
+        return result;
+    } catch (error) {
+        console.error("Error getting comments: ", error);
+    }
+}
+
 export async function createComment(
     postId,
     userId,
