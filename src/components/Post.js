@@ -24,7 +24,6 @@ export default function Post({
 
     const [showFullCaption, setShowFullCaption] = useState(false);
     const [likeList, setLikeList] = useState(likes || []);
-    console.log(likeList);
     const [commentText, setCommentText] = useState("");
     const handleInputChange = (e) => {
         setCommentText(e.target.value);
@@ -346,6 +345,8 @@ export default function Post({
                     formattedTimestamp={formattedTimestamp}
                     captionText={captionText}
                     postId={postId}
+                    likeList={likeList}
+                    setLikeList={setLikeList}
                 />
             )}
         </div>
