@@ -376,10 +376,10 @@ const PostModal = ({
                                 1 day ago
                             </div>
                         </div>
-                        <div className="h-14 border-t border-zinc-800 ">
+                        <div className="h-14 flex border-t border-zinc-800 ">
                             <input
                                 type="text"
-                                className="h-full placeholder-ig-grey text-sm pt-1 outline-none border-none bg-transparent"
+                                className="h-full w-full placeholder-ig-grey text-sm pt-1 outline-none border-none bg-transparent"
                                 placeholder="Add a comment..."
                                 // value={inputValue}
                                 // onChange={handleInputChange}
@@ -387,6 +387,9 @@ const PostModal = ({
                                     color: "white",
                                 }}
                             />
+                            <button className="text-ig-blue mx-3 text-sm font-semibold">
+                                Post
+                            </button>
                         </div>
                     </div>
                 </div>

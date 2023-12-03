@@ -218,16 +218,23 @@ export default function Post({
                         View 1 comment
                     </div>
                 )}
-                <input
-                    type="text"
-                    className="placeholder-ig-grey text-sm pt-1 outline-none border-none bg-transparent"
-                    placeholder="Add a comment..."
-                    value={inputValue}
-                    onChange={handleInputChange}
-                    style={{
-                        color: "white",
-                    }}
-                />
+                <div className="flex">
+                    <input
+                        type="text"
+                        className="placeholder-ig-grey w-full text-sm pt-1 outline-none border-none bg-transparent"
+                        placeholder="Add a comment..."
+                        value={inputValue}
+                        onChange={handleInputChange}
+                        style={{
+                            color: "white",
+                        }}
+                    />
+                    {inputValue && (
+                        <button className="text-ig-blue mx-3 text-sm font-semibold">
+                            Post
+                        </button>
+                    )}
+                </div>
             </div>
             {openPostModal && (
                 <PostModal
