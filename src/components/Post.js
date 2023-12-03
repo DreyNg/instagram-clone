@@ -136,7 +136,7 @@ export default function Post({
                     <div className="flex flex-grow">
                         <svg
                             aria-label="Like"
-                            class="mr-1"
+                            class="mr-1 cursor-pointer"
                             fill="white"
                             height="24"
                             role="img"
@@ -148,7 +148,7 @@ export default function Post({
                         </svg>
                         <svg
                             aria-label="Comment"
-                            class="mx-3"
+                            class="mx-3 cursor-pointer"
                             fill="white"
                             height="24"
                             role="img"
@@ -169,7 +169,7 @@ export default function Post({
                         </svg>
                         <svg
                             aria-label="Share Post"
-                            class="mx-1"
+                            class="mx-1 cursor-pointer"
                             fill="white"
                             height="24"
                             role="img"
@@ -199,7 +199,7 @@ export default function Post({
                     <div>
                         <svg
                             aria-label="Save"
-                            class="x1lliihq x1n2onr6 x5n08af"
+                            class="cursor-pointer"
                             fill="white"
                             height="24"
                             role="img"
@@ -235,12 +235,24 @@ export default function Post({
                     </div>
                 )}
                 {commentList.length > 1 && (
-                    <div className="text-sm text-ig-grey py-1">
+                    <div
+                        className="text-sm text-ig-grey py-1 cursor-pointer"
+                        onClick={() => {
+                            handleOpenPostModal();
+                        }}
+                    >
+                        {" "}
                         View all {commentList.length} comments
                     </div>
                 )}
                 {commentList.length == 1 && (
-                    <div className="text-sm text-ig-grey py-1">
+                    <div
+                        className="text-sm text-ig-grey py-1 cursor-pointer"
+                        onClick={() => {
+                            handleOpenPostModal();
+                        }}
+                    >
+                        {" "}
                         View 1 comment
                     </div>
                 )}

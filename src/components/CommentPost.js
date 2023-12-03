@@ -51,7 +51,7 @@ export default function CommentPost({
                         <div className="mr-3">9h</div>
                         {likeCount && (
                             <div className="mr-3 font-semibold">
-                                {likeCount} likes
+                                {likeCount.length} likes
                             </div>
                         )}
                         <div className="mr-3 font-semibold">Reply</div>

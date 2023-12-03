@@ -171,7 +171,7 @@ export async function createComment(
         // Create a new comment object
         const newComment = {
             postId: postId,
-            likeCounts: 0,
+            likeCounts: [],
             replies: [],
 
             userId: userId,

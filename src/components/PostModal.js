@@ -143,19 +143,19 @@ const PostModal = ({
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
-                        {comments.map((comment, index) => (
-                            <div key={index}>
-                                <CommentPost
-                                    username={comment.username}
-                                    verified={comment.verified}
-                                    commentContent={comment.commentText}
-                                    avatar={comment.profilePicture}
-                                    likeCount={comment.likeCount}
-                                />
-                            </div>
-                        ))}
+                            {comments.map((comment, index) => (
+                                <div key={index}>
+                                    <CommentPost
+                                        username={comment.username}
+                                        verified={comment.verified}
+                                        commentContent={comment.commentText}
+                                        avatar={comment.profilePicture}
+                                        likeCount={comment.likeCount}
+                                    />
+                                </div>
+                            ))}
+                        </div>
                     </div>
 
                     {/* end dcomment  SEction */}
