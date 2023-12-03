@@ -157,6 +157,79 @@ export async function getComments(postId) {
     }
 }
 
+export async function handleLikePost(
+    postId,
+    userId,
+    username,
+    profilePicture,
+    verified,
+    postLikeList
+) {
+    if (postLikeList.includes(userId)) return;
+    try {
+        const likesRef = firebase.firestore().collection("likes");
+
+        // Create a new comment object
+        const newLike = {
+            postId: postId,
+
+            userId: userId,
+            username: username,
+            profilePicture: profilePicture,
+            verified: verified,
+            timestamp: serverTimestamp(),
+        };
+
+        // Add the new post to Firestore
+        const docRef = await likesRef.add(newLike);
+        await docRef.update({
+            likeId: docRef.id,
+        });
+        // append to user field: posts
+        const currentUserQuery = firebase
+            .firestore()
+            .collection("posts")
+            .doc(postId);
+
+        await currentUserQuery.update({
+            likes: FieldValue.arrayUnion(userId),
+        });
+    } catch (error) {
+        alert("here");
+        console.error("Error adding like: ", error);
+    }
+}
+
+export async function handleUnlikePost(postId, userId, postLikeList) {
+    if (!postLikeList.includes(userId)) return;
+    try {
+        // Remove the like from the post's 'likes' array
+        const currentUserQuery = firebase
+            .firestore()
+            .collection("posts")
+            .doc(postId);
+
+        await currentUserQuery.update({
+            likes: FieldValue.arrayRemove(userId),
+        });
+
+        // Delete the like from the 'likes' collection in Firestore
+        const likeQuery = firebase
+            .firestore()
+            .collection("likes")
+            .where("postId", "==", postId)
+            .where("userId", "==", userId);
+
+        const snapshot = await likeQuery.get();
+        snapshot.forEach(async (doc) => {
+            await doc.ref.delete();
+        });
+    } catch (error) {
+        alert("here");
+        console.error("Error removing like: ", error);
+    }
+}
+
 export async function createComment(
     postId,
     userId,
