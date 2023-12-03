@@ -57,6 +57,7 @@ export default function Post({
                     currentUser.verified,
                     commentText
                 );
+                setCommentText("");
             } catch (error) {
                 console.error("Error uploading image", error);
                 alert(error);
