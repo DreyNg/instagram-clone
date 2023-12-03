@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import {
     createComment,
     createPost,
+    getLikeList,
     handleLikePost,
     handleUnlikePost,
 } from "../services/firebase";
@@ -46,6 +47,10 @@ export default function Post({
     const [openPostModal, setOpenPostModal] = useState(false);
     const handleOpenPostModal = () => {
         setOpenPostModal(true);
+    };
+
+    const handleShowLikes = async () => {
+        console.log(await getLikeList(postId));
     };
 
     const handleClosePostModal = () => {
@@ -279,7 +284,10 @@ export default function Post({
                 {likeList.length != 0 && (
                     <div className="text-sm text-white py-1">
                         Liked by {likeList.length}{" "}
-                        <span className="font-semibold cursor-pointer">
+                        <span
+                            className="font-semibold cursor-pointer"
+                            onClick={handleShowLikes}
+                        >
                             others
                         </span>
                     </div>

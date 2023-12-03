@@ -137,6 +137,23 @@ export async function getFeed(currentUser) {
     }
 }
 
+export async function getLikeList(postId) {
+    try {
+        const likes = await firebase
+            .firestore()
+            .collection("likes")
+            .where("postId", "==", postId)
+            .get();
+
+        const temp = [...likes.docs];
+        const result = [];
+        temp.forEach((e) => result.push(e.data()));
+        return result;
+    } catch (error) {
+        console.error("Error getting likes: ", error);
+    }
+}
+
 export async function getComments(postId) {
     try {
         const comments = await firebase
