@@ -58,6 +58,7 @@ export default function Post({
                     commentText
                 );
                 setCommentText("");
+                commentList.push(commentText);
             } catch (error) {
                 console.error("Error uploading image", error);
                 alert(error);
