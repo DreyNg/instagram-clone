@@ -168,7 +168,9 @@ export async function createComment(
         // Add the new post to Firestore
         const docRef = await commentsRef.add(newComment);
         // console.log(docRef.id);
-
+        await docRef.update({
+            commentId: docRef.id,
+        });
         // append to user field: posts
         const currentUserQuery = firebase
             .firestore()
