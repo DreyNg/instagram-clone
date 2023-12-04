@@ -57,6 +57,7 @@ export async function handleFollowUser(followingUserId, followedUserId) {
         console.error("Error handling follow user:", error);
     }
 }
+
 export async function handleUnfollowUser(followingUserId, followedUserId) {
     if (followingUserId === followedUserId) return;
     try {
@@ -269,6 +270,26 @@ export async function handleUnlikePost(postId, userId, postLikeList) {
         alert("here");
         console.error("Error removing like: ", error);
     }
+}
+export async function handleLikeComment(commentId, userId) {
+    const commentRef = firebase
+        .firestore()
+        .collection("comments")
+        .doc(commentId);
+
+    await commentRef.update({
+        likeCounts: FieldValue.arrayUnion(userId),
+    });
+}
+export async function handleUnlikeComment(commentId, userId) {
+    const commentRef = firebase
+        .firestore()
+        .collection("comments")
+        .doc(commentId);
+
+    await commentRef.update({
+        likeCounts: FieldValue.arrayRemove(userId),
+    });
 }
 
 export async function createComment(

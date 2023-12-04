@@ -50,10 +50,6 @@ export default function Post({
         setOpenPostModal(true);
     };
 
-    const handleShowLikes = async () => {
-        // console.log(await getLikeList(postId));
-    };
-
     const handleClosePostModal = () => {
         setOpenPostModal(false);
     };
