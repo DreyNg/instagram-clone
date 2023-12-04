@@ -391,7 +391,10 @@ const PostModal = ({
                 </svg>
             </div>
             {openLikeModal && (
-                <LikeListModal closeModal={handleCloseLikeModal} />
+                <LikeListModal
+                    closeModal={handleCloseLikeModal}
+                    postId={postId}
+                />
             )}
         </div>,
         document.getElementById("portal")

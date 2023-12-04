@@ -137,17 +137,50 @@ export async function getFeed(currentUser) {
     }
 }
 
-export async function getLikeList(postId) {
+export async function getLikeList(postId, followingList, currentUserId) {
     try {
-        const likes = await firebase
+        const result = [];
+
+        const resultFollowing = [];
+        const resultNotFollowing = [];
+        const resultCurrentUser = [];
+        // fetching the rest
+        const likesCurrentUser = await firebase
             .firestore()
             .collection("likes")
             .where("postId", "==", postId)
+            .where("userId", "==", currentUserId)
             .get();
 
-        const temp = [...likes.docs];
-        const result = [];
-        temp.forEach((e) => result.push(e.data()));
+        const temp = [...likesCurrentUser.docs];
+        temp.forEach((e) => resultCurrentUser.push(e.data()));
+
+        // fetching the rest
+        const likesRest = await firebase
+            .firestore()
+            .collection("likes")
+            .where("postId", "==", postId)
+            .where("userId", "not-in", followingList)
+            .get();
+
+        const tempRest = [...likesRest.docs];
+        tempRest.forEach((e) => resultNotFollowing.push(e.data()));
+
+        // fetching following user that liked the posts
+        const likesFollowing = await firebase
+            .firestore()
+            .collection("likes")
+            .where("postId", "==", postId)
+            .where("userId", "!=", currentUserId)
+            .where("userId", "in", followingList)
+            .get();
+
+        const tempFollowing = [...likesFollowing.docs];
+        tempFollowing.forEach((e) => resultFollowing.push(e.data()));
+
+        result.push(resultCurrentUser);
+        result.push(resultFollowing);
+        result.push(resultNotFollowing);
         return result;
     } catch (error) {
         console.error("Error getting likes: ", error);

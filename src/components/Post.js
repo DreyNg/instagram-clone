@@ -286,7 +286,7 @@ export default function Post({
                         Liked by {likeList.length}{" "}
                         <span
                             className="font-semibold cursor-pointer"
-                            onClick={handleShowLikes}
+                            // onClick={handleShowLikes}
                         >
                             others
                         </span>

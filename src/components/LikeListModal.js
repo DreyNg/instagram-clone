@@ -1,10 +1,33 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import ReactDom from "react-dom";
 import CurrentUserContext from "../context/CurrentUserContext";
 import UserCard from "./UserCard";
+import { getLikeList } from "../services/firebase";
 
-const LikeListModal = ({ closeModal }) => {
+const LikeListModal = ({ closeModal, postId }) => {
     const { currentUser } = useContext(CurrentUserContext);
+    const [likeList, setLikeList] = useState([]);
+
+    useEffect(() => {
+        async function fetchLikes() {
+            try {
+                setLikeList(
+                    await getLikeList(
+                        postId,
+                        currentUser.following,
+                        currentUser.userId
+                    )
+                );
+                // console.log(likeList);
+            } catch (error) {
+                alert(error);
+            }
+        }
+
+        if (currentUser) {
+            fetchLikes();
+        }
+    }, []);
     return ReactDom.createPortal(
         <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-60">
             <div className="flex flex-col h-[80%] w-[35%] rounded-lg overflow-hidden">
@@ -48,32 +71,72 @@ const LikeListModal = ({ closeModal }) => {
                     </div>
                 </div>
                 <div className="p-2 bg-ig-grey-bg flex flex-col overflow-auto  h-full ">
-                    <UserCard
-                        avatarSrc={
-                            "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/1200px-Image_created_with_a_mobile_phone.png"
-                        }
-                        username={"user.username"}
-                        subtitle={"key"}
-                        userId={"user.userId"}
-                        buttonFn1={() => {}}
-                        buttonFn2={() => {}}
-                        buttonFirst={(onClick) => (
-                            <button
-                                className="text-white bg-ig-blue py-2 px-6 rounded-lg mr-3 text-xs font-semibold cursor-pointer"
-                                onClick={onClick}
-                            >
-                                Follow
-                            </button>
-                        )}
-                        buttonAfter={(onClick) => (
-                            <button
-                                className="text-white bg-[#383434] py-2 px-6 rounded-lg mr-3 text-xs font-semibold cursor-pointer"
-                                onClick={onClick}
-                            >
-                                Following
-                            </button>
-                        )}
-                    />
+                    {likeList[0] &&
+                        likeList[0].length > 0 &&
+                        likeList[0].map((e, innerIndex) => (
+                            <UserCard
+                                key={innerIndex}
+                                avatarSrc={e.profilePicture}
+                                username={e.username}
+                                userId={e.userId}
+                            />
+                        ))}
+                    {likeList[1] &&
+                        likeList[1].length > 0 &&
+                        likeList[1].map((e, innerIndex) => (
+                            <UserCard
+                                key={innerIndex}
+                                avatarSrc={e.profilePicture}
+                                username={e.username}
+                                userId={e.userId}
+                                buttonFn1={() => {}}
+                                buttonFn2={() => {}}
+                                buttonFirst={(onClick) => (
+                                    <button
+                                        className="text-white bg-[#383434] py-2 px-6 rounded-lg mr-3 text-xs font-semibold cursor-pointer"
+                                        onClick={onClick}
+                                    >
+                                        Following
+                                    </button>
+                                )}
+                                buttonAfter={(onClick) => (
+                                    <button
+                                        className="text-white bg-ig-blue py-2 px-6 rounded-lg mr-3 text-xs font-semibold cursor-pointer"
+                                        onClick={onClick}
+                                    >
+                                        Follow
+                                    </button>
+                                )}
+                            />
+                        ))}
+                    {likeList[2] &&
+                        likeList[2].length > 0 &&
+                        likeList[2].map((e, innerIndex) => (
+                            <UserCard
+                                key={innerIndex}
+                                avatarSrc={e.profilePicture}
+                                username={e.username}
+                                userId={e.userId}
+                                buttonFn1={() => {}}
+                                buttonFn2={() => {}}
+                                buttonFirst={(onClick) => (
+                                    <button
+                                        className="text-white bg-ig-blue py-2 px-6 rounded-lg mr-3 text-xs font-semibold cursor-pointer"
+                                        onClick={onClick}
+                                    >
+                                        Follow
+                                    </button>
+                                )}
+                                buttonAfter={(onClick) => (
+                                    <button
+                                        className="text-white bg-[#383434] py-2 px-6 rounded-lg mr-3 text-xs font-semibold cursor-pointer"
+                                        onClick={onClick}
+                                    >
+                                        Following
+                                    </button>
+                                )}
+                            />
+                        ))}
                 </div>
             </div>
         </div>,
