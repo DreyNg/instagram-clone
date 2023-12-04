@@ -40,7 +40,6 @@ export default function Timeline() {
             });
         }
     };
-
     return (
         <div className="h-full ">
             <div className="h-full flex flex-col ">
@@ -112,9 +111,22 @@ export default function Timeline() {
                 </div>
                 <div className="flex-1 flex justify-center">
                     <div className="w-[480px]">
-                        <Post />
-                        <Post />
-                        <Post />
+                        {/* Posts */}
+                        {posts.map((post, index) => (
+                            <div key={index}>
+                                <Post
+                                    captionText={post.caption}
+                                    avatar={post.userAva}
+                                    username={post.userUsername}
+                                    verified={post.verified}
+                                    imageUrl={post.imageUrl}
+                                    timestamp={post.timestamp}
+                                    commentList={post.comments}
+                                    postId={post.postId}
+                                    likes={post.likes}
+                                />
+                            </div>
+                        ))}
                     </div>
                 </div>
             </div>

@@ -97,8 +97,6 @@ function App() {
         return <p>Loading ...</p>; // Show loading state until user data is fetched
     }
 
-    // console.log("a", followingUsers);
-
     return (
         <CurrentUserContext.Provider value={{ currentUser }}>
             <FollowingUsersContext.Provider value={{ followingUsers }}>

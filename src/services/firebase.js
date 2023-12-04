@@ -108,15 +108,12 @@ export async function uploadToImgur(img) {
                 Accept: "application/json",
             },
         });
-        // Handling success
-        // .then((res) => alert("image uploaded") && console.log(res))
-        // .catch((err) => alert("Failed") && console.log(err));
+
         const jsonlink = await res.json();
         const link = jsonlink.data.link;
         return link;
     } catch (err) {
         console.error("Error uploading image:", err);
-        // console.log(err);
     }
 }
 
@@ -127,7 +124,7 @@ export async function getFeed(currentUser) {
         const posts = await firebase
             .firestore()
             .collection("posts")
-            .orderBy("timestamp")
+            .orderBy("timestamp", "desc") // Sort by timestamp in descending order
             .where("userId", "in", following)
             .get();
 
@@ -137,6 +134,184 @@ export async function getFeed(currentUser) {
         return result;
     } catch (error) {
         console.error("Error adding post: ", error);
+    }
+}
+
+export async function getLikeList(postId, followingList, currentUserId) {
+    try {
+        const result = [];
+
+        const resultFollowing = [];
+        const resultNotFollowing = [];
+        const resultCurrentUser = [];
+        // fetching the rest
+        const likesCurrentUser = await firebase
+            .firestore()
+            .collection("likes")
+            .where("postId", "==", postId)
+            .where("userId", "==", currentUserId)
+            .get();
+
+        const temp = [...likesCurrentUser.docs];
+        temp.forEach((e) => resultCurrentUser.push(e.data()));
+
+        // fetching the rest
+        const likesRest = await firebase
+            .firestore()
+            .collection("likes")
+            .where("postId", "==", postId)
+            .where("userId", "not-in", followingList)
+            .get();
+
+        const tempRest = [...likesRest.docs];
+        tempRest.forEach((e) => resultNotFollowing.push(e.data()));
+
+        // fetching following user that liked the posts
+        const likesFollowing = await firebase
+            .firestore()
+            .collection("likes")
+            .where("postId", "==", postId)
+            .where("userId", "!=", currentUserId)
+            .where("userId", "in", followingList)
+            .get();
+
+        const tempFollowing = [...likesFollowing.docs];
+        tempFollowing.forEach((e) => resultFollowing.push(e.data()));
+
+        result.push(resultCurrentUser);
+        result.push(resultFollowing);
+        result.push(resultNotFollowing);
+        return result;
+    } catch (error) {
+        console.error("Error getting likes: ", error);
+    }
+}
+
+export async function getComments(postId) {
+    try {
+        const comments = await firebase
+            .firestore()
+            .collection("comments")
+            .where("postId", "==", postId)
+            .get();
+
+        const temp = [...comments.docs];
+        const result = [];
+        temp.forEach((e) => result.push(e.data()));
+        return result;
+    } catch (error) {
+        console.error("Error getting comments: ", error);
+    }
+}
+
+export async function handleLikePost(postId, user, postLikeList) {
+    if (postLikeList.includes(user.userId)) return;
+    try {
+        const likesRef = firebase.firestore().collection("likes");
+
+        // Create a new comment object
+        const newLike = {
+            postId: postId,
+
+            userId: user.userId,
+            username: user.username,
+            profilePicture: user.profilePicture,
+            verified: user.verified,
+            fullname: user.fullname,
+            timestamp: serverTimestamp(),
+        };
+
+        // Add the new post to Firestore
+        const docRef = await likesRef.add(newLike);
+        await docRef.update({
+            likeId: docRef.id,
+        });
+        // append to user field: posts
+        const currentUserQuery = firebase
+            .firestore()
+            .collection("posts")
+            .doc(postId);
+
+        await currentUserQuery.update({
+            likes: FieldValue.arrayUnion(user.userId),
+        });
+    } catch (error) {
+        alert("here");
+        console.error("Error adding like: ", error);
+    }
+}
+
+export async function handleUnlikePost(postId, userId, postLikeList) {
+    if (!postLikeList.includes(userId)) return;
+    try {
+        // Remove the like from the post's 'likes' array
+        const currentUserQuery = firebase
+            .firestore()
+            .collection("posts")
+            .doc(postId);
+
+        await currentUserQuery.update({
+            likes: FieldValue.arrayRemove(userId),
+        });
+
+        // Delete the like from the 'likes' collection in Firestore
+        const likeQuery = firebase
+            .firestore()
+            .collection("likes")
+            .where("postId", "==", postId)
+            .where("userId", "==", userId);
+
+        const snapshot = await likeQuery.get();
+        snapshot.forEach(async (doc) => {
+            await doc.ref.delete();
+        });
+    } catch (error) {
+        alert("here");
+        console.error("Error removing like: ", error);
+    }
+}
+
+export async function createComment(
+    postId,
+    userId,
+    username,
+    profilePicture,
+    verified,
+    commentText
+) {
+    try {
+        const commentsRef = firebase.firestore().collection("comments");
+
+        // Create a new comment object
+        const newComment = {
+            postId: postId,
+            likeCounts: [],
+            replies: [],
+
+            userId: userId,
+            username: username,
+            profilePicture: profilePicture,
+            verified: verified,
+            commentText: commentText,
+            timestamp: serverTimestamp(),
+        };
+
+        // Add the new post to Firestore
+        const docRef = await commentsRef.add(newComment);
+        await docRef.update({
+            commentId: docRef.id,
+        });
+        // append to user field: posts
+        const currentUserQuery = firebase
+            .firestore()
+            .collection("posts")
+            .doc(postId);
+
+        await currentUserQuery.update({
+            comments: FieldValue.arrayUnion(docRef.id),
+        });
+    } catch (error) {
+        console.error("Error adding comment: ", error);
     }
 }
 
@@ -170,14 +345,16 @@ export async function createPost(
 
         // Add the new post to Firestore
         const docRef = await postsRef.add(newPost);
-        // console.log(docRef.id);
 
         // append to user field: posts
         const currentUserQuery = firebase
             .firestore()
             .collection("users")
             .doc(userId);
-
+        // Update the post document with the post's ID
+        await docRef.update({
+            postId: docRef.id,
+        });
         await currentUserQuery.update({
             posts: FieldValue.arrayUnion(docRef.id),
         });
@@ -191,12 +368,15 @@ export async function getUserSuggestion(user) {
     const following = user.following;
     const followers = user.followers;
 
+    const filterList = following;
+    filterList.push(user.userId);
+
     async function getNewSuggestion() {
         try {
             const snapshot = await firebase
                 .firestore()
                 .collection("users")
-                .where("userId", "!=", user.userId)
+                .where("userId", "not-in", filterList)
                 // .orderBy("userId") // Order by userId for consistent pagination
                 .limit(SUGGESTION_NUMBER)
                 .get();

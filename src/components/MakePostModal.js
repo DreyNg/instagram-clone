@@ -30,6 +30,14 @@ const MakePostModal = ({ closeModal }) => {
                     currentUser.username,
                     currentUser.profilePicture
                 );
+                // await createPost(
+                //     "lPyhuXTzmfhiSwsmYB0VZd30Axw2",
+                //     postCaption,
+                //     selectedFile,
+                //     false,
+                //     "2",
+                //     "https://i.imgur.com/k7bSvL1.png"
+                // );
                 closeModal();
             } catch (error) {
                 console.error("Error uploading image", error);
