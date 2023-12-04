@@ -204,15 +204,8 @@ export async function getComments(postId) {
     }
 }
 
-export async function handleLikePost(
-    postId,
-    userId,
-    username,
-    profilePicture,
-    verified,
-    postLikeList
-) {
-    if (postLikeList.includes(userId)) return;
+export async function handleLikePost(postId, user, postLikeList) {
+    if (postLikeList.includes(user.userId)) return;
     try {
         const likesRef = firebase.firestore().collection("likes");
 
@@ -220,10 +213,11 @@ export async function handleLikePost(
         const newLike = {
             postId: postId,
 
-            userId: userId,
-            username: username,
-            profilePicture: profilePicture,
-            verified: verified,
+            userId: user.userId,
+            username: user.username,
+            profilePicture: user.profilePicture,
+            verified: user.verified,
+            fullname: user.fullname,
             timestamp: serverTimestamp(),
         };
 
@@ -239,7 +233,7 @@ export async function handleLikePost(
             .doc(postId);
 
         await currentUserQuery.update({
-            likes: FieldValue.arrayUnion(userId),
+            likes: FieldValue.arrayUnion(user.userId),
         });
     } catch (error) {
         alert("here");

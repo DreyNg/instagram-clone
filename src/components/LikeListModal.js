@@ -79,6 +79,7 @@ const LikeListModal = ({ closeModal, postId }) => {
                                 avatarSrc={e.profilePicture}
                                 username={e.username}
                                 userId={e.userId}
+                                subtitle={e.fullname}
                             />
                         ))}
                     {likeList[1] &&
@@ -91,6 +92,7 @@ const LikeListModal = ({ closeModal, postId }) => {
                                 userId={e.userId}
                                 buttonFn1={() => {}}
                                 buttonFn2={() => {}}
+                                subtitle={e.fullname}
                                 buttonFirst={(onClick) => (
                                     <button
                                         className="text-white bg-[#383434] py-2 px-6 rounded-lg mr-3 text-xs font-semibold cursor-pointer"
@@ -117,6 +119,7 @@ const LikeListModal = ({ closeModal, postId }) => {
                                 avatarSrc={e.profilePicture}
                                 username={e.username}
                                 userId={e.userId}
+                                subtitle={e.fullname}
                                 buttonFn1={() => {}}
                                 buttonFn2={() => {}}
                                 buttonFirst={(onClick) => (

@@ -43,14 +43,7 @@ const PostModal = ({
     const handleLikeButtonClick = async () => {
         // Make sure to create a new array and update the state instead of directly mutating the likeList array
         try {
-            await handleLikePost(
-                postId,
-                currentUser.userId,
-                currentUser.username,
-                currentUser.profilePicture,
-                currentUser.verified,
-                likeList
-            );
+            await handleLikePost(postId, currentUser, likeList);
             setLikeList((prevLikes) => [...prevLikes, currentUser.userId]);
         } catch (error) {
             console.error("Error liking post", error);

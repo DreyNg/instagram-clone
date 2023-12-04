@@ -61,10 +61,8 @@ export default function Post({
         try {
             await handleLikePost(
                 postId,
-                currentUser.userId,
-                currentUser.username,
-                currentUser.profilePicture,
-                currentUser.verified,
+                currentUser,
+
                 likeList
             );
             setLikeList((prevLikes) => [...prevLikes, currentUser.userId]);
