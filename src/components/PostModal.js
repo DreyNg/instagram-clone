@@ -194,7 +194,8 @@ const PostModal = ({
                                         verified={comment.verified}
                                         commentContent={comment.commentText}
                                         avatar={comment.profilePicture}
-                                        likeCount={comment.likeCount}
+                                        likeCounts={comment.likeCounts}
+                                        commentId={comment.commentId}
                                     />
                                 </div>
                             ))}
