@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import CurrentUserContext from "../context/CurrentUserContext";
+import LikeListModal from "./LikeListModal";
 import {
     createPost,
     getComments,
@@ -70,6 +71,15 @@ const PostModal = ({
             // alert(error);
             // Handle errors
         }
+    };
+
+    const [openLikeModal, setOpenLikeModal] = useState(false);
+    const handleOpenLikeModal = () => {
+        setOpenLikeModal(true);
+    };
+
+    const handleCloseLikeModal = () => {
+        setOpenLikeModal(false);
     };
     return ReactDOM.createPortal(
         <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-green-500 bg-opacity-60">
@@ -311,7 +321,10 @@ const PostModal = ({
                             {likeList.length != 0 ? (
                                 <div className="text-sm text-white py-1">
                                     Liked by {likeList.length}{" "}
-                                    <span className="font-semibold cursor-pointer">
+                                    <span
+                                        className="font-semibold cursor-pointer"
+                                        onClick={handleOpenLikeModal}
+                                    >
                                         others
                                     </span>
                                 </div>
@@ -377,6 +390,9 @@ const PostModal = ({
                     ></line>
                 </svg>
             </div>
+            {openLikeModal && (
+                <LikeListModal closeModal={handleCloseLikeModal} />
+            )}
         </div>,
         document.getElementById("portal")
     );
