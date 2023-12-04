@@ -9,6 +9,8 @@ import {
 import { calculateTimeDifference } from "../services/helper";
 import PostModal from "./PostModal";
 import CurrentUserContext from "../context/CurrentUserContext";
+import LikeListModal from "./LikeListModal";
+import { handleFollowUser, handleUnfollowUser } from "../services/firebase";
 
 export default function Post({
     captionText,
@@ -109,6 +111,14 @@ export default function Post({
         } else {
             // Handle case when no file is selected
         }
+    };
+    const [openLikeModal, setOpenLikeModal] = useState(false);
+    const handleOpenLikeModal = () => {
+        setOpenLikeModal(true);
+    };
+
+    const handleCloseLikeModal = () => {
+        setOpenLikeModal(false);
     };
 
     return (
@@ -286,7 +296,12 @@ export default function Post({
                             className="font-semibold cursor-pointer"
                             // onClick={handleShowLikes}
                         >
-                            others
+                            <span
+                                className="font-semibold cursor-pointer"
+                                onClick={handleOpenLikeModal}
+                            >
+                                others
+                            </span>
                         </span>
                     </div>
                 )}
@@ -362,6 +377,12 @@ export default function Post({
                     postId={postId}
                     likeList={likeList}
                     setLikeList={setLikeList}
+                />
+            )}
+            {openLikeModal && (
+                <LikeListModal
+                    closeModal={handleCloseLikeModal}
+                    postId={postId}
                 />
             )}
         </div>

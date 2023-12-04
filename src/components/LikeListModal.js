@@ -3,6 +3,7 @@ import ReactDom from "react-dom";
 import CurrentUserContext from "../context/CurrentUserContext";
 import UserCard from "./UserCard";
 import { getLikeList } from "../services/firebase";
+import { handleFollowUser, handleUnfollowUser } from "../services/firebase";
 
 const LikeListModal = ({ closeModal, postId }) => {
     const { currentUser } = useContext(CurrentUserContext);
@@ -90,8 +91,18 @@ const LikeListModal = ({ closeModal, postId }) => {
                                 avatarSrc={e.profilePicture}
                                 username={e.username}
                                 userId={e.userId}
-                                buttonFn1={() => {}}
-                                buttonFn2={() => {}}
+                                buttonFn1={() =>
+                                    handleUnfollowUser(
+                                        currentUser.userId,
+                                        e.userId
+                                    )
+                                }
+                                buttonFn2={() =>
+                                    handleFollowUser(
+                                        currentUser.userId,
+                                        e.userId
+                                    )
+                                }
                                 subtitle={e.fullname}
                                 buttonFirst={(onClick) => (
                                     <button
@@ -120,8 +131,18 @@ const LikeListModal = ({ closeModal, postId }) => {
                                 username={e.username}
                                 userId={e.userId}
                                 subtitle={e.fullname}
-                                buttonFn1={() => {}}
-                                buttonFn2={() => {}}
+                                buttonFn1={() =>
+                                    handleFollowUser(
+                                        currentUser.userId,
+                                        e.userId
+                                    )
+                                }
+                                buttonFn2={() =>
+                                    handleUnfollowUser(
+                                        currentUser.userId,
+                                        e.userId
+                                    )
+                                }
                                 buttonFirst={(onClick) => (
                                     <button
                                         className="text-white bg-ig-blue py-2 px-6 rounded-lg mr-3 text-xs font-semibold cursor-pointer"

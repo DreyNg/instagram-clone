@@ -10,6 +10,7 @@ import {
     handleUnlikePost,
 } from "../services/firebase";
 import CommentPost from "./CommentPost";
+import { handleFollowUser, handleUnfollowUser } from "../services/firebase";
 
 const PostModal = ({
     closeModal,
