@@ -6,7 +6,6 @@ const UserCard = ({
     avatarSrc,
     username,
     subtitle,
-    followText,
     userId,
     buttonFirst,
     buttonFn1,

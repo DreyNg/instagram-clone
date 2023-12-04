@@ -34,7 +34,24 @@ export default function Sidebar() {
                         avatarSrc={currentUser.profilePicture}
                         username={currentUser.username}
                         subtitle={currentUser.fullname}
-                        followText="Switch"
+                        buttonFn1={() => {}}
+                        buttonFn2={() => {}}
+                        buttonFirst={(onClick) => (
+                            <button
+                                className="flex-none text-ig-blue mx-2 text-xs font-semibold cursor-pointer"
+                                onClick={onClick}
+                            >
+                                Switch
+                            </button>
+                        )}
+                        buttonAfter={(onClick) => (
+                            <button
+                                className="flex-none text-ig-blue mx-2 text-xs font-semibold cursor-pointer"
+                                onClick={onClick}
+                            >
+                                Switch
+                            </button>
+                        )}
                     />
                 </div>
                 {/* Suggestion feed */}
@@ -58,7 +75,6 @@ export default function Sidebar() {
                                             avatarSrc={user.profilePicture}
                                             username={user.username}
                                             subtitle={key}
-                                            followText={"Follow"}
                                             buttonFn1={() =>
                                                 handleFollowUser(
                                                     currentUser.userId,
