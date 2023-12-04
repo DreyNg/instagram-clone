@@ -10,7 +10,6 @@ import { calculateTimeDifference } from "../services/helper";
 import PostModal from "./PostModal";
 import CurrentUserContext from "../context/CurrentUserContext";
 import LikeListModal from "./LikeListModal";
-import { handleFollowUser, handleUnfollowUser } from "../services/firebase";
 
 export default function Post({
     captionText,
