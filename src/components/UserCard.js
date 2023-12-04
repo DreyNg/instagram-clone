@@ -1,9 +1,30 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { handleFollowUser, handleUnfollowUser } from "../services/firebase";
 import CurrentUserContext from "../context/CurrentUserContext";
 
-const UserCard = ({ avatarSrc, username, subtitle, followText, userId }) => {
+const UserCard = ({
+    avatarSrc,
+    username,
+    subtitle,
+    followText,
+    userId,
+    buttonFirst,
+    buttonFn1,
+    buttonFn2,
+    buttonAfter,
+}) => {
     const { currentUser } = useContext(CurrentUserContext);
+    const [isClicked, setIsClicked] = useState(false);
+
+    const handleButtonClick = () => {
+        if (!isClicked) {
+            buttonFn1(currentUser.userId, userId);
+        } else {
+            buttonFn2(currentUser.userId, userId);
+        }
+        setIsClicked(!isClicked);
+    };
+
     return (
         <div className="w-full py-2 flex items-center">
             <div className="p-1 rounded-lg flex-none cursor-pointer">
@@ -16,25 +37,16 @@ const UserCard = ({ avatarSrc, username, subtitle, followText, userId }) => {
                 </div>
             </div>
             <div className="mx-2 flex-grow">
-                <div
-                    className="text-white font-semibold text-sm cursor-pointer"
-                    onClick={() => {
-                        handleUnfollowUser(currentUser.userId, userId);
-                        // alert("here");
-                    }}
-                >
+                <div className="text-white font-semibold text-sm cursor-pointer">
                     {username}
                 </div>
                 <div className="text-ig-grey text-xs">{subtitle}</div>
             </div>
-            <button
-                className="flex-none text-ig-blue mx-2 text-xs font-semibold cursor-pointer"
-                onClick={() => {
-                    handleFollowUser(currentUser.userId, userId);
-                }}
-            >
-                {followText}
-            </button>
+            {!isClicked
+                ? typeof buttonFirst === "function" &&
+                  buttonFirst(handleButtonClick)
+                : typeof buttonAfter === "function" &&
+                  buttonAfter(handleButtonClick)}
         </div>
     );
 };

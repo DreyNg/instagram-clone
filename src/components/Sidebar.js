@@ -3,6 +3,7 @@ import UserCard from "./UserCard";
 import CurrentUserContext from "../context/CurrentUserContext";
 import { useContext } from "react";
 import { getUserSuggestion } from "../services/firebase";
+import { handleFollowUser, handleUnfollowUser } from "../services/firebase";
 
 export default function Sidebar() {
     const { currentUser } = useContext(CurrentUserContext);
@@ -57,7 +58,35 @@ export default function Sidebar() {
                                             avatarSrc={user.profilePicture}
                                             username={user.username}
                                             subtitle={key}
-                                            followText="Follow"
+                                            followText={"Follow"}
+                                            buttonFn1={() =>
+                                                handleFollowUser(
+                                                    currentUser.userId,
+                                                    user.userId
+                                                )
+                                            }
+                                            buttonFn2={() =>
+                                                handleUnfollowUser(
+                                                    currentUser.userId,
+                                                    user.userId
+                                                )
+                                            }
+                                            buttonFirst={(onClick) => (
+                                                <button
+                                                    className="flex-none text-ig-blue mx-2 text-xs font-semibold cursor-pointer"
+                                                    onClick={onClick}
+                                                >
+                                                    Follow
+                                                </button>
+                                            )}
+                                            buttonAfter={(onClick) => (
+                                                <button
+                                                    className="flex-none text-ig-blue mx-2 text-xs font-semibold cursor-pointer"
+                                                    onClick={onClick}
+                                                >
+                                                    Unfollow
+                                                </button>
+                                            )}
                                             userId={user.userId}
                                         />
                                     ))}
