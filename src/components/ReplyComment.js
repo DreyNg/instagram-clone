@@ -38,7 +38,7 @@ export default function ReplyComment({
         }
     };
     return (
-        <div className=" w-full ">
+        <div className=" w-full my-4 ">
             {/* Comment content */}
             <div className="flex flex-row">
                 {/* Ava */}

@@ -83,7 +83,7 @@ const PostModal = ({
                 </div>
                 <div className="h-full bg-black w-[50%] flex flex-col">
                     {/* header */}
-                    <div className="px-2 h-16 flex-none border-b border-zinc-800 flex items-center ">
+                    <div className="px-4 h-16 flex-none border-b border-zinc-800 flex items-center ">
                         {/* Ava */}
                         <div className=" flex-none cursor-pointer">
                             <div className="h-8 w-8 rounded-full overflow-hidden">
@@ -135,9 +135,9 @@ const PostModal = ({
 
                     {/* comment section */}
                     <div className="flex-grow overflow-y-auto no-scrollbar">
-                        <div className="p-2 ">
+                        <div className="p-4 ">
                             {/* caption section */}
-                            <div className="bg-black mb-4 pr-6">
+                            <div className="bg-black mb-5 pr-6">
                                 {/* caption content */}
                                 <div className="flex flex-row">
                                     {/* Ava */}

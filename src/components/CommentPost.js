@@ -125,13 +125,55 @@ export default function CommentPost({
             </div>
             {/* replies */}
             <div className="text-xs ml-12 py-4 text-ig-grey flex flex-col">
-                <div className="flex flex-row pb-4 ">
+                <div className="flex flex-row ">
                     <div className="text-xs pr-4">━━━━━━ </div>
                     <div className="font-semibold">
                         {/* View replies (1) */}
                         Hide replies
                     </div>
                 </div>
+                <ReplyComment
+                    username={"a"}
+                    verified={true}
+                    commentContent={
+                        "conddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddtent"
+                    }
+                    avatar={
+                        "https://media.macphun.com/img/uploads/customer/how-to/579/15531840725c93b5489d84e9.43781620.jpg?q=85&w=1340"
+                    }
+                    likeCounts={[]}
+                    commentId={"a"}
+                />
+                <ReplyComment
+                    username={"a"}
+                    verified={true}
+                    commentContent={"content"}
+                    avatar={
+                        "https://media.macphun.com/img/uploads/customer/how-to/579/15531840725c93b5489d84e9.43781620.jpg?q=85&w=1340"
+                    }
+                    likeCounts={[]}
+                    commentId={"a"}
+                />
+                <ReplyComment
+                    username={"a"}
+                    verified={true}
+                    commentContent={"content"}
+                    avatar={
+                        "https://media.macphun.com/img/uploads/customer/how-to/579/15531840725c93b5489d84e9.43781620.jpg?q=85&w=1340"
+                    }
+                    likeCounts={[]}
+                    commentId={"a"}
+                />
+                <ReplyComment
+                    username={"a"}
+                    verified={true}
+                    commentContent={"content"}
+                    avatar={
+                        "https://media.macphun.com/img/uploads/customer/how-to/579/15531840725c93b5489d84e9.43781620.jpg?q=85&w=1340"
+                    }
+                    likeCounts={[]}
+                    commentId={"a"}
+                />
                 <ReplyComment
                     username={"a"}
                     verified={true}
