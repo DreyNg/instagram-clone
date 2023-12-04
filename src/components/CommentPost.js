@@ -93,6 +93,7 @@ export default function CommentPost({
                 <div className="pl-2 m-1">
                     {!likeList.includes(currentUser.userId) ? (
                         <svg
+                            className="cursor-pointer"
                             aria-label="Like"
                             fill="white"
                             height="12"
@@ -106,6 +107,7 @@ export default function CommentPost({
                         </svg>
                     ) : (
                         <svg
+                            className="cursor-pointer"
                             aria-label="Unlike"
                             fill="#ff3040"
                             height="12"
