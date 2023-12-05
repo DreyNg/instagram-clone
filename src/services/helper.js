@@ -1,4 +1,5 @@
 export const calculateTimeDifference = (timestamp) => {
+    if (timestamp === "just now") return timestamp;
     const currentDate = new Date();
     const postDate = timestamp.toDate(); // Convert Firebase timestamp to JavaScript Date object
 

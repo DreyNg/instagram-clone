@@ -380,7 +380,7 @@ export async function createComment(
         const commentData = {
             ...newComment,
             commentId: docRef.id,
-            timestamp: timestamp,
+            timestamp: "just now",
         };
         return commentData;
     } catch (error) {
