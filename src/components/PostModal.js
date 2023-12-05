@@ -417,7 +417,7 @@ const PostModal = ({
                                     className="text-ig-blue mx-3 text-sm font-semibold"
                                     // onClick={handleCreateComment}
                                 >
-                                    Be
+                                    Reply
                                 </button>
                             )}
                         </div>
