@@ -141,7 +141,7 @@ export async function getFeed(currentUser) {
 export async function getLikeList(postId, followingList, currentUserId) {
     try {
         const result = [];
-
+        followingList.push(currentUserId);
         const resultFollowing = [];
         const resultNotFollowing = [];
         const resultCurrentUser = [];
@@ -193,6 +193,7 @@ export async function getComments(postId) {
         const comments = await firebase
             .firestore()
             .collection("comments")
+            .orderBy("timestamp", "desc") // Sort by timestamp in descending order
             .where("postId", "==", postId)
             .get();
 
@@ -330,6 +331,7 @@ export async function createReply(
         await currentUserQuery.update({
             replies: FieldValue.arrayUnion(docRef.id),
         });
+        return docRef.data();
     } catch (error) {
         console.error("Error adding replies: ", error);
     }
@@ -345,7 +347,7 @@ export async function createComment(
 ) {
     try {
         const commentsRef = firebase.firestore().collection("comments");
-
+        const timestamp = serverTimestamp();
         // Create a new comment object
         const newComment = {
             postId: postId,
@@ -357,7 +359,7 @@ export async function createComment(
             profilePicture: profilePicture,
             verified: verified,
             commentText: commentText,
-            timestamp: serverTimestamp(),
+            timestamp: timestamp,
         };
 
         // Add the new post to Firestore
@@ -374,6 +376,13 @@ export async function createComment(
         await currentUserQuery.update({
             comments: FieldValue.arrayUnion(docRef.id),
         });
+        // Construct the JSON representation of the comment
+        const commentData = {
+            ...newComment,
+            commentId: docRef.id,
+            timestamp: timestamp,
+        };
+        return commentData;
     } catch (error) {
         console.error("Error adding comment: ", error);
     }

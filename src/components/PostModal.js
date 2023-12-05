@@ -2,8 +2,9 @@ import React, { useContext, useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import CurrentUserContext from "../context/CurrentUserContext";
 import LikeListModal from "./LikeListModal";
+import { calculateTimeDifference } from "../services/helper";
 import {
-    createPost,
+    createComment,
     getComments,
     uploadToImgur,
     handleLikePost,
@@ -24,7 +25,10 @@ const PostModal = ({
     setLikeList,
 }) => {
     const [comments, setComments] = useState([]);
-
+    const [commentText, setCommentText] = useState("");
+    const handleInputChange = (e) => {
+        setCommentText(e.target.value);
+    };
     const { currentUser } = useContext(CurrentUserContext);
     useEffect(() => {
         const fetchComment = async () => {
@@ -69,6 +73,30 @@ const PostModal = ({
     const [openLikeModal, setOpenLikeModal] = useState(false);
     const handleOpenLikeModal = () => {
         setOpenLikeModal(true);
+    };
+    const handleCreateComment = async () => {
+        if (commentText) {
+            try {
+                // // Handle the response as needed
+                const replyInstance = await createComment(
+                    postId,
+                    currentUser.userId,
+                    currentUser.username,
+                    currentUser.profilePicture,
+                    currentUser.verified,
+                    commentText
+                );
+                setCommentText("");
+                setComments([replyInstance, ...comments]);
+                // console.log(replyInstance);
+            } catch (error) {
+                console.error("Error uploading image", error);
+                alert(error);
+                // Handle errors
+            }
+        } else {
+            // Handle case when no file is selected
+        }
     };
 
     const handleCloseLikeModal = () => {
@@ -187,18 +215,19 @@ const PostModal = ({
                                 </div>
                             </div>
 
-                            {comments.map((comment, index) => (
-                                <div key={index}>
-                                    <CommentPost
-                                        username={comment.username}
-                                        verified={comment.verified}
-                                        commentContent={comment.commentText}
-                                        avatar={comment.profilePicture}
-                                        likeCounts={comment.likeCounts}
-                                        commentId={comment.commentId}
-                                        replies={comment.replies}
-                                    />
-                                </div>
+                            {comments.map((comment) => (
+                                <CommentPost
+                                    username={comment.username}
+                                    verified={comment.verified}
+                                    commentContent={comment.commentText}
+                                    avatar={comment.profilePicture}
+                                    likeCounts={comment.likeCounts}
+                                    commentId={comment.commentId}
+                                    replies={comment.replies}
+                                    timestamp={calculateTimeDifference(
+                                        comment.timestamp
+                                    )}
+                                />
                             ))}
                         </div>
                     </div>
@@ -337,13 +366,16 @@ const PostModal = ({
                                 type="text"
                                 className="h-full w-full ml-3 placeholder-ig-grey text-sm pt-1 outline-none border-none bg-transparent"
                                 placeholder="Add a comment..."
-                                // value={inputValue}
-                                // onChange={handleInputChange}
+                                value={commentText}
+                                onChange={handleInputChange}
                                 style={{
                                     color: "white",
                                 }}
                             />
-                            <button className="text-ig-blue mx-3 text-sm font-semibold">
+                            <button
+                                className="text-ig-blue mx-3 text-sm font-semibold"
+                                onClick={handleCreateComment}
+                            >
                                 Post
                             </button>
                         </div>
