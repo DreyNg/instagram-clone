@@ -196,6 +196,7 @@ const PostModal = ({
                                         avatar={comment.profilePicture}
                                         likeCounts={comment.likeCounts}
                                         commentId={comment.commentId}
+                                        replies={comment.replies}
                                     />
                                 </div>
                             ))}

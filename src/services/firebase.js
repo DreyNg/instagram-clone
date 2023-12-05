@@ -271,6 +271,7 @@ export async function handleUnlikePost(postId, userId, postLikeList) {
         console.error("Error removing like: ", error);
     }
 }
+
 export async function handleLikeComment(commentId, userId) {
     const commentRef = firebase
         .firestore()
@@ -290,6 +291,48 @@ export async function handleUnlikeComment(commentId, userId) {
     await commentRef.update({
         likeCounts: FieldValue.arrayRemove(userId),
     });
+}
+export async function createReply(
+    commentId,
+    userId,
+    username,
+    profilePicture,
+    verified,
+    replyText
+) {
+    try {
+        const repliesRef = firebase.firestore().collection("replies");
+
+        // Create a new comment object
+        const newReply = {
+            commentId: commentId,
+            likeCounts: [],
+
+            userId: userId,
+            username: username,
+            profilePicture: profilePicture,
+            verified: verified,
+            replyText: replyText,
+            timestamp: serverTimestamp(),
+        };
+
+        // Add the new post to Firestore
+        const docRef = await repliesRef.add(newReply);
+        await docRef.update({
+            replyId: docRef.id,
+        });
+        // append to user field: posts
+        const currentUserQuery = firebase
+            .firestore()
+            .collection("comments")
+            .doc(commentId);
+
+        await currentUserQuery.update({
+            replies: FieldValue.arrayUnion(docRef.id),
+        });
+    } catch (error) {
+        console.error("Error adding replies: ", error);
+    }
 }
 
 export async function createComment(

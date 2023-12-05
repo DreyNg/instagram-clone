@@ -10,6 +10,7 @@ export default function CommentPost({
     avatar,
     likeCounts,
     commentId,
+    replies,
 }) {
     const [likeList, setLikeList] = useState(likeCounts);
     const { currentUser } = useContext(CurrentUserContext);
@@ -34,10 +35,9 @@ export default function CommentPost({
             );
         } catch (error) {
             console.error("Error liking post", error);
-            // alert(error);
-            // Handle errors
         }
     };
+    const [replyList, setReplyList] = useState(replies);
     return (
         <div className="">
             {/* Comment content */}

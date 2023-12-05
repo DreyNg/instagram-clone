@@ -19,8 +19,6 @@ export default function ReplyComment({
             setLikeList((prevLikes) => [...prevLikes, currentUser.userId]);
         } catch (error) {
             console.error("Error liking post", error);
-            // alert(error);
-            // Handle errors
         }
     };
 
@@ -33,8 +31,6 @@ export default function ReplyComment({
             );
         } catch (error) {
             console.error("Error liking post", error);
-            // alert(error);
-            // Handle errors
         }
     };
     return (
