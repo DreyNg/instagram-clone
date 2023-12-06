@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useState, forwardRef, useImperativeHandle } from "react";
 import CurrentUserContext from "../context/CurrentUserContext";
 import {
     getReplies,
@@ -7,17 +7,21 @@ import {
 } from "../services/firebase";
 import ReplyComment from "./ReplyComment";
 
-export default function CommentPost({
-    username,
-    verified,
-    commentContent,
-    avatar,
-    likeCounts,
-    commentId,
-    replies,
-    timestamp,
-    handleClickReply,
-}) {
+const CommentPost = (
+    {
+        username,
+        verified,
+        commentContent,
+        avatar,
+        likeCounts,
+        commentId,
+        _replies,
+        timestamp,
+        handleClickReply,
+    },
+    ref
+) => {
+    const replies = _replies;
     const [likeList, setLikeList] = useState(likeCounts);
     const { currentUser } = useContext(CurrentUserContext);
     const handleLikeButtonClick = async () => {
@@ -32,9 +36,26 @@ export default function CommentPost({
         }
     };
 
+    const handleAddReply = (reply) => {
+        if (replyList.length) {
+            setReplyList([reply, ...replyList]);
+        }
+        replies.push(reply);
+        // console.log(replyList);
+    };
+
     const handleClickReplyChild = () => {
         handleClickReply(username, commentId);
     };
+    const logg = (a) => {
+        console.log(a);
+    };
+
+    useImperativeHandle(ref, () => ({
+        callChildFunction(reply) {
+            handleAddReply(reply);
+        },
+    }));
 
     const handleUnlikeButtonClick = async () => {
         // Update the state by filtering out the current user's ID from likeList
@@ -57,6 +78,7 @@ export default function CommentPost({
             setReplyList(await getReplies(commentId));
         }
     };
+    // console.log(replyList);
 
     return (
         <div className="">
@@ -181,4 +203,6 @@ export default function CommentPost({
             )}
         </div>
     );
-}
+};
+
+export default forwardRef(CommentPost);

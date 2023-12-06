@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState, useEffect, useRef } from "react";
 import ReactDOM from "react-dom";
 import CurrentUserContext from "../context/CurrentUserContext";
 import LikeListModal from "./LikeListModal";
@@ -109,6 +109,14 @@ const PostModal = ({
         setCommentIdForReply(cmtId);
     };
 
+    const commentRef = useRef(null);
+    const handleAddReply = (replyInstance) => {
+        //call a function inside child component
+        if (commentRef.current) {
+            commentRef.current.callChildFunction(replyInstance);
+        }
+    };
+
     const handleCreateReply = async () => {
         if (commentText) {
             try {
@@ -122,7 +130,8 @@ const PostModal = ({
                     commentText
                 );
                 setCommentText("");
-                console.log(replyInstance);
+                // console.log(replyInstance);
+                handleAddReply(replyInstance);
                 // setComments([replyInstance, ...comments]);
             } catch (error) {
                 console.error("Error uploading image", error);
@@ -255,10 +264,11 @@ const PostModal = ({
                                     avatar={comment.profilePicture}
                                     likeCounts={comment.likeCounts}
                                     commentId={comment.commentId}
-                                    replies={comment.replies}
+                                    _replies={comment.replies}
                                     timestamp={calculateTimeDifference(
                                         comment.timestamp
                                     )}
+                                    ref={commentRef}
                                     handleClickReply={handleClickReply}
                                 />
                             ))}
