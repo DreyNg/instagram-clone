@@ -272,6 +272,13 @@ export async function handleUnlikePost(postId, userId, postLikeList) {
         console.error("Error removing like: ", error);
     }
 }
+export async function handleUnlikeReply(replyId, userId) {
+    const replyRef = firebase.firestore().collection("replies").doc(replyId);
+
+    await replyRef.update({
+        likeCounts: FieldValue.arrayRemove(userId),
+    });
+}
 export async function handleLikeReply(replyId, userId) {
     const replyRef = firebase.firestore().collection("replies").doc(replyId);
 

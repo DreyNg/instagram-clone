@@ -4,6 +4,7 @@ import {
     handleLikeComment,
     handleLikeReply,
     handleUnlikeComment,
+    handleUnlikeReply,
 } from "../services/firebase";
 
 export default function ReplyComment({
@@ -31,7 +32,7 @@ export default function ReplyComment({
     const handleUnlikeButtonClick = async () => {
         // Update the state by filtering out the current user's ID from likeList
         try {
-            await handleUnlikeComment(commentId, currentUser.userId);
+            await handleUnlikeReply(replyId, currentUser.userId);
             setLikeList((prevLikes) =>
                 prevLikes.filter((userId) => userId !== currentUser.userId)
             );
