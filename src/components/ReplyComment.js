@@ -9,6 +9,7 @@ export default function ReplyComment({
     avatar,
     likeCounts,
     commentId,
+    timestamp,
 }) {
     const [likeList, setLikeList] = useState(likeCounts);
     const { currentUser } = useContext(CurrentUserContext);
@@ -76,7 +77,7 @@ export default function ReplyComment({
                     </p>
                     {/* CMT time, like counts */}
                     <div className="text-xs text-ig-grey flex">
-                        <div className="mr-3">9h</div>
+                        <div className="mr-3">{timestamp}</div>
                         {likeList.length != 0 && (
                             <div className="mr-3 font-semibold">
                                 {likeList.length} likes

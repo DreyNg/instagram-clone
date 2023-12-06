@@ -258,7 +258,9 @@ const PostModal = ({
                                         </p>
                                         {/* CMT time, like counts */}
                                         <div className="text-xs text-ig-grey flex">
-                                            <div className="mr-3">9h</div>
+                                            <div className="mr-3">
+                                                {formattedTimestamp}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

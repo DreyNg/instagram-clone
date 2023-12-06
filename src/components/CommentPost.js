@@ -6,6 +6,7 @@ import {
     handleUnlikeComment,
 } from "../services/firebase";
 import ReplyComment from "./ReplyComment";
+import { calculateTimeDifference } from "../services/helper";
 
 const CommentPost = (
     {
@@ -195,6 +196,9 @@ const CommentPost = (
                                 avatar={reply.profilePicture}
                                 likeCounts={reply.likeCounts}
                                 commentId={reply.commentId}
+                                timestamp={calculateTimeDifference(
+                                    reply.timestamp
+                                )}
                             />
                         ))}
                 </div>
