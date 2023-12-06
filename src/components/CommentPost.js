@@ -199,6 +199,7 @@ const CommentPost = (
                                 timestamp={calculateTimeDifference(
                                     reply.timestamp
                                 )}
+                                replyId={reply.replyId}
                             />
                         ))}
                 </div>
