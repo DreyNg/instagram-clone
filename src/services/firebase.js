@@ -350,7 +350,12 @@ export async function createReply(
         await currentUserQuery.update({
             replies: FieldValue.arrayUnion(docRef.id),
         });
-        return docRef.data();
+        const replyData = {
+            ...newReply,
+            commentId: docRef.id,
+            timestamp: "just now",
+        };
+        return replyData;
     } catch (error) {
         console.error("Error adding replies: ", error);
     }

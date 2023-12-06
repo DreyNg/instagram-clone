@@ -122,7 +122,7 @@ const PostModal = ({
                     commentText
                 );
                 setCommentText("");
-                // console.log(replyInstance);
+                console.log(replyInstance);
                 // setComments([replyInstance, ...comments]);
             } catch (error) {
                 console.error("Error uploading image", error);
