@@ -1,6 +1,10 @@
 import { useContext, useState } from "react";
 import CurrentUserContext from "../context/CurrentUserContext";
-import { handleLikeComment, handleUnlikeComment } from "../services/firebase";
+import {
+    handleLikeComment,
+    handleLikeReply,
+    handleUnlikeComment,
+} from "../services/firebase";
 
 export default function ReplyComment({
     username,
@@ -10,13 +14,14 @@ export default function ReplyComment({
     likeCounts,
     commentId,
     timestamp,
+    replyId,
 }) {
     const [likeList, setLikeList] = useState(likeCounts);
     const { currentUser } = useContext(CurrentUserContext);
     const handleLikeButtonClick = async () => {
         // Make sure to create a new array and update the state instead of directly mutating the likeList array
         try {
-            await handleLikeComment(commentId, currentUser.userId);
+            await handleLikeReply(replyId, currentUser.userId);
             setLikeList((prevLikes) => [...prevLikes, currentUser.userId]);
         } catch (error) {
             console.error("Error liking post", error);
