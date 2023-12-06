@@ -1,28 +1,16 @@
-import { useContext, useState, forwardRef, useImperativeHandle } from "react";
+import { useContext, useState } from "react";
 import CurrentUserContext from "../context/CurrentUserContext";
-import {
-    getReplies,
-    handleLikeComment,
-    handleUnlikeComment,
-} from "../services/firebase";
-import ReplyComment from "./ReplyComment";
-import { calculateTimeDifference } from "../services/helper";
+import { handleLikeComment, handleUnlikeComment } from "../services/firebase";
 
-const CommentPost = (
-    {
-        username,
-        verified,
-        commentContent,
-        avatar,
-        likeCounts,
-        commentId,
-        _replies,
-        timestamp,
-        handleClickReply,
-    },
-    ref
-) => {
-    const replies = _replies;
+export default function ReplyComment({
+    username,
+    verified,
+    commentContent,
+    avatar,
+    likeCounts,
+    commentId,
+    timestamp,
+}) {
     const [likeList, setLikeList] = useState(likeCounts);
     const { currentUser } = useContext(CurrentUserContext);
     const handleLikeButtonClick = async () => {
@@ -32,31 +20,8 @@ const CommentPost = (
             setLikeList((prevLikes) => [...prevLikes, currentUser.userId]);
         } catch (error) {
             console.error("Error liking post", error);
-            // alert(error);
-            // Handle errors
         }
     };
-
-    const handleAddReply = (reply) => {
-        if (replyList.length) {
-            setReplyList([reply, ...replyList]);
-        }
-        replies.push(reply);
-        // console.log(replyList);
-    };
-
-    const handleClickReplyChild = () => {
-        handleClickReply(username, commentId);
-    };
-    const logg = (a) => {
-        console.log(a);
-    };
-
-    useImperativeHandle(ref, () => ({
-        callChildFunction(reply) {
-            handleAddReply(reply);
-        },
-    }));
 
     const handleUnlikeButtonClick = async () => {
         // Update the state by filtering out the current user's ID from likeList
@@ -69,20 +34,8 @@ const CommentPost = (
             console.error("Error liking post", error);
         }
     };
-
-    const [showReplyToggle, setShowReplyToggle] = useState(true);
-    const [replyList, setReplyList] = useState([]);
-    const handleClickShowReply = async () => {
-        setShowReplyToggle(!showReplyToggle);
-
-        if (replyList.length === 0 && replies.length > 0) {
-            setReplyList(await getReplies(commentId));
-        }
-    };
-    // console.log(replyList);
-
     return (
-        <div className="">
+        <div className=" w-full my-4 ">
             {/* Comment content */}
             <div className="flex flex-row">
                 {/* Ava */}
@@ -130,12 +83,7 @@ const CommentPost = (
                                 {likeList.length} likes
                             </div>
                         )}
-                        <div
-                            className="mr-3 font-semibold cursor-pointer"
-                            onClick={handleClickReplyChild}
-                        >
-                            Reply
-                        </div>
+                        <div className="mr-3 font-semibold">Reply</div>
                     </div>
                 </div>
                 {/* heart */}
@@ -171,42 +119,6 @@ const CommentPost = (
                     )}
                 </div>
             </div>
-            {/* replies */}
-            {replies.length > 0 ? (
-                <div className="text-xs ml-12 py-4 text-ig-grey flex flex-col">
-                    <button
-                        className="flex flex-row cursor-pointer"
-                        onClick={handleClickShowReply}
-                    >
-                        <div className="text-xs pr-4">━━━━━━ </div>
-                        <div className="font-semibold">
-                            {showReplyToggle
-                                ? `View replies (${replies.length})`
-                                : "Hide replies"}
-                            {/*  */}
-                            {/*  */}
-                        </div>
-                    </button>
-                    {!showReplyToggle &&
-                        replyList.map((reply) => (
-                            <ReplyComment
-                                username={reply.username}
-                                verified={reply.verified}
-                                commentContent={reply.replyText}
-                                avatar={reply.profilePicture}
-                                likeCounts={reply.likeCounts}
-                                commentId={reply.commentId}
-                                timestamp={calculateTimeDifference(
-                                    reply.timestamp
-                                )}
-                            />
-                        ))}
-                </div>
-            ) : (
-                <div className="pb-6"></div>
-            )}
         </div>
     );
-};
-
-export default forwardRef(CommentPost);
+}

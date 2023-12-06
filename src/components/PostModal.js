@@ -1,11 +1,12 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState, useEffect, useRef } from "react";
 import ReactDOM from "react-dom";
 import CurrentUserContext from "../context/CurrentUserContext";
 import LikeListModal from "./LikeListModal";
+import { calculateTimeDifference } from "../services/helper";
 import {
-    createPost,
+    createComment,
     getComments,
-    uploadToImgur,
+    createReply,
     handleLikePost,
     handleUnlikePost,
 } from "../services/firebase";
@@ -24,7 +25,10 @@ const PostModal = ({
     setLikeList,
 }) => {
     const [comments, setComments] = useState([]);
-
+    const [commentText, setCommentText] = useState("");
+    const handleInputChange = (e) => {
+        setCommentText(e.target.value);
+    };
     const { currentUser } = useContext(CurrentUserContext);
     useEffect(() => {
         const fetchComment = async () => {
@@ -70,10 +74,83 @@ const PostModal = ({
     const handleOpenLikeModal = () => {
         setOpenLikeModal(true);
     };
+    const handleCreateComment = async () => {
+        if (commentText) {
+            try {
+                // // Handle the response as needed
+                const replyInstance = await createComment(
+                    postId,
+                    currentUser.userId,
+                    currentUser.username,
+                    currentUser.profilePicture,
+                    currentUser.verified,
+                    commentText
+                );
+                setCommentText("");
+                // console.log(replyInstance);
+                setComments([replyInstance, ...comments]);
+            } catch (error) {
+                console.error("Error uploading image", error);
+                alert(error);
+                // Handle errors
+            }
+        } else {
+            // Handle case when no file is selected
+        }
+    };
 
     const handleCloseLikeModal = () => {
         setOpenLikeModal(false);
     };
+
+    const [commentIdForReply, setCommentIdForReply] = useState("");
+    const handleClickReply = (username, cmtId) => {
+        setCommentText(`@${username} `);
+        setCommentIdForReply(cmtId);
+
+        const commentElement = commentRefs[cmtId];
+        if (commentElement) {
+            commentRef.current = commentElement;
+        }
+    };
+
+    const commentRefs = {};
+
+    const commentRef = useRef(null);
+    const handleAddReply = (replyInstance) => {
+        //call a function inside child component
+        if (commentRef.current) {
+            commentRef.current.callChildFunction(replyInstance);
+        }
+    };
+
+    const handleCreateReply = async () => {
+        if (commentText) {
+            try {
+                // // Handle the response as needed
+                const replyInstance = await createReply(
+                    commentIdForReply,
+                    currentUser.userId,
+                    currentUser.username,
+                    currentUser.profilePicture,
+                    currentUser.verified,
+                    commentText
+                );
+                setCommentText("");
+                // console.log(replyInstance);
+                handleAddReply(replyInstance);
+                // setComments([replyInstance, ...comments]);
+            } catch (error) {
+                console.error("Error uploading image", error);
+                alert(error);
+                // Handle errors
+            }
+        } else {
+            // Handle case when no file is selected
+        }
+    };
+    console.log(commentRefs);
+    console.log("commentRefs");
     return ReactDOM.createPortal(
         <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-green-500 bg-opacity-60">
             <div className="items-center justify-center flex h-[90%] w-[80%] overflow-hidden rounded">
@@ -83,7 +160,7 @@ const PostModal = ({
                 </div>
                 <div className="h-full bg-black w-[50%] flex flex-col">
                     {/* header */}
-                    <div className="px-2 h-16 flex-none border-b border-zinc-800 flex items-center ">
+                    <div className="px-4 h-16 flex-none border-b border-zinc-800 flex items-center ">
                         {/* Ava */}
                         <div className=" flex-none cursor-pointer">
                             <div className="h-8 w-8 rounded-full overflow-hidden">
@@ -135,9 +212,9 @@ const PostModal = ({
 
                     {/* comment section */}
                     <div className="flex-grow overflow-y-auto no-scrollbar">
-                        <div className="p-2 ">
+                        <div className="p-4 ">
                             {/* caption section */}
-                            <div className="bg-black mb-4 pr-6">
+                            <div className="bg-black mb-5 pr-6">
                                 {/* caption content */}
                                 <div className="flex flex-row">
                                     {/* Ava */}
@@ -181,24 +258,39 @@ const PostModal = ({
                                         </p>
                                         {/* CMT time, like counts */}
                                         <div className="text-xs text-ig-grey flex">
-                                            <div className="mr-3">9h</div>
+                                            <div className="mr-3">
+                                                {formattedTimestamp}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
-                            {comments.map((comment, index) => (
-                                <div key={index}>
+                            {comments.map((comment, index) => {
+                                const ref = (element) => {
+                                    if (element) {
+                                        commentRefs[comment.commentId] =
+                                            element;
+                                    }
+                                };
+                                return (
                                     <CommentPost
+                                        key={index}
                                         username={comment.username}
                                         verified={comment.verified}
                                         commentContent={comment.commentText}
                                         avatar={comment.profilePicture}
                                         likeCounts={comment.likeCounts}
                                         commentId={comment.commentId}
+                                        _replies={comment.replies}
+                                        timestamp={calculateTimeDifference(
+                                            comment.timestamp
+                                        )}
+                                        ref={ref}
+                                        handleClickReply={handleClickReply}
                                     />
-                                </div>
-                            ))}
+                                );
+                            })}
                         </div>
                     </div>
 
@@ -336,15 +428,27 @@ const PostModal = ({
                                 type="text"
                                 className="h-full w-full ml-3 placeholder-ig-grey text-sm pt-1 outline-none border-none bg-transparent"
                                 placeholder="Add a comment..."
-                                // value={inputValue}
-                                // onChange={handleInputChange}
+                                value={commentText}
+                                onChange={handleInputChange}
                                 style={{
                                     color: "white",
                                 }}
                             />
-                            <button className="text-ig-blue mx-3 text-sm font-semibold">
-                                Post
-                            </button>
+                            {commentIdForReply === "" ? (
+                                <button
+                                    className="text-ig-blue mx-3 text-sm font-semibold"
+                                    onClick={handleCreateComment}
+                                >
+                                    Post
+                                </button>
+                            ) : (
+                                <button
+                                    className="text-ig-blue mx-3 text-sm font-semibold"
+                                    onClick={handleCreateReply}
+                                >
+                                    Reply
+                                </button>
+                            )}
                         </div>
                     </div>
                 </div>

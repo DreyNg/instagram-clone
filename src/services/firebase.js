@@ -141,7 +141,7 @@ export async function getFeed(currentUser) {
 export async function getLikeList(postId, followingList, currentUserId) {
     try {
         const result = [];
-
+        followingList.push(currentUserId);
         const resultFollowing = [];
         const resultNotFollowing = [];
         const resultCurrentUser = [];
@@ -193,6 +193,7 @@ export async function getComments(postId) {
         const comments = await firebase
             .firestore()
             .collection("comments")
+            .orderBy("timestamp", "desc") // Sort by timestamp in descending order
             .where("postId", "==", postId)
             .get();
 
@@ -271,6 +272,7 @@ export async function handleUnlikePost(postId, userId, postLikeList) {
         console.error("Error removing like: ", error);
     }
 }
+
 export async function handleLikeComment(commentId, userId) {
     const commentRef = firebase
         .firestore()
@@ -292,6 +294,73 @@ export async function handleUnlikeComment(commentId, userId) {
     });
 }
 
+export async function getReplies(commentId) {
+    try {
+        const comments = await firebase
+            .firestore()
+            .collection("replies")
+            .orderBy("timestamp", "desc") // Sort by timestamp in descending order
+            .where("commentId", "==", commentId)
+            .get();
+
+        const temp = [...comments.docs];
+        const result = [];
+        temp.forEach((e) => result.push(e.data()));
+        return result;
+    } catch (error) {
+        console.error("Error getting Replies: ", error);
+    }
+}
+
+export async function createReply(
+    commentId,
+    userId,
+    username,
+    profilePicture,
+    verified,
+    replyText
+) {
+    try {
+        const repliesRef = firebase.firestore().collection("replies");
+
+        // Create a new comment object
+        const newReply = {
+            commentId: commentId,
+            likeCounts: [],
+
+            userId: userId,
+            username: username,
+            profilePicture: profilePicture,
+            verified: verified,
+            replyText: replyText,
+            timestamp: serverTimestamp(),
+        };
+
+        // Add the new post to Firestore
+        const docRef = await repliesRef.add(newReply);
+        await docRef.update({
+            replyId: docRef.id,
+        });
+        // append to user field: posts
+        const currentUserQuery = firebase
+            .firestore()
+            .collection("comments")
+            .doc(commentId);
+
+        await currentUserQuery.update({
+            replies: FieldValue.arrayUnion(docRef.id),
+        });
+        const replyData = {
+            ...newReply,
+            commentId: docRef.id,
+            timestamp: "just now",
+        };
+        return replyData;
+    } catch (error) {
+        console.error("Error adding replies: ", error);
+    }
+}
+
 export async function createComment(
     postId,
     userId,
@@ -302,7 +371,7 @@ export async function createComment(
 ) {
     try {
         const commentsRef = firebase.firestore().collection("comments");
-
+        const timestamp = serverTimestamp();
         // Create a new comment object
         const newComment = {
             postId: postId,
@@ -314,7 +383,7 @@ export async function createComment(
             profilePicture: profilePicture,
             verified: verified,
             commentText: commentText,
-            timestamp: serverTimestamp(),
+            timestamp: timestamp,
         };
 
         // Add the new post to Firestore
@@ -331,6 +400,13 @@ export async function createComment(
         await currentUserQuery.update({
             comments: FieldValue.arrayUnion(docRef.id),
         });
+        // Construct the JSON representation of the comment
+        const commentData = {
+            ...newComment,
+            commentId: docRef.id,
+            timestamp: "just now",
+        };
+        return commentData;
     } catch (error) {
         console.error("Error adding comment: ", error);
     }
