@@ -48,9 +48,6 @@ const CommentPost = (
     const handleClickReplyChild = () => {
         handleClickReply(username, commentId);
     };
-    const logg = (a) => {
-        console.log(a);
-    };
 
     useImperativeHandle(ref, () => ({
         callChildFunction(reply) {
@@ -200,6 +197,7 @@ const CommentPost = (
                                     reply.timestamp
                                 )}
                                 replyId={reply.replyId}
+                                handleClickReply={handleClickReply}
                             />
                         ))}
                 </div>

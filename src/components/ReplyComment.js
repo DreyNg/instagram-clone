@@ -16,6 +16,7 @@ export default function ReplyComment({
     commentId,
     timestamp,
     replyId,
+    handleClickReply,
 }) {
     const [likeList, setLikeList] = useState(likeCounts);
     const { currentUser } = useContext(CurrentUserContext);
@@ -27,6 +28,9 @@ export default function ReplyComment({
         } catch (error) {
             console.error("Error liking post", error);
         }
+    };
+    const handleClickReplyChild = () => {
+        handleClickReply(username, commentId);
     };
 
     const handleUnlikeButtonClick = async () => {
@@ -89,7 +93,12 @@ export default function ReplyComment({
                                 {likeList.length} likes
                             </div>
                         )}
-                        <div className="mr-3 font-semibold">Reply</div>
+                        <div
+                            className="mr-3 font-semibold cursor-pointer"
+                            onClick={handleClickReplyChild}
+                        >
+                            Reply
+                        </div>
                     </div>
                 </div>
                 {/* heart */}
