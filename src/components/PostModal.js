@@ -107,7 +107,14 @@ const PostModal = ({
     const handleClickReply = (username, cmtId) => {
         setCommentText(`@${username} `);
         setCommentIdForReply(cmtId);
+
+        const commentElement = commentRefs[cmtId];
+        if (commentElement) {
+            commentRef.current = commentElement;
+        }
     };
+
+    const commentRefs = {};
 
     const commentRef = useRef(null);
     const handleAddReply = (replyInstance) => {
@@ -142,7 +149,8 @@ const PostModal = ({
             // Handle case when no file is selected
         }
     };
-
+    console.log(commentRefs);
+    console.log("commentRefs");
     return ReactDOM.createPortal(
         <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-green-500 bg-opacity-60">
             <div className="items-center justify-center flex h-[90%] w-[80%] overflow-hidden rounded">
@@ -256,22 +264,31 @@ const PostModal = ({
                                 </div>
                             </div>
 
-                            {comments.map((comment) => (
-                                <CommentPost
-                                    username={comment.username}
-                                    verified={comment.verified}
-                                    commentContent={comment.commentText}
-                                    avatar={comment.profilePicture}
-                                    likeCounts={comment.likeCounts}
-                                    commentId={comment.commentId}
-                                    _replies={comment.replies}
-                                    timestamp={calculateTimeDifference(
-                                        comment.timestamp
-                                    )}
-                                    ref={commentRef}
-                                    handleClickReply={handleClickReply}
-                                />
-                            ))}
+                            {comments.map((comment, index) => {
+                                const ref = (element) => {
+                                    if (element) {
+                                        commentRefs[comment.commentId] =
+                                            element;
+                                    }
+                                };
+                                return (
+                                    <CommentPost
+                                        key={index}
+                                        username={comment.username}
+                                        verified={comment.verified}
+                                        commentContent={comment.commentText}
+                                        avatar={comment.profilePicture}
+                                        likeCounts={comment.likeCounts}
+                                        commentId={comment.commentId}
+                                        _replies={comment.replies}
+                                        timestamp={calculateTimeDifference(
+                                            comment.timestamp
+                                        )}
+                                        ref={ref}
+                                        handleClickReply={handleClickReply}
+                                    />
+                                );
+                            })}
                         </div>
                     </div>
 
