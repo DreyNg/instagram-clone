@@ -105,34 +105,34 @@ const PostModal = ({
 
     const [commentIdForReply, setCommentIdForReply] = useState("");
     const handleClickReply = (username, cmtId) => {
-        setCommentText(`@${username}`);
+        setCommentText(`@${username} `);
         setCommentIdForReply(cmtId);
     };
 
-    // const handleCreateReply = async () => {
-    //     if (commentText) {
-    //         try {
-    //             // // Handle the response as needed
-    //             const replyInstance = await createReply(
-    //                 commentId,
-    //                 currentUser.userId,
-    //                 currentUser.username,
-    //                 currentUser.profilePicture,
-    //                 currentUser.verified,
-    //                 commentText
-    //             );
-    //             setCommentText("");
-    //             // console.log(replyInstance);
-    //             // setComments([replyInstance, ...comments]);
-    //         } catch (error) {
-    //             console.error("Error uploading image", error);
-    //             alert(error);
-    //             // Handle errors
-    //         }
-    //     } else {
-    //         // Handle case when no file is selected
-    //     }
-    // };
+    const handleCreateReply = async () => {
+        if (commentText) {
+            try {
+                // // Handle the response as needed
+                const replyInstance = await createReply(
+                    commentIdForReply,
+                    currentUser.userId,
+                    currentUser.username,
+                    currentUser.profilePicture,
+                    currentUser.verified,
+                    commentText
+                );
+                setCommentText("");
+                // console.log(replyInstance);
+                // setComments([replyInstance, ...comments]);
+            } catch (error) {
+                console.error("Error uploading image", error);
+                alert(error);
+                // Handle errors
+            }
+        } else {
+            // Handle case when no file is selected
+        }
+    };
 
     return ReactDOM.createPortal(
         <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-green-500 bg-opacity-60">
@@ -415,7 +415,7 @@ const PostModal = ({
                             ) : (
                                 <button
                                     className="text-ig-blue mx-3 text-sm font-semibold"
-                                    // onClick={handleCreateComment}
+                                    onClick={handleCreateReply}
                                 >
                                     Reply
                                 </button>
