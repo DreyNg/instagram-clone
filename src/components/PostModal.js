@@ -70,6 +70,8 @@ const PostModal = ({
         }
     };
 
+    const commentInputRef = useRef(null);
+
     const [openLikeModal, setOpenLikeModal] = useState(false);
     const handleOpenLikeModal = () => {
         setOpenLikeModal(true);
@@ -107,7 +109,7 @@ const PostModal = ({
     const handleClickReply = (username, cmtId) => {
         setCommentText(`@${username} `);
         setCommentIdForReply(cmtId);
-
+        commentInputRef.current.focus();
         const commentElement = commentRefs[cmtId];
         if (commentElement) {
             commentRef.current = commentElement;
@@ -425,6 +427,7 @@ const PostModal = ({
                         </div>
                         <div className="h-14 flex border-t border-zinc-800 ">
                             <input
+                                ref={commentInputRef}
                                 type="text"
                                 className="h-full w-full ml-3 placeholder-ig-grey text-sm pt-1 outline-none border-none bg-transparent"
                                 placeholder="Add a comment..."
