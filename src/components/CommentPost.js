@@ -1,6 +1,10 @@
 import { useContext, useState } from "react";
 import CurrentUserContext from "../context/CurrentUserContext";
-import { handleLikeComment, handleUnlikeComment } from "../services/firebase";
+import {
+    getReplies,
+    handleLikeComment,
+    handleUnlikeComment,
+} from "../services/firebase";
 import ReplyComment from "./ReplyComment";
 
 export default function CommentPost({
@@ -43,7 +47,17 @@ export default function CommentPost({
             console.error("Error liking post", error);
         }
     };
-    const [replyList, setReplyList] = useState(replies);
+
+    const [showReplyToggle, setShowReplyToggle] = useState(true);
+    const [replyList, setReplyList] = useState([]);
+    const handleClickShowReply = async () => {
+        setShowReplyToggle(!showReplyToggle);
+
+        if (replyList.length === 0 && replies.length > 0) {
+            setReplyList(await getReplies(commentId));
+        }
+    };
+
     return (
         <div className="">
             {/* Comment content */}
@@ -135,67 +149,36 @@ export default function CommentPost({
                 </div>
             </div>
             {/* replies */}
-            <div className="text-xs ml-12 py-4 text-ig-grey flex flex-col">
-                <div className="flex flex-row ">
-                    <div className="text-xs pr-4">━━━━━━ </div>
-                    <div className="font-semibold">
-                        {/* View replies (1) */}
-                        Hide replies
-                    </div>
+            {replies.length > 0 ? (
+                <div className="text-xs ml-12 py-4 text-ig-grey flex flex-col">
+                    <button
+                        className="flex flex-row cursor-pointer"
+                        onClick={handleClickShowReply}
+                    >
+                        <div className="text-xs pr-4">━━━━━━ </div>
+                        <div className="font-semibold">
+                            {showReplyToggle
+                                ? `View replies (${replies.length})`
+                                : "Hide replies"}
+                            {/*  */}
+                            {/*  */}
+                        </div>
+                    </button>
+                    {!showReplyToggle &&
+                        replyList.map((reply) => (
+                            <ReplyComment
+                                username={reply.username}
+                                verified={reply.verified}
+                                commentContent={reply.replyText}
+                                avatar={reply.profilePicture}
+                                likeCounts={reply.likeCounts}
+                                commentId={reply.commentId}
+                            />
+                        ))}
                 </div>
-                <ReplyComment
-                    username={"a"}
-                    verified={true}
-                    commentContent={
-                        "conddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddtent"
-                    }
-                    avatar={
-                        "https://media.macphun.com/img/uploads/customer/how-to/579/15531840725c93b5489d84e9.43781620.jpg?q=85&w=1340"
-                    }
-                    likeCounts={[]}
-                    commentId={"a"}
-                />
-                <ReplyComment
-                    username={"a"}
-                    verified={true}
-                    commentContent={"content"}
-                    avatar={
-                        "https://media.macphun.com/img/uploads/customer/how-to/579/15531840725c93b5489d84e9.43781620.jpg?q=85&w=1340"
-                    }
-                    likeCounts={[]}
-                    commentId={"a"}
-                />
-                <ReplyComment
-                    username={"a"}
-                    verified={true}
-                    commentContent={"content"}
-                    avatar={
-                        "https://media.macphun.com/img/uploads/customer/how-to/579/15531840725c93b5489d84e9.43781620.jpg?q=85&w=1340"
-                    }
-                    likeCounts={[]}
-                    commentId={"a"}
-                />
-                <ReplyComment
-                    username={"a"}
-                    verified={true}
-                    commentContent={"content"}
-                    avatar={
-                        "https://media.macphun.com/img/uploads/customer/how-to/579/15531840725c93b5489d84e9.43781620.jpg?q=85&w=1340"
-                    }
-                    likeCounts={[]}
-                    commentId={"a"}
-                />
-                <ReplyComment
-                    username={"a"}
-                    verified={true}
-                    commentContent={"content"}
-                    avatar={
-                        "https://media.macphun.com/img/uploads/customer/how-to/579/15531840725c93b5489d84e9.43781620.jpg?q=85&w=1340"
-                    }
-                    likeCounts={[]}
-                    commentId={"a"}
-                />
-            </div>
+            ) : (
+                <div className="pb-6"></div>
+            )}
         </div>
     );
 }

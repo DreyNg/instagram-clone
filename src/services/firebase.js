@@ -293,6 +293,25 @@ export async function handleUnlikeComment(commentId, userId) {
         likeCounts: FieldValue.arrayRemove(userId),
     });
 }
+
+export async function getReplies(commentId) {
+    try {
+        const comments = await firebase
+            .firestore()
+            .collection("replies")
+            .orderBy("timestamp", "desc") // Sort by timestamp in descending order
+            .where("commentId", "==", commentId)
+            .get();
+
+        const temp = [...comments.docs];
+        const result = [];
+        temp.forEach((e) => result.push(e.data()));
+        return result;
+    } catch (error) {
+        console.error("Error getting Replies: ", error);
+    }
+}
+
 export async function createReply(
     commentId,
     userId,
