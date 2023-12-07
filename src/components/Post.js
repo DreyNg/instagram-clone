@@ -10,6 +10,7 @@ import { calculateTimeDifference } from "../services/helper";
 import PostModal from "./PostModal";
 import CurrentUserContext from "../context/CurrentUserContext";
 import LikeListModal from "./LikeListModal";
+import { Link } from "react-router-dom";
 
 export default function Post({
     captionText,
@@ -133,9 +134,11 @@ export default function Post({
                 </div>
                 {/* UserName */}
                 <div className="mx-2  flex items-center h-full flex-grow">
-                    <div className="mr-1 text-white font-semibold text-sm cursor-pointer pb-1">
-                        {username}
-                    </div>
+                    <Link to={`/p/${username}`}>
+                        <div className="mr-1 text-white font-semibold text-sm cursor-pointer pb-1">
+                            {username}
+                        </div>
+                    </Link>
                     {verified && (
                         <svg
                             aria-label="Verified"
@@ -306,9 +309,11 @@ export default function Post({
                         style={{ overflowWrap: "break-word" }}
                         onClick={toggleCaption}
                     >
-                        <span className="font-semibold cursor-pointer">
-                            {username}
-                        </span>{" "}
+                        <Link to={`/p/${username}`}>
+                            <span className="font-semibold cursor-pointer">
+                                {username}
+                            </span>{" "}
+                        </Link>
                         {displayedCaption}
                         {displayMore && (
                             <span className="text-ig-grey ml-1 cursor-pointer">

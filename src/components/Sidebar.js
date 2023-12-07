@@ -8,7 +8,6 @@ import { handleFollowUser, handleUnfollowUser } from "../services/firebase";
 export default function Sidebar() {
     const { currentUser } = useContext(CurrentUserContext);
     const [suggestions, setSuggestions] = useState([]);
-
     useEffect(() => {
         const fetchUserSuggestions = async () => {
             try {

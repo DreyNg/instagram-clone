@@ -1,3 +1,5 @@
+import React from "react";
+
 export const calculateTimeDifference = (timestamp) => {
     if (timestamp === "just now") return timestamp;
     const currentDate = new Date();

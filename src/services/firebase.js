@@ -29,7 +29,36 @@ export async function getUserById(uid) {
         console.error("uid does not exist");
     }
 }
+export async function getUserByListId(uids) {
+    const querySnapshot = await firebase
+        .firestore()
+        .collection("users")
+        .where("userId", "in", uids)
+        .get();
 
+    const temp = [...querySnapshot.docs];
+    const result = [];
+    temp.forEach((e) => result.push(e.data()));
+    return result;
+}
+export async function getUserByUsername(username) {
+    const querySnapshot = await firebase
+        .firestore()
+        .collection("users")
+        .where("username", "==", username.toLowerCase())
+        .get();
+
+    if (!querySnapshot.empty) {
+        // Accessing the first document's data (assuming userId is unique)
+        const userData = querySnapshot.docs[0].data();
+
+        // Return user data or specific fields as needed
+        return userData;
+    } else {
+        // If no user found
+        return false;
+    }
+}
 export async function handleFollowUser(followingUserId, followedUserId) {
     if (followingUserId === followedUserId) return;
 
@@ -118,10 +147,28 @@ export async function uploadToImgur(img) {
     }
 }
 
+export async function getAllPostFromUserId(userId) {
+    try {
+        const posts = await firebase
+            .firestore()
+            .collection("posts")
+            .orderBy("timestamp", "desc") // Sort by timestamp in descending order
+            .where("userId", "==", userId)
+            .get();
+
+        const temp = [...posts.docs];
+        const result = [];
+        temp.forEach((e) => result.push(e.data()));
+        return result;
+    } catch (error) {
+        console.error("Error adding post: ", error);
+    }
+}
+
 export async function getFeed(currentUser) {
     try {
-        const following = currentUser.following;
-        following.push(currentUser.userId);
+        const following = [currentUser.userId, ...currentUser.following];
+
         const posts = await firebase
             .firestore()
             .collection("posts")
@@ -478,8 +525,7 @@ export async function getUserSuggestion(user) {
     const following = user.following;
     const followers = user.followers;
 
-    const filterList = following;
-    filterList.push(user.userId);
+    const filterList = [user.userId, ...following];
 
     async function getNewSuggestion() {
         try {

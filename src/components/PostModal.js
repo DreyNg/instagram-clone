@@ -11,6 +11,7 @@ import {
     handleUnlikePost,
 } from "../services/firebase";
 import CommentPost from "./CommentPost";
+import { Link } from "react-router-dom";
 
 const PostModal = ({
     closeModal,
@@ -89,7 +90,6 @@ const PostModal = ({
                     commentText
                 );
                 setCommentText("");
-                // console.log(replyInstance);
                 setComments([replyInstance, ...comments]);
             } catch (error) {
                 console.error("Error uploading image", error);
@@ -139,9 +139,7 @@ const PostModal = ({
                     commentText
                 );
                 setCommentText("");
-                // console.log(replyInstance);
                 handleAddReply(replyInstance);
-                // setComments([replyInstance, ...comments]);
             } catch (error) {
                 console.error("Error uploading image", error);
                 alert(error);
@@ -151,8 +149,7 @@ const PostModal = ({
             // Handle case when no file is selected
         }
     };
-    console.log(commentRefs);
-    console.log("commentRefs");
+
     return ReactDOM.createPortal(
         <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-green-500 bg-opacity-60">
             <div className="items-center justify-center flex h-[90%] w-[80%] overflow-hidden rounded">
@@ -176,9 +173,11 @@ const PostModal = ({
                         </div>
                         {/* UserName */}
                         <div className="mx-3 flex items-center h-full flex-grow ">
-                            <div className="mr-2 text-white font-semibold text-sm cursor-pointer pb-1">
-                                {username}
-                            </div>
+                            <Link to={`/p/${username}`}>
+                                <div className="mr-2 text-white font-semibold text-sm cursor-pointer pb-1">
+                                    {username}
+                                </div>
+                            </Link>
                             {verified && (
                                 <svg
                                     aria-label="Verified"
@@ -234,9 +233,11 @@ const PostModal = ({
                                         {/*  caption content */}
                                         <p className="text-sm mb-1 break-words">
                                             <span class="inline-flex items-baseline text-sm font-semibold">
-                                                <span className="mr-1">
-                                                    {username}
-                                                </span>
+                                                <Link to={`/p/${username}`}>
+                                                    <span className="mr-1">
+                                                        {username}
+                                                    </span>
+                                                </Link>
                                                 {verified && (
                                                     <svg
                                                         aria-label="Verified"
@@ -303,7 +304,8 @@ const PostModal = ({
                             <div className="mb-2">
                                 <div className="flex">
                                     <div className="flex flex-grow">
-                                        {likeList.includes(
+                                        {likeList &&
+                                        likeList.includes(
                                             currentUser.userId
                                         ) ? (
                                             <svg
@@ -338,12 +340,15 @@ const PostModal = ({
                                         )}
                                         <svg
                                             aria-label="Comment"
-                                            class="mx-3"
+                                            class="mx-3 cursor-pointer"
                                             fill="white"
                                             height="24"
                                             role="img"
                                             viewBox="0 0 24 24"
                                             width="24"
+                                            onClick={() => {
+                                                commentInputRef.current.focus();
+                                            }}
                                         >
                                             <title>Comment</title>
                                             <path
@@ -406,7 +411,7 @@ const PostModal = ({
                                     </div>
                                 </div>
                             </div>
-                            {likeList.length != 0 ? (
+                            {likeList ? (
                                 <div className="text-sm text-white py-1">
                                     Liked by {likeList.length}{" "}
                                     <span

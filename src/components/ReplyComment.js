@@ -6,6 +6,7 @@ import {
     handleUnlikeComment,
     handleUnlikeReply,
 } from "../services/firebase";
+import { Link } from "react-router-dom";
 
 export default function ReplyComment({
     username,
@@ -63,7 +64,9 @@ export default function ReplyComment({
                     {/*  CMT content */}
                     <p className="text-sm mb-1 break-words">
                         <span class="inline-flex items-baseline text-sm font-semibold">
-                            <span className="mr-1">{username}</span>
+                            <Link to={`/p/${username}`}>
+                                <span className="mr-1">{username}</span>
+                            </Link>
                             {verified && (
                                 <svg
                                     aria-label="Verified"

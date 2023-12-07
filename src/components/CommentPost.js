@@ -7,6 +7,7 @@ import {
 } from "../services/firebase";
 import ReplyComment from "./ReplyComment";
 import { calculateTimeDifference } from "../services/helper";
+import { Link } from "react-router-dom";
 
 const CommentPost = (
     {
@@ -42,7 +43,6 @@ const CommentPost = (
             setReplyList([reply, ...replyList]);
         }
         replies.push(reply);
-        // console.log(replyList);
     };
 
     const handleClickReplyChild = () => {
@@ -76,7 +76,6 @@ const CommentPost = (
             setReplyList(await getReplies(commentId));
         }
     };
-    // console.log(replyList);
 
     return (
         <div className="">
@@ -97,7 +96,9 @@ const CommentPost = (
                     {/*  CMT content */}
                     <p className="text-sm mb-1 break-words">
                         <span class="inline-flex items-baseline text-sm font-semibold">
-                            <span className="mr-1">{username}</span>
+                            <Link to={`/p/${username}`}>
+                                <span className="mr-1">{username}</span>
+                            </Link>
                             {verified && (
                                 <svg
                                     aria-label="Verified"
