@@ -12,13 +12,22 @@ import * as ROUTER from "../constants/route";
 import CurrentUserContext from "../context/CurrentUserContext";
 import MyProfileUserCard from "../components/MyProfileUserCard";
 import ProfileUserCard from "../components/ProfileUserCard";
+import PostModal from "../components/PostModal";
+import SquarePost from "./SquarePost";
 
 export default function ProfilePage() {
     const { currentUser } = useContext(CurrentUserContext);
     const { username } = useParams();
     const [profileUser, setProfileUser] = useState();
     const navigate = useNavigate();
+    const [openPostModal, setOpenPostModal] = useState(false);
+    const handleOpenPostModal = () => {
+        setOpenPostModal(true);
+    };
 
+    const handleClosePostModal = () => {
+        setOpenPostModal(false);
+    };
     useEffect(() => {
         const checkUserExist = async () => {
             const userInstance = await getUserByUsername(username);
@@ -79,7 +88,12 @@ export default function ProfilePage() {
     };
 
     const [posts, setPosts] = useState([]);
+    const [postModal, setPostModal] = useState();
 
+    const handleClickPost = (post) => {
+        handleOpenPostModal();
+        setPostModal(post);
+    };
     useEffect(() => {
         const fetchFeed = async () => {
             try {
@@ -530,8 +544,9 @@ export default function ProfilePage() {
                             <div
                                 key={post.postId}
                                 className="w-full h-[300px] overflow-hidden relative"
+                                onClick={() => handleClickPost(post)}
                             >
-                                <div className="w-full h-full">
+                                {/* <div className="w-full h-full">
                                     <div className="relative w-full h-full">
                                         <img
                                             src={post.imageUrl}
@@ -579,12 +594,38 @@ export default function ProfilePage() {
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> */}
+                                <SquarePost
+                                    captionText={post.captionText}
+                                    avatar={post.userAva}
+                                    username={post.userUsername}
+                                    verified={post.verified}
+                                    imageUrl={post.imageUrl}
+                                    timestamp={post.timestamp}
+                                    commentList={post.comments}
+                                    postId={post.postId}
+                                    likes={post.likes}
+                                />
                             </div>
                         ))}
                     </div>
                 </div>
             </div>
+            {
+                openPostModal && postModal != null && console.log(postModal)
+                // <PostModal
+                //     closeModal={handleClosePostModal}
+                //     imageUrl={postModal.imageUrl}
+                //     avatar={postModal.userAva}
+                //     username={postModal.userUsername}
+                //     verified={postModal.verified}
+                //     formattedTimestamp={postModal.timestamp}
+                //     captionText={postModal.caption}
+                //     postId={postModal.postId}
+                //     likeList={postModal.likes}
+                //     setLikeList={postModal.setLikeList}
+                // />
+            }
         </div>
     ) : null;
 }

@@ -303,7 +303,8 @@ const PostModal = ({
                             <div className="mb-2">
                                 <div className="flex">
                                     <div className="flex flex-grow">
-                                        {likeList.includes(
+                                        {likeList &&
+                                        likeList.includes(
                                             currentUser.userId
                                         ) ? (
                                             <svg
@@ -406,7 +407,7 @@ const PostModal = ({
                                     </div>
                                 </div>
                             </div>
-                            {likeList.length != 0 ? (
+                            {likeList ? (
                                 <div className="text-sm text-white py-1">
                                     Liked by {likeList.length}{" "}
                                     <span
