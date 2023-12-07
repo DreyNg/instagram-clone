@@ -43,7 +43,6 @@ const CommentPost = (
             setReplyList([reply, ...replyList]);
         }
         replies.push(reply);
-        // console.log(replyList);
     };
 
     const handleClickReplyChild = () => {
@@ -77,7 +76,6 @@ const CommentPost = (
             setReplyList(await getReplies(commentId));
         }
     };
-    // console.log(replyList);
 
     return (
         <div className="">

@@ -90,7 +90,6 @@ const PostModal = ({
                     commentText
                 );
                 setCommentText("");
-                // console.log(replyInstance);
                 setComments([replyInstance, ...comments]);
             } catch (error) {
                 console.error("Error uploading image", error);
@@ -140,9 +139,7 @@ const PostModal = ({
                     commentText
                 );
                 setCommentText("");
-                // console.log(replyInstance);
                 handleAddReply(replyInstance);
-                // setComments([replyInstance, ...comments]);
             } catch (error) {
                 console.error("Error uploading image", error);
                 alert(error);
@@ -343,12 +340,15 @@ const PostModal = ({
                                         )}
                                         <svg
                                             aria-label="Comment"
-                                            class="mx-3"
+                                            class="mx-3 cursor-pointer"
                                             fill="white"
                                             height="24"
                                             role="img"
                                             viewBox="0 0 24 24"
                                             width="24"
+                                            onClick={() => {
+                                                commentInputRef.current.focus();
+                                            }}
                                         >
                                             <title>Comment</title>
                                             <path

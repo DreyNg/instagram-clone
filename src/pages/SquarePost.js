@@ -25,7 +25,6 @@ export default function SquarePost({
 
     const handleClosePostModal = () => {
         setOpenPostModal(false);
-        console.log(openPostModal);
     };
 
     return (
