@@ -427,7 +427,7 @@ export default function MyProfile() {
                                         />
                                         <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-0 opacity-0 transition-opacity duration-300 flex items-center justify-center text-white text-center hover:bg-opacity-70 hover:opacity-100">
                                             <div className="flex">
-                                                <div className="flex">
+                                                <div className="flex font-semibold">
                                                     <svg
                                                         aria-label="Unlike"
                                                         class="mr-2 "
@@ -442,7 +442,7 @@ export default function MyProfile() {
                                                     </svg>{" "}
                                                     {post.likes.length}
                                                 </div>
-                                                <div className="flex">
+                                                <div className="flex font-semibold">
                                                     <svg
                                                         aria-label="Comment"
                                                         class="ml-6 mr-2"
@@ -469,15 +469,6 @@ export default function MyProfile() {
                                 </div>
                             </div>
                         ))}
-
-                        {/* {Array.from({ length: 23 }, (_, index) => (
-                            <img
-                                key={index}
-                                src={currentUser.profilePicture}
-                                className="w-full h-auto"
-                                alt={`Avatar ${index}`}
-                            />
-                        ))} */}
                     </div>
                 </div>
             </div>
