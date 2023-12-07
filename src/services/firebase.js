@@ -118,6 +118,24 @@ export async function uploadToImgur(img) {
     }
 }
 
+export async function getAllPostFromUserId(userId) {
+    try {
+        const posts = await firebase
+            .firestore()
+            .collection("posts")
+            .orderBy("timestamp", "desc") // Sort by timestamp in descending order
+            .where("userId", "==", userId)
+            .get();
+
+        const temp = [...posts.docs];
+        const result = [];
+        temp.forEach((e) => result.push(e.data()));
+        return result;
+    } catch (error) {
+        console.error("Error adding post: ", error);
+    }
+}
+
 export async function getFeed(currentUser) {
     try {
         const following = currentUser.following;
