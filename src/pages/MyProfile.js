@@ -416,45 +416,31 @@ export default function MyProfile() {
                         {posts.map((post, index) => (
                             <div
                                 key={post.postId}
-                                className="w-full h-[300px] overflow-hidden"
+                                className="w-full h-[300px] overflow-hidden relative"
                             >
-                                <div className="relative w-full pb-[100%]">
-                                    <img
-                                        src={post.imageUrl}
-                                        className="absolute top-0 left-0 w-full h-full object-cover"
-                                        alt={`Avatar ${index}`}
-                                    />
+                                <div className="w-full h-full">
+                                    <div className="relative w-full h-full">
+                                        <img
+                                            src={post.imageUrl}
+                                            className="w-full h-full object-cover"
+                                            alt={`Avatar ${index}`}
+                                        />
+                                        <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-0 opacity-0 transition-opacity duration-300 flex items-center justify-center text-white text-center hover:bg-opacity-70 hover:opacity-100">
+                                            <div>
+                                                <p>
+                                                    Likes: {post.likes.length}
+                                                </p>
+                                                <p>
+                                                    Comments:{" "}
+                                                    {post.comments.length}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         ))}
-                        {posts.map((post, index) => (
-                            <div
-                                key={post.postId}
-                                className="w-full h-[300px] overflow-hidden"
-                            >
-                                <div className="relative w-full pb-[100%]">
-                                    <img
-                                        src={post.imageUrl}
-                                        className="absolute top-0 left-0 w-full h-full object-cover"
-                                        alt={`Avatar ${index}`}
-                                    />
-                                </div>
-                            </div>
-                        ))}
-                        {posts.map((post, index) => (
-                            <div
-                                key={post.postId}
-                                className="w-full h-[300px] overflow-hidden"
-                            >
-                                <div className="relative w-full pb-[100%]">
-                                    <img
-                                        src={post.imageUrl}
-                                        className="absolute top-0 left-0 w-full h-full object-cover"
-                                        alt={`Avatar ${index}`}
-                                    />
-                                </div>
-                            </div>
-                        ))}
+
                         {/* {Array.from({ length: 23 }, (_, index) => (
                             <img
                                 key={index}
