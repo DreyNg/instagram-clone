@@ -167,8 +167,8 @@ export async function getAllPostFromUserId(userId) {
 
 export async function getFeed(currentUser) {
     try {
-        const following = currentUser.following;
-        following.push(currentUser.userId);
+        const following = [currentUser.userId, ...currentUser.following];
+
         const posts = await firebase
             .firestore()
             .collection("posts")
@@ -525,8 +525,7 @@ export async function getUserSuggestion(user) {
     const following = user.following;
     const followers = user.followers;
 
-    const filterList = following;
-    filterList.push(user.userId);
+    const filterList = [user.userId, ...following];
 
     async function getNewSuggestion() {
         try {
