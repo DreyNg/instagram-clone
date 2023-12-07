@@ -11,6 +11,7 @@ import {
     handleUnlikePost,
 } from "../services/firebase";
 import CommentPost from "./CommentPost";
+import { Link } from "react-router-dom";
 
 const PostModal = ({
     closeModal,
@@ -151,8 +152,7 @@ const PostModal = ({
             // Handle case when no file is selected
         }
     };
-    console.log(commentRefs);
-    console.log("commentRefs");
+
     return ReactDOM.createPortal(
         <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-green-500 bg-opacity-60">
             <div className="items-center justify-center flex h-[90%] w-[80%] overflow-hidden rounded">
@@ -176,9 +176,11 @@ const PostModal = ({
                         </div>
                         {/* UserName */}
                         <div className="mx-3 flex items-center h-full flex-grow ">
-                            <div className="mr-2 text-white font-semibold text-sm cursor-pointer pb-1">
-                                {username}
-                            </div>
+                            <Link to={`/p/${username}`}>
+                                <div className="mr-2 text-white font-semibold text-sm cursor-pointer pb-1">
+                                    {username}
+                                </div>
+                            </Link>
                             {verified && (
                                 <svg
                                     aria-label="Verified"
@@ -234,9 +236,11 @@ const PostModal = ({
                                         {/*  caption content */}
                                         <p className="text-sm mb-1 break-words">
                                             <span class="inline-flex items-baseline text-sm font-semibold">
-                                                <span className="mr-1">
-                                                    {username}
-                                                </span>
+                                                <Link to={`/p/${username}`}>
+                                                    <span className="mr-1">
+                                                        {username}
+                                                    </span>
+                                                </Link>
                                                 {verified && (
                                                     <svg
                                                         aria-label="Verified"

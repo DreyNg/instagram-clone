@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import { handleFollowUser, handleUnfollowUser } from "../services/firebase";
 import CurrentUserContext from "../context/CurrentUserContext";
+import { Link } from "react-router-dom";
 
 const UserCard = ({
     avatarSrc,
@@ -36,9 +37,11 @@ const UserCard = ({
                 </div>
             </div>
             <div className="mx-2 flex-grow">
-                <div className="text-white font-semibold text-sm cursor-pointer">
-                    {username}
-                </div>
+                <Link to={`/p/${username}`}>
+                    <div className="text-white font-semibold text-sm cursor-pointer">
+                        {username}
+                    </div>
+                </Link>
                 <div className="text-ig-grey text-xs">{subtitle}</div>
             </div>
             {!isClicked
