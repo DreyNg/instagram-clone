@@ -42,7 +42,7 @@ export default function SignUp() {
                     .collection("users")
                     .doc(createdUser.user.uid)
                     .set({
-                        username: username,
+                        username: username.toLowerCase(),
                         email: email.toLowerCase(),
                         fullname: fullname.toLowerCase(),
                         profilePicture: BLANK_PROFILE_IMAGE,

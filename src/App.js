@@ -15,7 +15,7 @@ const Login = lazy(() => import("./pages/Login"));
 const SignUp = lazy(() => import("./pages/SignUp"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const Dashboard = lazy(() => import("./pages/Dashboard"));
-const MyProfile = lazy(() => import("./pages/MyProfile"));
+const MyProfile = lazy(() => import("./pages/ProfilePage"));
 
 function App() {
     const { firebase } = useContext(FirebaseContext);

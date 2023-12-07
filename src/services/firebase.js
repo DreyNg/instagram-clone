@@ -29,7 +29,36 @@ export async function getUserById(uid) {
         console.error("uid does not exist");
     }
 }
+export async function getUserByListId(uids) {
+    const querySnapshot = await firebase
+        .firestore()
+        .collection("users")
+        .where("userId", "in", uids)
+        .get();
 
+    const temp = [...querySnapshot.docs];
+    const result = [];
+    temp.forEach((e) => result.push(e.data()));
+    return result;
+}
+export async function getUserByUsername(username) {
+    const querySnapshot = await firebase
+        .firestore()
+        .collection("users")
+        .where("username", "==", username.toLowerCase())
+        .get();
+
+    if (!querySnapshot.empty) {
+        // Accessing the first document's data (assuming userId is unique)
+        const userData = querySnapshot.docs[0].data();
+
+        // Return user data or specific fields as needed
+        return userData;
+    } else {
+        // If no user found
+        return false;
+    }
+}
 export async function handleFollowUser(followingUserId, followedUserId) {
     if (followingUserId === followedUserId) return;
 
