@@ -618,21 +618,6 @@ export default function ProfilePage() {
                     </div>
                 </div>
             </div>
-            {
-                openPostModal && postModal != null && console.log(postModal)
-                // <PostModal
-                //     closeModal={handleClosePostModal}
-                //     imageUrl={postModal.imageUrl}
-                //     avatar={postModal.userAva}
-                //     username={postModal.userUsername}
-                //     verified={postModal.verified}
-                //     formattedTimestamp={postModal.timestamp}
-                //     captionText={postModal.caption}
-                //     postId={postModal.postId}
-                //     likeList={postModal.likes}
-                //     setLikeList={postModal.setLikeList}
-                // />
-            }
         </div>
     ) : null;
 }

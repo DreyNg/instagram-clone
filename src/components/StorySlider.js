@@ -2,6 +2,7 @@ import { useContext, useEffect, useRef, useState } from "react";
 import StoryModal from "./StoryModal";
 import { getStories } from "../services/firebase";
 import CurrentUserContext from "../context/CurrentUserContext";
+import StoryHolder from "./StoryHolder";
 
 export default function StorySlider() {
     const { currentUser } = useContext(CurrentUserContext);
@@ -26,15 +27,6 @@ export default function StorySlider() {
         }
     };
 
-    const [openStoryModal, setOpenStoryModal] = useState(false);
-    const handleOpenStoryModal = () => {
-        setOpenStoryModal(true);
-    };
-
-    const handleCloseStoryModal = () => {
-        setOpenStoryModal(false);
-    };
-
     const [stories, setStories] = useState([]);
     useEffect(() => {
         const fetchStories = async () => {
@@ -50,7 +42,6 @@ export default function StorySlider() {
         }
     }, []);
 
-    console.log(stories);
     return (
         <div>
             <div className="relative h-24 flex items-center justify-between mb-2 mt-4">
@@ -78,25 +69,7 @@ export default function StorySlider() {
                 >
                     {/* story */}
                     {stories.map((story, index) => (
-                        <div
-                            key={index}
-                            className="cursor-pointer m-3 flex items-center flex-col"
-                            onClick={handleOpenStoryModal}
-                        >
-                            <div class="bg-gradient-to-tr from-yellow-500 to-fuchsia-700 p-[2.2px] rounded-full">
-                                <a class=" bg-black block rounded-full p-[2.5px] ">
-                                    <div className="h-14 w-14 rounded-full overflow-hidden">
-                                        <img
-                                            src={story.userAva}
-                                            className="w-full h-auto"
-                                        />
-                                    </div>
-                                </a>
-                            </div>
-                            <div className="text-xs text-white mt-2">
-                                {story.userUsername}
-                            </div>
-                        </div>
+                        <StoryHolder story={story} index={index} />
                     ))}
                     {/* ... Repeat your avatar and username components as needed */}
                 </div>
@@ -119,20 +92,6 @@ export default function StorySlider() {
                     </svg>
                 </button>
             </div>
-            {openStoryModal && (
-                <StoryModal
-                    closeModal={handleCloseStoryModal}
-                    username={"asdasd.asd"}
-                    avatar={
-                        "https://dfstudio-d420.kxcdn.com/wordpress/wp-content/uploads/2019/06/digital_camera_photo-1080x675.jpg"
-                    }
-                    timestamp={"9h"}
-                    verified={true}
-                    imgUrl={
-                        "https://blog.hubspot.com/hs-fs/hubfs/instagram-story-dimensions.png?width=350&name=instagram-story-dimensions.png"
-                    }
-                />
-            )}
         </div>
     );
 }
