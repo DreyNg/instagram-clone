@@ -43,7 +43,7 @@ export default function Timeline() {
     return (
         <div className="h-full ">
             <div className="h-full flex flex-col ">
-                <div className="relative h-24 flex items-center justify-between mb-4 mt-4">
+                <div className="relative h-24 flex items-center justify-between mb-2 mt-4">
                     <button
                         className="absolute left-5 pb-3"
                         onClick={scrollLeft}
@@ -75,11 +75,18 @@ export default function Timeline() {
                                 key={index}
                                 className=" m-3 flex items-center flex-col"
                             >
-                                <img
-                                    className="h-13 w-13 m-2 rounded-full"
-                                    src="https://www.kidsmathgamesonline.com/images/pictures/shapes/square.jpg"
-                                    alt={`avatar-${index}`}
-                                />
+                                <div class="bg-gradient-to-tr from-yellow-500 to-fuchsia-700 p-[2.5px] rounded-full">
+                                    <a class=" bg-black block rounded-full p-[2.5px] ">
+                                        <div className="h-14 w-14 rounded-full overflow-hidden">
+                                            <img
+                                                src={
+                                                    "http://placekitten.com/200/300"
+                                                }
+                                                className="w-full h-auto"
+                                            />
+                                        </div>
+                                    </a>
+                                </div>
                                 <div className="text-xs text-white">
                                     username
                                 </div>

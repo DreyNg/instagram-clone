@@ -302,20 +302,27 @@ export default function ProfilePage() {
                     </button>
                     <div
                         ref={scrollContainerRef}
-                        className="overflow-hidden flex scroll-container "
+                        className="overflow-hidden flex scroll-container px-3"
                     >
                         {/* story */}
-                        {Array.from({ length: 3 }, (_, index) => (
+                        {Array.from({ length: 15 }, (_, index) => (
                             <div
                                 key={index}
-                                className=" m-3 flex items-center flex-col"
+                                className=" m-3 mx-5 flex items-center flex-col"
                             >
-                                <img
-                                    className="h-20 w-20 m-2 rounded-full"
-                                    src="https://www.kidsmathgamesonline.com/images/pictures/shapes/square.jpg"
-                                    alt={`avatar-${index}`}
-                                />
-                                <div className="text-xs text-white">
+                                <div class="bg-ig-grey p-[0.5px] rounded-full">
+                                    <a class=" bg-black block rounded-full p-[2.5px] ">
+                                        <div className="h-20 w-20 rounded-full overflow-hidden">
+                                            <img
+                                                src={
+                                                    "http://placekitten.com/200/300"
+                                                }
+                                                className="w-full h-auto"
+                                            />
+                                        </div>
+                                    </a>
+                                </div>
+                                <div className="text-sm font-semibold text-white mt-2">
                                     username
                                 </div>
                             </div>
