@@ -24,7 +24,7 @@ export default function StoryHolder({ story, index }) {
             >
                 {notSeen ? (
                     <div class="bg-gradient-to-tr from-yellow-500 to-fuchsia-700 p-[2.2px] rounded-full">
-                        <a class=" bg-black block rounded-full p-[2.5px] ">
+                        <a class=" bg-black block rounded-full p-[2px] ">
                             <div className="h-14 w-14 rounded-full overflow-hidden">
                                 <img
                                     src={story.userAva}

@@ -130,7 +130,7 @@ export default function Post({
                 {/* Ava */}
                 <div className="p-1 flex-none cursor-pointer">
                     {hasStory ? (
-                        <PostAvaHasStory avatar={avatar} />
+                        <PostAvaHasStory avatar={avatar} story={hasStory} />
                     ) : (
                         <div className="h-8 w-8 rounded-full overflow-hidden">
                             <img
