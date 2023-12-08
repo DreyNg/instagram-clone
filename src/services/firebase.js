@@ -472,6 +472,48 @@ export async function createComment(
     }
 }
 
+export async function createStory(
+    userId,
+    img,
+    verified,
+    userUsername,
+    userAva
+) {
+    try {
+        const postsRef = firebase.firestore().collection("stories");
+
+        const imgUrl = await uploadToImgur(img);
+
+        // Create a new post object
+        const newStory = {
+            userUsername: userUsername,
+            userAva: userAva,
+            userId: userId,
+            imageUrl: imgUrl,
+            timestamp: serverTimestamp(),
+            verified: verified,
+        };
+
+        // Add the new post to Firestore
+        const docRef = await postsRef.add(newStory);
+        await docRef.update({
+            storyId: docRef.id,
+        });
+
+        // append to user field: posts
+        const currentUserQuery = firebase
+            .firestore()
+            .collection("users")
+            .doc(userId);
+        // Update the post document with the post's ID
+        await currentUserQuery.update({
+            stories: FieldValue.arrayUnion(docRef.id),
+        });
+    } catch (error) {
+        console.error("Error adding post: ", error);
+    }
+}
+
 export async function createPost(
     userId,
     caption,
