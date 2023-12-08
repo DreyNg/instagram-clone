@@ -92,15 +92,15 @@ export default function Navigation() {
                     {/* Explore */}
                     <div
                         className=" p-3 rounded-lg cursor-pointer"
-                        onClick={async () => {
-                            await createHighlight(
-                                "G4Iscvchu0aHelZiBtb2KasQ7nn2",
-                                "https://blog.hubspot.com/hs-fs/hubfs/instagram-story-dimensions.png?width=350&name=instagram-story-dimensions.png",
-                                true,
-                                "hightlight",
-                                "https://media.licdn.com/dms/image/C5603AQEoU_6p7eFO8A/profile-displayphoto-shrink_800_800/0/1639044381219?e=2147483647&v=beta&t=HXXH1TEH1ag1TKV4kd2RbbKQeaBR3Yl6vX42pUQxsws"
-                            );
-                        }}
+                        // onClick={async () => {
+                        //     await createHighlight(
+                        //         "G4Iscvchu0aHelZiBtb2KasQ7nn2",
+                        //         "https://blog.hubspot.com/hs-fs/hubfs/instagram-story-dimensions.png?width=350&name=instagram-story-dimensions.png",
+                        //         true,
+                        //         "hightlight",
+                        //         "https://media.licdn.com/dms/image/C5603AQEoU_6p7eFO8A/profile-displayphoto-shrink_800_800/0/1639044381219?e=2147483647&v=beta&t=HXXH1TEH1ag1TKV4kd2RbbKQeaBR3Yl6vX42pUQxsws"
+                        //     );
+                        // }}
                     >
                         <svg
                             className="w-7 h-7 fill-current text-gray-100 "

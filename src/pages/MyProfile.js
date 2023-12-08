@@ -9,6 +9,9 @@ export default function MyProfile() {
     const { currentUser } = useContext(CurrentUserContext);
     const { username } = useParams();
 
+    useEffect(() => {
+        document.title = `(@${username}) • Insgragram`;
+    });
     const scrollContainerRef = useRef(null);
 
     const scrollLeft = () => {
