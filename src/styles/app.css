@@ -1026,20 +1026,14 @@ video {
 .p-\[0\.5px\] {
   padding: 0.5px;
 }
+.p-\[1px\] {
+  padding: 1px;
+}
 .p-\[2\.2px\] {
   padding: 2.2px;
 }
 .p-\[2\.5px\] {
   padding: 2.5px;
-}
-.p-\[2px\] {
-  padding: 2px;
-}
-.p-\[1px\] {
-  padding: 1px;
-}
-.p-\[3px\] {
-  padding: 3px;
 }
 .px-16 {
   padding-left: 4rem;

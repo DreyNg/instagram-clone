@@ -30,3 +30,12 @@ export const calculateTimeDifference = (timestamp) => {
         return postDate.toLocaleDateString(undefined, options);
     }
 };
+
+export const userHasStory = (userIdToCheck, stories) => {
+    const result = stories.some(
+        (story) =>
+            story.userUsername.toLowerCase() === userIdToCheck.toLowerCase()
+    );
+
+    return result;
+};

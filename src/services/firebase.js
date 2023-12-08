@@ -278,7 +278,7 @@ export async function handleLikePost(postId, user, postLikeList) {
             postId: postId,
 
             userId: user.userId,
-            username: user.username,
+            username: user.username.toLowerCase(),
             profilePicture: user.profilePicture,
             verified: user.verified,
             fullname: user.fullname,
@@ -404,7 +404,7 @@ export async function createReply(
             likeCounts: [],
 
             userId: userId,
-            username: username,
+            username: username.toLowerCase(),
             profilePicture: profilePicture,
             verified: verified,
             replyText: replyText,
@@ -454,7 +454,7 @@ export async function createComment(
             replies: [],
 
             userId: userId,
-            username: username,
+            username: username.toLowerCase(),
             profilePicture: profilePicture,
             verified: verified,
             commentText: commentText,
@@ -499,7 +499,7 @@ export async function createStory(
 
         // Create a new post object
         const newStory = {
-            userUsername: userUsername,
+            userUsername: userUsername.toLowerCase(),
             userAva: userAva,
             userId: userId,
             imageUrl: img,
@@ -542,7 +542,7 @@ export async function createPost(
 
         // Create a new post object
         const newPost = {
-            userUsername: userUsername,
+            userUsername: userUsername.toLowerCase(),
             userAva: userAva,
             userId: userId,
             imageUrl: imgUrl,

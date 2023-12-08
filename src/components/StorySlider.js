@@ -3,6 +3,7 @@ import StoryModal from "./StoryModal";
 import { getStories } from "../services/firebase";
 import CurrentUserContext from "../context/CurrentUserContext";
 import StoryHolder from "./StoryHolder";
+import StoriesContext from "../context/StoriesContext";
 
 export default function StorySlider() {
     const { currentUser } = useContext(CurrentUserContext);
@@ -27,20 +28,21 @@ export default function StorySlider() {
         }
     };
 
-    const [stories, setStories] = useState([]);
-    useEffect(() => {
-        const fetchStories = async () => {
-            try {
-                setStories(await getStories(currentUser));
-            } catch (error) {
-                console.error("Error fetching suggestions:", error);
-            }
-        };
+    const { stories } = useContext(StoriesContext);
+    // const [stories, setStories] = useState([]);
+    // useEffect(() => {
+    //     const fetchStories = async () => {
+    //         try {
+    //             setStories(await getStories(currentUser));
+    //         } catch (error) {
+    //             console.error("Error fetching suggestions:", error);
+    //         }
+    //     };
 
-        if (currentUser) {
-            fetchStories();
-        }
-    }, []);
+    //     if (currentUser) {
+    //         fetchStories();
+    //     }
+    // }, []);
 
     return (
         <div>

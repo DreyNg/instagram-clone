@@ -15,7 +15,6 @@ export default function StoryHolder({ story, index }) {
     const handleViewedStory = () => {
         setNotSeen(false);
     };
-    console.log(notSeen);
     return (
         <div>
             <div

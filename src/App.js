@@ -109,7 +109,7 @@ function App() {
         if (currentUser) {
             fetchStories();
         }
-    }, []);
+    }, [currentUser]);
     if (loading) {
         return <p>Loading ...</p>; // Show loading state until user data is fetched
     }
