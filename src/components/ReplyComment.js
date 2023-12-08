@@ -7,6 +7,9 @@ import {
     handleUnlikeReply,
 } from "../services/firebase";
 import { Link } from "react-router-dom";
+import StoriesContext from "../context/StoriesContext";
+import { userHasStory } from "../services/helper";
+import { PostAvaHasStory } from "./PostAvaHasStory";
 
 export default function ReplyComment({
     username,
@@ -45,19 +48,26 @@ export default function ReplyComment({
             console.error("Error liking post", error);
         }
     };
+    const { stories } = useContext(StoriesContext);
+
+    const hasStory = userHasStory(username, stories);
     return (
         <div className=" w-full my-4 ">
             {/* Comment content */}
             <div className="flex flex-row">
                 {/* Ava */}
                 <div className="pr-3 flex-none cursor-pointer">
-                    <div className="h-8 w-8 rounded-full overflow-hidden">
-                        <img
-                            src={avatar}
-                            className="w-full h-auto"
-                            alt={`Avatar of `}
-                        />
-                    </div>
+                    {hasStory ? (
+                        <PostAvaHasStory avatar={avatar} story={hasStory} />
+                    ) : (
+                        <div className="h-8 w-8 rounded-full overflow-hidden">
+                            <img
+                                src={avatar}
+                                className="w-full h-auto"
+                                alt={`Avatar of `}
+                            />
+                        </div>
+                    )}
                 </div>
                 {/* CMT content */}
                 <div className="text-white flex-grow overflow-hidden flex flex-col">

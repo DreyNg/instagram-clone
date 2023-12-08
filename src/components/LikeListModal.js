@@ -19,7 +19,6 @@ const LikeListModal = ({ closeModal, postId }) => {
                         currentUser.userId
                     )
                 );
-                // console.log(likeList);
             } catch (error) {
                 alert(error);
             }

@@ -1,13 +1,30 @@
+import { useContext } from "react";
+import StoriesContext from "../context/StoriesContext";
+import { userHasStory } from "../services/helper";
+import { ProfileAvaHasStory } from "./ProfileAvaHasStory";
+
 export default function ProfileUserCard(profileUser) {
+    const { stories } = useContext(StoriesContext);
+
+    const hasStory = userHasStory(profileUser.username, stories);
+    console.log("hasStory");
     return (
         <div className="flex">
             {/* profile Pic */}
-            <div className="h-[170px] w-[170px] mx-14 my-5 mr-20 rounded-full overflow-hidden">
-                <img
-                    src={profileUser.profilePicture}
-                    className="w-full h-auto"
+            {hasStory ? (
+                <ProfileAvaHasStory
+                    avatar={profileUser.avatar}
+                    story={hasStory}
                 />
-            </div>
+            ) : (
+                <div className="h-[170px] w-[170px] mx-14 my-5 mr-20 rounded-full overflow-hidden">
+                    <img
+                        src={profileUser.profilePicture}
+                        className="w-full h-auto"
+                    />
+                </div>
+            )}
+
             {/* Info tag */}
             <div className=" flex flex-col text-white">
                 <div className="flex flex-row mb-1">

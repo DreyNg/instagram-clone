@@ -11,6 +11,9 @@ import PostModal from "./PostModal";
 import CurrentUserContext from "../context/CurrentUserContext";
 import LikeListModal from "./LikeListModal";
 import { Link } from "react-router-dom";
+import StoriesContext from "../context/StoriesContext";
+import { userHasStory } from "../services/helper";
+import { PostAvaHasStory } from "./PostAvaHasStory";
 
 export default function Post({
     captionText,
@@ -24,6 +27,9 @@ export default function Post({
     likes,
 }) {
     const { currentUser } = useContext(CurrentUserContext);
+    const { stories } = useContext(StoriesContext);
+
+    const hasStory = userHasStory(username, stories);
 
     const [showFullCaption, setShowFullCaption] = useState(false);
     const [likeList, setLikeList] = useState(likes);
@@ -123,14 +129,17 @@ export default function Post({
             <div className="flex items-center h-14">
                 {/* Ava */}
                 <div className="p-1 flex-none cursor-pointer">
-                    <div className="h-8 w-8 rounded-full overflow-hidden">
-                        <img
-                            src={avatar}
-                            className="w-full h-auto"
-                            alt={`Avatar of `}
-                            onClick={handleCreateComment}
-                        />
-                    </div>
+                    {hasStory ? (
+                        <PostAvaHasStory avatar={avatar} story={hasStory} />
+                    ) : (
+                        <div className="h-8 w-8 rounded-full overflow-hidden">
+                            <img
+                                src={avatar}
+                                className="w-full h-auto"
+                                alt={`Avatar of `}
+                            />
+                        </div>
+                    )}
                 </div>
                 {/* UserName */}
                 <div className="mx-2  flex items-center h-full flex-grow">

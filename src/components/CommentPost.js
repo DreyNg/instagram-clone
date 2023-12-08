@@ -6,8 +6,10 @@ import {
     handleUnlikeComment,
 } from "../services/firebase";
 import ReplyComment from "./ReplyComment";
-import { calculateTimeDifference } from "../services/helper";
+import { calculateTimeDifference, userHasStory } from "../services/helper";
 import { Link } from "react-router-dom";
+import StoriesContext from "../context/StoriesContext";
+import { PostAvaHasStory } from "./PostAvaHasStory";
 
 const CommentPost = (
     {
@@ -76,20 +78,26 @@ const CommentPost = (
             setReplyList(await getReplies(commentId));
         }
     };
+    const { stories } = useContext(StoriesContext);
 
+    const hasStory = userHasStory(username, stories);
     return (
         <div className="">
             {/* Comment content */}
             <div className="flex flex-row">
                 {/* Ava */}
                 <div className="pr-3 flex-none cursor-pointer">
-                    <div className="h-8 w-8 rounded-full overflow-hidden">
-                        <img
-                            src={avatar}
-                            className="w-full h-auto"
-                            alt={`Avatar of `}
-                        />
-                    </div>
+                    {hasStory ? (
+                        <PostAvaHasStory avatar={avatar} story={hasStory} />
+                    ) : (
+                        <div className="h-8 w-8 rounded-full overflow-hidden">
+                            <img
+                                src={avatar}
+                                className="w-full h-auto"
+                                alt={`Avatar of `}
+                            />
+                        </div>
+                    )}
                 </div>
                 {/* CMT content */}
                 <div className="text-white flex-grow overflow-hidden flex flex-col">

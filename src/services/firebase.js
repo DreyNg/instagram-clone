@@ -164,7 +164,39 @@ export async function getAllPostFromUserId(userId) {
         console.error("Error adding post: ", error);
     }
 }
+export async function getHighlights(currentUser) {
+    try {
+        const posts = await firebase
+            .firestore()
+            .collection("highlights")
+            .where("userId", "==", currentUser.userId)
+            .get();
 
+        const temp = [...posts.docs];
+        const result = [];
+        temp.forEach((e) => result.push(e.data()));
+        return result;
+    } catch (error) {
+        console.error("Error fetiching story: ", error);
+    }
+}
+
+export async function getStories(currentUser) {
+    try {
+        const posts = await firebase
+            .firestore()
+            .collection("stories")
+            .where("userId", "in", currentUser.following)
+            .get();
+
+        const temp = [...posts.docs];
+        const result = [];
+        temp.forEach((e) => result.push(e.data()));
+        return result;
+    } catch (error) {
+        console.error("Error fetiching story: ", error);
+    }
+}
 export async function getFeed(currentUser) {
     try {
         const following = [currentUser.userId, ...currentUser.following];
@@ -263,7 +295,7 @@ export async function handleLikePost(postId, user, postLikeList) {
             postId: postId,
 
             userId: user.userId,
-            username: user.username,
+            username: user.username.toLowerCase(),
             profilePicture: user.profilePicture,
             verified: user.verified,
             fullname: user.fullname,
@@ -389,7 +421,7 @@ export async function createReply(
             likeCounts: [],
 
             userId: userId,
-            username: username,
+            username: username.toLowerCase(),
             profilePicture: profilePicture,
             verified: verified,
             replyText: replyText,
@@ -439,7 +471,7 @@ export async function createComment(
             replies: [],
 
             userId: userId,
-            username: username,
+            username: username.toLowerCase(),
             profilePicture: profilePicture,
             verified: verified,
             commentText: commentText,
@@ -471,6 +503,85 @@ export async function createComment(
         console.error("Error adding comment: ", error);
     }
 }
+export async function createHighlight(
+    userId,
+    img,
+    verified,
+    userUsername,
+    userAva
+) {
+    try {
+        const postsRef = firebase.firestore().collection("highlights");
+
+        // Create a new post object
+        const newStory = {
+            userUsername: userUsername.toLowerCase(),
+            userAva: userAva,
+            userId: userId,
+            imageUrl: img,
+            timestamp: "202w",
+            verified: verified,
+        };
+
+        // Add the new post to Firestore
+        const docRef = await postsRef.add(newStory);
+        await docRef.update({
+            highlightId: docRef.id,
+        });
+
+        // // append to user field: posts
+        // const currentUserQuery = firebase
+        //     .firestore()
+        //     .collection("users")
+        //     .doc(userId);
+        // // Update the post document with the post's ID
+        // await currentUserQuery.update({
+        //     stories: FieldValue.arrayUnion(docRef.id),
+        // });
+    } catch (error) {
+        console.error("Error adding post: ", error);
+    }
+}
+
+export async function createStory(
+    userId,
+    img,
+    verified,
+    userUsername,
+    userAva
+) {
+    try {
+        const postsRef = firebase.firestore().collection("stories");
+
+        // Create a new post object
+        const newStory = {
+            userUsername: userUsername.toLowerCase(),
+            userAva: userAva,
+            userId: userId,
+            imageUrl: img,
+            timestamp: serverTimestamp(),
+            verified: verified,
+        };
+
+        // Add the new post to Firestore
+        const docRef = await postsRef.add(newStory);
+        await docRef.update({
+            storyId: docRef.id,
+        });
+
+        // // append to user field: posts
+        // const currentUserQuery = firebase
+        //     .firestore()
+        //     .collection("users")
+        //     .doc(userId);
+        // // Update the post document with the post's ID
+        // await currentUserQuery.update({
+        //     stories: FieldValue.arrayUnion(docRef.id),
+        // });
+    } catch (error) {
+        console.error("Error adding post: ", error);
+    }
+}
 
 export async function createPost(
     userId,
@@ -487,7 +598,7 @@ export async function createPost(
 
         // Create a new post object
         const newPost = {
-            userUsername: userUsername,
+            userUsername: userUsername.toLowerCase(),
             userAva: userAva,
             userId: userId,
             imageUrl: imgUrl,

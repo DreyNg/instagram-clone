@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect, useRef } from "react";
 import ReactDOM from "react-dom";
 import CurrentUserContext from "../context/CurrentUserContext";
 import LikeListModal from "./LikeListModal";
-import { calculateTimeDifference } from "../services/helper";
+import { calculateTimeDifference, userHasStory } from "../services/helper";
 import {
     createComment,
     getComments,
@@ -12,6 +12,8 @@ import {
 } from "../services/firebase";
 import CommentPost from "./CommentPost";
 import { Link } from "react-router-dom";
+import StoriesContext from "../context/StoriesContext";
+import { PostAvaHasStory } from "./PostAvaHasStory";
 
 const PostModal = ({
     closeModal,
@@ -149,6 +151,9 @@ const PostModal = ({
             // Handle case when no file is selected
         }
     };
+    const { stories } = useContext(StoriesContext);
+
+    const hasStory = userHasStory(username, stories);
 
     return ReactDOM.createPortal(
         <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-green-500 bg-opacity-60">
@@ -162,14 +167,20 @@ const PostModal = ({
                     <div className="px-4 h-16 flex-none border-b border-zinc-800 flex items-center ">
                         {/* Ava */}
                         <div className=" flex-none cursor-pointer">
-                            <div className="h-8 w-8 rounded-full overflow-hidden">
-                                <img
-                                    src={avatar}
-                                    className="w-full h-auto"
-                                    alt={`Avatar of `}
-                                    // onClick={createPost}
+                            {hasStory ? (
+                                <PostAvaHasStory
+                                    avatar={avatar}
+                                    story={hasStory}
                                 />
-                            </div>
+                            ) : (
+                                <div className="h-8 w-8 rounded-full overflow-hidden">
+                                    <img
+                                        src={avatar}
+                                        className="w-full h-auto"
+                                        alt={`Avatar of `}
+                                    />
+                                </div>
+                            )}
                         </div>
                         {/* UserName */}
                         <div className="mx-3 flex items-center h-full flex-grow ">
@@ -220,13 +231,20 @@ const PostModal = ({
                                 <div className="flex flex-row">
                                     {/* Ava */}
                                     <div className="pr-3 flex-none cursor-pointer">
-                                        <div className="h-8 w-8 rounded-full overflow-hidden">
-                                            <img
-                                                src={avatar}
-                                                className="w-full h-auto"
-                                                alt={`Avatar of `}
+                                        {hasStory ? (
+                                            <PostAvaHasStory
+                                                avatar={avatar}
+                                                story={hasStory}
                                             />
-                                        </div>
+                                        ) : (
+                                            <div className="h-8 w-8 rounded-full overflow-hidden">
+                                                <img
+                                                    src={avatar}
+                                                    className="w-full h-auto"
+                                                    alt={`Avatar of `}
+                                                />
+                                            </div>
+                                        )}
                                     </div>
                                     {/* caption content */}
                                     <div className="text-white flex-grow overflow-hidden flex flex-col">
