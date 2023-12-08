@@ -4,141 +4,90 @@ import CurrentUserContext from "../context/CurrentUserContext";
 import UserCard from "./UserCard";
 import { handleFollowUser, handleUnfollowUser } from "../services/firebase";
 
-const StoryModal = () => {
+const StoryModal = ({ closeModal, username, avatar, timestamp, verified }) => {
     const { currentUser } = useContext(CurrentUserContext);
 
     return ReactDom.createPortal(
         <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-60">
-            <div className="flex flex-col h-[80%] w-[35%] rounded-lg overflow-hidden">
-                <div className="flex bg-ig-grey-bg h-[10%] pb-1 border-zinc-600 border-b items-center">
-                    <div
-                        className="absolute pl-5 mt-1 cursor-pointer"
-                        onClick={closeModal}
-                    >
-                        <svg
-                            aria-label="Back"
-                            fill="white"
-                            height="20"
-                            role="img"
-                            viewBox="0 0 24 24"
-                            width="20"
-                        >
-                            <title>Back</title>
-                            <line
-                                fill="none"
-                                stroke="white"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
-                                x1="2.909"
-                                x2="22.001"
-                                y1="12.004"
-                                y2="12.004"
-                            ></line>
-                            <polyline
-                                fill="none"
-                                points="9.276 4.726 2.001 12.004 9.276 19.274"
-                                stroke="white"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
-                            ></polyline>
-                        </svg>
+            {/* close button */}
+            <div
+                className="absolute top-0 right-0 m-4 mr-9 cursor-pointer"
+                onClick={() => closeModal()}
+            >
+                <svg
+                    aria-label="Close"
+                    class="x1lliihq x1n2onr6 x9bdzbf"
+                    fill="white"
+                    height="18"
+                    role="img"
+                    viewBox="0 0 24 24"
+                    width="18"
+                >
+                    <title>Close</title>
+                    <polyline
+                        fill="white"
+                        points="20.643 3.357 12 12 3.353 20.647"
+                        stroke="white"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="3"
+                    ></polyline>
+                    <line
+                        fill="white"
+                        stroke="white"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="3"
+                        x1="20.649"
+                        x2="3.354"
+                        y1="20.649"
+                        y2="3.354"
+                    ></line>
+                </svg>
+            </div>
+            <div className="flex flex-col h-[95%] w-[25%] rounded-lg overflow-hidden bg-ig-grey">
+                <div className="flex absolute items-center px-3 mt-3">
+                    <div className="h-10 w-10 rounded-full overflow-hidden flex items-center justify-center ">
+                        <img
+                            src={avatar}
+                            className="w-full h-auto"
+                            alt={`Avatar of ${username}`}
+                        />
                     </div>
-                    <div className="flex-grow text-white text-center font-semibold">
-                        Likes
+                    <div className="mx-2 text-white text-sm font-semibold">
+                        {username}
+                    </div>
+                    <div className="">
+                        {verified && (
+                            <svg
+                                aria-label="Verified"
+                                fill="white"
+                                height="12"
+                                role="img"
+                                viewBox="0 0 40 40"
+                                width="12"
+                            >
+                                <title>Verified</title>
+                                <path
+                                    d="M19.998 3.094 14.638 0l-2.972 5.15H5.432v6.354L0 14.64 3.094 20 0 25.359l5.432 3.137v5.905h5.975L14.638 40l5.36-3.094L25.358 40l3.232-5.6h6.162v-6.01L40 25.359 36.905 20 40 14.641l-5.248-3.03v-6.46h-6.419L25.358 0l-5.36 3.094Zm7.415 11.225 2.254 2.287-11.43 11.5-6.835-6.93 2.244-2.258 4.587 4.581 9.18-9.18Z"
+                                    fill-rule="evenodd"
+                                ></path>
+                            </svg>
+                        )}
+                    </div>
+
+                    <div className="mx-2 text-ig-grey text-sm font-semibold">
+                        {timestamp}
                     </div>
                 </div>
-                <div className="p-2 bg-ig-grey-bg flex flex-col overflow-auto  h-full ">
-                    {likeList[0] &&
-                        likeList[0].length > 0 &&
-                        likeList[0].map((e, innerIndex) => (
-                            <UserCard
-                                key={innerIndex}
-                                avatarSrc={e.profilePicture}
-                                username={e.username}
-                                userId={e.userId}
-                                subtitle={e.fullname}
-                            />
-                        ))}
-                    {likeList[1] &&
-                        likeList[1].length > 0 &&
-                        likeList[1].map((e, innerIndex) => (
-                            <UserCard
-                                key={innerIndex}
-                                avatarSrc={e.profilePicture}
-                                username={e.username}
-                                userId={e.userId}
-                                buttonFn1={() =>
-                                    handleUnfollowUser(
-                                        currentUser.userId,
-                                        e.userId
-                                    )
-                                }
-                                buttonFn2={() =>
-                                    handleFollowUser(
-                                        currentUser.userId,
-                                        e.userId
-                                    )
-                                }
-                                subtitle={e.fullname}
-                                buttonFirst={(onClick) => (
-                                    <button
-                                        className="text-white bg-[#383434] py-2 px-6 rounded-lg mr-3 text-xs font-semibold cursor-pointer"
-                                        onClick={onClick}
-                                    >
-                                        Following
-                                    </button>
-                                )}
-                                buttonAfter={(onClick) => (
-                                    <button
-                                        className="text-white bg-ig-blue py-2 px-6 rounded-lg mr-3 text-xs font-semibold cursor-pointer"
-                                        onClick={onClick}
-                                    >
-                                        Follow
-                                    </button>
-                                )}
-                            />
-                        ))}
-                    {likeList[2] &&
-                        likeList[2].length > 0 &&
-                        likeList[2].map((e, innerIndex) => (
-                            <UserCard
-                                key={innerIndex}
-                                avatarSrc={e.profilePicture}
-                                username={e.username}
-                                userId={e.userId}
-                                subtitle={e.fullname}
-                                buttonFn1={() =>
-                                    handleFollowUser(
-                                        currentUser.userId,
-                                        e.userId
-                                    )
-                                }
-                                buttonFn2={() =>
-                                    handleUnfollowUser(
-                                        currentUser.userId,
-                                        e.userId
-                                    )
-                                }
-                                buttonFirst={(onClick) => (
-                                    <button
-                                        className="text-white bg-ig-blue py-2 px-6 rounded-lg mr-3 text-xs font-semibold cursor-pointer"
-                                        onClick={onClick}
-                                    >
-                                        Follow
-                                    </button>
-                                )}
-                                buttonAfter={(onClick) => (
-                                    <button
-                                        className="text-white bg-[#383434] py-2 px-6 rounded-lg mr-3 text-xs font-semibold cursor-pointer"
-                                        onClick={onClick}
-                                    >
-                                        Following
-                                    </button>
-                                )}
-                            />
-                        ))}
+                <div className="flex items-center justify-center h-full">
+                    <img
+                        className="max-h-full"
+                        // src="https://images.unsplash.com/photo-1575936123452-b67c3203c357?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aW1hZ2V8ZW58MHx8MHx8fDA%3D"
+                        src={
+                            "https://blog.hubspot.com/hs-fs/hubfs/instagram-story-dimensions.png?width=350&name=instagram-story-dimensions.png"
+                        }
+                    />
                 </div>
             </div>
         </div>,
