@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import CurrentUserContext from "../context/CurrentUserContext";
 import MakePostModal from "./MakePostModal";
 import { Link } from "react-router-dom";
-import { createStory } from "../services/firebase";
+import { createHighlight, createStory } from "../services/firebase";
 
 export default function Navigation() {
     const { currentUser } = useContext(CurrentUserContext);
@@ -90,7 +90,18 @@ export default function Navigation() {
                 </div>
                 <div className="flex items-center justify-center">
                     {/* Explore */}
-                    <div className=" p-3 rounded-lg cursor-pointer">
+                    <div
+                        className=" p-3 rounded-lg cursor-pointer"
+                        onClick={async () => {
+                            await createHighlight(
+                                "G4Iscvchu0aHelZiBtb2KasQ7nn2",
+                                "https://blog.hubspot.com/hs-fs/hubfs/instagram-story-dimensions.png?width=350&name=instagram-story-dimensions.png",
+                                true,
+                                "hightlight",
+                                "https://media.licdn.com/dms/image/C5603AQEoU_6p7eFO8A/profile-displayphoto-shrink_800_800/0/1639044381219?e=2147483647&v=beta&t=HXXH1TEH1ag1TKV4kd2RbbKQeaBR3Yl6vX42pUQxsws"
+                            );
+                        }}
+                    >
                         <svg
                             className="w-7 h-7 fill-current text-gray-100 "
                             viewBox="0 0 24 24"

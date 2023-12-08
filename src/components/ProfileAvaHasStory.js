@@ -13,9 +13,7 @@ export function ProfileAvaHasStory({ avatar, story }) {
     const handleCloseStoryModal = () => {
         setOpenStoryModal(false);
     };
-    const [notSeen, setNotSeen] = useState(true);
     const handleViewedStory = () => {
-        setNotSeen(false);
         setSeenStory(new Set([...seenStory, story]));
     };
     return (

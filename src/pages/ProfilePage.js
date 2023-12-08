@@ -3,6 +3,7 @@ import { Router, useNavigate, useParams } from "react-router-dom";
 import Navigation from "../components/Navigation";
 import {
     getAllPostFromUserId,
+    getHighlights,
     getUserByListId,
     getUserByUsername,
     handleFollowUser,
@@ -17,6 +18,7 @@ import SquarePost from "./SquarePost";
 import StoriesContext from "../context/StoriesContext";
 import { userHasStory } from "../services/helper";
 import { ProfileAvaHasStory } from "../components/ProfileAvaHasStory";
+import HighlightHolder from "../components/HighlightHolder";
 
 export default function ProfilePage() {
     const { currentUser } = useContext(CurrentUserContext);
@@ -91,16 +93,18 @@ export default function ProfilePage() {
     };
 
     const [posts, setPosts] = useState([]);
-    const [postModal, setPostModal] = useState();
+    // const [postModal, setPostModal] = useState();
+    const [highlights, setHightlights] = useState([]);
 
-    const handleClickPost = (post) => {
-        handleOpenPostModal();
-        setPostModal(post);
-    };
+    // const handleClickPost = (post) => {
+    //     handleOpenPostModal();
+    //     setPostModal(post);
+    // };
     useEffect(() => {
         const fetchFeed = async () => {
             try {
                 setPosts(await getAllPostFromUserId(profileUser.userId));
+                setHightlights(await getHighlights(profileUser));
             } catch (error) {
                 console.error("Error fetching suggestions:", error);
             }
@@ -291,80 +295,68 @@ export default function ProfilePage() {
                     </div>
                 )}
                 {/* story */}
-
-                <div className="  relative h-[220px] border-zinc-600 border-b flex items-center justify-between ">
-                    <button
-                        className="absolute left-5 pb-3"
-                        onClick={scrollLeft}
-                    >
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            className="h-7 w-7"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="none"
+                {highlights.length > 0 ? (
+                    <div className=" border-zinc-600 border-b relative h-[220px]  flex items-center justify-between ">
+                        <button
+                            className="absolute left-5 pb-3"
+                            onClick={scrollLeft}
                         >
-                            <circle cx="12" cy="12" r="11" fill="#fff" />
-                            <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth="2"
-                                d="M14 9l-4 3 4 3"
-                                stroke="rgba(0, 0, 0, 0.2)"
-                            />
-                        </svg>
-                    </button>
-                    <div
-                        ref={scrollContainerRef}
-                        className="overflow-hidden flex scroll-container px-3"
-                    >
-                        {/* story */}
-                        {Array.from({ length: 15 }, (_, index) => (
-                            <div
-                                key={index}
-                                className=" m-3 mx-5 flex items-center flex-col"
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                className="h-7 w-7"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="none"
                             >
-                                <div class="bg-ig-grey p-[0.5px] rounded-full">
-                                    <a class=" bg-black block rounded-full p-[2.5px] ">
-                                        <div className="h-20 w-20 rounded-full overflow-hidden">
-                                            <img
-                                                src={
-                                                    "http://placekitten.com/200/300"
-                                                }
-                                                className="w-full h-auto"
-                                            />
-                                        </div>
-                                    </a>
-                                </div>
-                                <div className="text-sm font-semibold text-white mt-2">
-                                    username
-                                </div>
-                            </div>
-                        ))}
-                        {/* ... Repeat your avatar and username components as needed */}
-                    </div>
-                    <button
-                        className="absolute right-2 pb-3"
-                        onClick={scrollRight}
-                    >
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            className="h-7 w-7"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="none"
+                                <circle cx="12" cy="12" r="11" fill="#fff" />
+                                <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth="2"
+                                    d="M14 9l-4 3 4 3"
+                                    stroke="rgba(0, 0, 0, 0.2)"
+                                />
+                            </svg>
+                        </button>
+                        <div
+                            ref={scrollContainerRef}
+                            className="overflow-hidden flex scroll-container px-3"
                         >
-                            <circle cx="12" cy="12" r="11" fill="#fff" />
-                            <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth="2"
-                                d="M12 9l3 3-3 3"
-                                stroke="rgba(0, 0, 0, 0.2)"
-                            />
-                        </svg>
-                    </button>
-                </div>
+                            {/* story */}
+                            {highlights.map((highlight, index) => (
+                                <HighlightHolder
+                                    highlight={highlight}
+                                    index={index}
+                                />
+                            ))}
+
+                            {/* ... Repeat your avatar and username components as needed */}
+                        </div>
+                        <button
+                            className="absolute right-2 pb-3"
+                            onClick={scrollRight}
+                        >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                className="h-7 w-7"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="none"
+                            >
+                                <circle cx="12" cy="12" r="11" fill="#fff" />
+                                <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth="2"
+                                    d="M12 9l3 3-3 3"
+                                    stroke="rgba(0, 0, 0, 0.2)"
+                                />
+                            </svg>
+                        </button>
+                    </div>
+                ) : (
+                    <div className="h-10 border-zinc-600 border-b"></div>
+                )}
                 {/* feed */}
                 <div className=" h-auto pb-10">
                     <div className=" h-12 text-white flex items-center justify-center">
@@ -564,8 +556,8 @@ export default function ProfilePage() {
                         {posts.map((post, index) => (
                             <div
                                 key={post.postId}
-                                className="w-full h-[300px] overflow-hidden relative"
-                                onClick={() => handleClickPost(post)}
+                                className="w-full h-[300px] overflow-hidden relative cursor-pointer"
+                                // onClick={() => handleClickPost(post)}
                             >
                                 {/* <div className="w-full h-full">
                                     <div className="relative w-full h-full">

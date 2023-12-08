@@ -164,6 +164,23 @@ export async function getAllPostFromUserId(userId) {
         console.error("Error adding post: ", error);
     }
 }
+export async function getHighlights(currentUser) {
+    try {
+        const posts = await firebase
+            .firestore()
+            .collection("highlights")
+            .where("userId", "==", currentUser.userId)
+            .get();
+
+        const temp = [...posts.docs];
+        const result = [];
+        temp.forEach((e) => result.push(e.data()));
+        return result;
+    } catch (error) {
+        console.error("Error fetiching story: ", error);
+    }
+}
+
 export async function getStories(currentUser) {
     try {
         const posts = await firebase
@@ -486,6 +503,45 @@ export async function createComment(
         console.error("Error adding comment: ", error);
     }
 }
+export async function createHighlight(
+    userId,
+    img,
+    verified,
+    userUsername,
+    userAva
+) {
+    try {
+        const postsRef = firebase.firestore().collection("highlights");
+
+        // Create a new post object
+        const newStory = {
+            userUsername: userUsername.toLowerCase(),
+            userAva: userAva,
+            userId: userId,
+            imageUrl: img,
+            timestamp: "202w",
+            verified: verified,
+        };
+
+        // Add the new post to Firestore
+        const docRef = await postsRef.add(newStory);
+        await docRef.update({
+            highlightId: docRef.id,
+        });
+
+        // // append to user field: posts
+        // const currentUserQuery = firebase
+        //     .firestore()
+        //     .collection("users")
+        //     .doc(userId);
+        // // Update the post document with the post's ID
+        // await currentUserQuery.update({
+        //     stories: FieldValue.arrayUnion(docRef.id),
+        // });
+    } catch (error) {
+        console.error("Error adding post: ", error);
+    }
+}
 
 export async function createStory(
     userId,
@@ -513,15 +569,15 @@ export async function createStory(
             storyId: docRef.id,
         });
 
-        // append to user field: posts
-        const currentUserQuery = firebase
-            .firestore()
-            .collection("users")
-            .doc(userId);
-        // Update the post document with the post's ID
-        await currentUserQuery.update({
-            stories: FieldValue.arrayUnion(docRef.id),
-        });
+        // // append to user field: posts
+        // const currentUserQuery = firebase
+        //     .firestore()
+        //     .collection("users")
+        //     .doc(userId);
+        // // Update the post document with the post's ID
+        // await currentUserQuery.update({
+        //     stories: FieldValue.arrayUnion(docRef.id),
+        // });
     } catch (error) {
         console.error("Error adding post: ", error);
     }
