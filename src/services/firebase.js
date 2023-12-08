@@ -164,7 +164,22 @@ export async function getAllPostFromUserId(userId) {
         console.error("Error adding post: ", error);
     }
 }
+export async function getStories(currentUser) {
+    try {
+        const posts = await firebase
+            .firestore()
+            .collection("stories")
+            .where("userId", "in", currentUser.following)
+            .get();
 
+        const temp = [...posts.docs];
+        const result = [];
+        temp.forEach((e) => result.push(e.data()));
+        return result;
+    } catch (error) {
+        console.error("Error fetiching story: ", error);
+    }
+}
 export async function getFeed(currentUser) {
     try {
         const following = [currentUser.userId, ...currentUser.following];
@@ -482,14 +497,12 @@ export async function createStory(
     try {
         const postsRef = firebase.firestore().collection("stories");
 
-        const imgUrl = await uploadToImgur(img);
-
         // Create a new post object
         const newStory = {
             userUsername: userUsername,
             userAva: userAva,
             userId: userId,
-            imageUrl: imgUrl,
+            imageUrl: img,
             timestamp: serverTimestamp(),
             verified: verified,
         };

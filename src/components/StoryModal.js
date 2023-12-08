@@ -1,12 +1,15 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import ReactDom from "react-dom";
 import CurrentUserContext from "../context/CurrentUserContext";
-import UserCard from "./UserCard";
-import { handleFollowUser, handleUnfollowUser } from "../services/firebase";
 
-const StoryModal = ({ closeModal, username, avatar, timestamp, verified }) => {
-    const { currentUser } = useContext(CurrentUserContext);
-
+const StoryModal = ({
+    closeModal,
+    username,
+    avatar,
+    timestamp,
+    verified,
+    imgUrl,
+}) => {
     return ReactDom.createPortal(
         <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-60">
             {/* close button */}
@@ -45,7 +48,7 @@ const StoryModal = ({ closeModal, username, avatar, timestamp, verified }) => {
                     ></line>
                 </svg>
             </div>
-            <div className="flex flex-col h-[95%] w-[25%] rounded-lg overflow-hidden bg-ig-grey">
+            <div className="flex flex-col h-[95%] w-[25%] rounded-lg overflow-hidden bg-black">
                 <div className="flex absolute items-center px-3 mt-3">
                     <div className="h-10 w-10 rounded-full overflow-hidden flex items-center justify-center ">
                         <img
@@ -81,13 +84,7 @@ const StoryModal = ({ closeModal, username, avatar, timestamp, verified }) => {
                     </div>
                 </div>
                 <div className="flex items-center justify-center h-full">
-                    <img
-                        className="max-h-full"
-                        // src="https://images.unsplash.com/photo-1575936123452-b67c3203c357?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aW1hZ2V8ZW58MHx8MHx8fDA%3D"
-                        src={
-                            "https://blog.hubspot.com/hs-fs/hubfs/instagram-story-dimensions.png?width=350&name=instagram-story-dimensions.png"
-                        }
-                    />
+                    <img className="max-h-full" src={imgUrl} />
                 </div>
             </div>
         </div>,

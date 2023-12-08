@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import CurrentUserContext from "../context/CurrentUserContext";
 import MakePostModal from "./MakePostModal";
 import { Link } from "react-router-dom";
+import { createStory } from "../services/firebase";
 
 export default function Navigation() {
     const { currentUser } = useContext(CurrentUserContext);
@@ -48,7 +49,19 @@ export default function Navigation() {
                 </div>
                 <div className="flex items-center justify-center">
                     {/* Search */}
-                    <div className=" p-3 rounded-lg cursor-pointer">
+                    <div
+                        className=" p-3 rounded-lg cursor-pointer"
+                        // onClick={async () => {
+                        //     await createStory(
+                        //         "wfuGUcAhVrWUM09lxLYp8UClwQu2",
+                        //         "https://blog.hubspot.com/hs-fs/hubfs/instagram-story-dimensions.png?width=350&name=instagram-story-dimensions.png",
+                        //         false,
+                        //         "3",
+                        //         "https://i.imgur.com/k7bSvL1.png"
+                        //     );
+                        //     console.log("aa");
+                        // }}
+                    >
                         <svg
                             className="w-7 h-7 fill-current text-gray-100 "
                             viewBox="0 0 24 24"

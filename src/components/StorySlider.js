@@ -1,7 +1,11 @@
-import { useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import StoryModal from "./StoryModal";
+import { getStories } from "../services/firebase";
+import CurrentUserContext from "../context/CurrentUserContext";
 
 export default function StorySlider() {
+    const { currentUser } = useContext(CurrentUserContext);
+
     const scrollContainerRef = useRef(null);
 
     const scrollLeft = () => {
@@ -30,6 +34,23 @@ export default function StorySlider() {
     const handleCloseStoryModal = () => {
         setOpenStoryModal(false);
     };
+
+    const [stories, setStories] = useState([]);
+    useEffect(() => {
+        const fetchStories = async () => {
+            try {
+                setStories(await getStories(currentUser));
+            } catch (error) {
+                console.error("Error fetching suggestions:", error);
+            }
+        };
+
+        if (currentUser) {
+            fetchStories();
+        }
+    }, []);
+
+    console.log(stories);
     return (
         <div>
             <div className="relative h-24 flex items-center justify-between mb-2 mt-4">
@@ -56,7 +77,7 @@ export default function StorySlider() {
                     className="overflow-hidden flex scroll-container "
                 >
                     {/* story */}
-                    {Array.from({ length: 15 }, (_, index) => (
+                    {stories.map((story, index) => (
                         <div
                             key={index}
                             className="cursor-pointer m-3 flex items-center flex-col"
@@ -66,15 +87,15 @@ export default function StorySlider() {
                                 <a class=" bg-black block rounded-full p-[2.5px] ">
                                     <div className="h-14 w-14 rounded-full overflow-hidden">
                                         <img
-                                            src={
-                                                "http://placekitten.com/200/300"
-                                            }
+                                            src={story.userAva}
                                             className="w-full h-auto"
                                         />
                                     </div>
                                 </a>
                             </div>
-                            <div className="text-xs text-white">username</div>
+                            <div className="text-xs text-white mt-2">
+                                {story.userUsername}
+                            </div>
                         </div>
                     ))}
                     {/* ... Repeat your avatar and username components as needed */}
@@ -107,6 +128,9 @@ export default function StorySlider() {
                     }
                     timestamp={"9h"}
                     verified={true}
+                    imgUrl={
+                        "https://blog.hubspot.com/hs-fs/hubfs/instagram-story-dimensions.png?width=350&name=instagram-story-dimensions.png"
+                    }
                 />
             )}
         </div>
