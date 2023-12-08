@@ -1038,6 +1038,15 @@ video {
 .p-\[2px\] {
   padding: 2px;
 }
+.p-\[5px\] {
+  padding: 5px;
+}
+.p-\[4px\] {
+  padding: 4px;
+}
+.p-\[3px\] {
+  padding: 3px;
+}
 .px-16 {
   padding-left: 4rem;
   padding-right: 4rem;

@@ -14,6 +14,9 @@ import MyProfileUserCard from "../components/MyProfileUserCard";
 import ProfileUserCard from "../components/ProfileUserCard";
 import PostModal from "../components/PostModal";
 import SquarePost from "./SquarePost";
+import StoriesContext from "../context/StoriesContext";
+import { userHasStory } from "../services/helper";
+import { ProfileAvaHasStory } from "../components/ProfileAvaHasStory";
 
 export default function ProfilePage() {
     const { currentUser } = useContext(CurrentUserContext);
@@ -111,6 +114,10 @@ export default function ProfilePage() {
     const [mutualFollowers, setMutualFollowers] = useState([]);
 
     const isMyProfile = currentUser.userId === profileUser?.userId;
+
+    const { stories } = useContext(StoriesContext);
+
+    const hasStory = userHasStory(username, stories);
     return profileUser ? (
         <div className="bg-black h-screen px-28 flex flex-col overflow-y-auto">
             <div className="fixed top-0 left-0 w-20 h-screen overflow-y-auto">
@@ -124,12 +131,19 @@ export default function ProfilePage() {
                 ) : (
                     <div className="flex">
                         {/* profile Pic */}
-                        <div className="h-[170px] w-[170px] mx-14 my-5 mr-20 rounded-full overflow-hidden">
-                            <img
-                                src={profileUser.profilePicture}
-                                className="w-full h-auto"
+                        {hasStory ? (
+                            <ProfileAvaHasStory
+                                avatar={profileUser.profilePicture}
+                                story={hasStory}
                             />
-                        </div>
+                        ) : (
+                            <div className="h-[170px] w-[170px] mx-14 my-5 mr-20 rounded-full overflow-hidden">
+                                <img
+                                    src={profileUser.profilePicture}
+                                    className="w-full h-auto"
+                                />
+                            </div>
+                        )}
                         {/* Info tag */}
                         <div className=" flex flex-col text-white">
                             <div className="flex flex-row mb-1">
