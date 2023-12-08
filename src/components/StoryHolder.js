@@ -35,7 +35,7 @@ export default function StoryHolder({ story, index }) {
                         </a>
                     </div>
                 ) : (
-                    <div class="bg-white p-[2px] rounded-full">
+                    <div class="bg-ig-grey p-[1px] rounded-full">
                         <a class=" bg-black block rounded-full p-[2.5px] ">
                             <div className="h-14 w-14 rounded-full overflow-hidden">
                                 <img

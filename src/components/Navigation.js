@@ -59,7 +59,6 @@ export default function Navigation() {
                         //         "3",
                         //         "https://i.imgur.com/k7bSvL1.png"
                         //     );
-                        //     console.log("aa");
                         // }}
                     >
                         <svg
