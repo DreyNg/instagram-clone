@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import StoryModal from "./StoryModal";
+import SeenStoriesContext from "../context/SeenStoriesContext";
 
 export default function StoryHolder({ story, index }) {
     const [openStoryModal, setOpenStoryModal] = useState(false);
+    const { seenStory, setSeenStory } = useContext(SeenStoriesContext);
     const handleOpenStoryModal = () => {
         handleViewedStory();
         setOpenStoryModal(true);
@@ -14,6 +16,7 @@ export default function StoryHolder({ story, index }) {
     const [notSeen, setNotSeen] = useState(true);
     const handleViewedStory = () => {
         setNotSeen(false);
+        setSeenStory(new Set([...seenStory, story]));
     };
     return (
         <div>
@@ -22,7 +25,7 @@ export default function StoryHolder({ story, index }) {
                 className="cursor-pointer m-3 flex items-center flex-col"
                 onClick={handleOpenStoryModal}
             >
-                {notSeen ? (
+                {!seenStory.has(story) ? (
                     <div class="bg-gradient-to-tr from-yellow-500 to-fuchsia-700 p-[2.2px] rounded-full">
                         <a class=" bg-black block rounded-full p-[2px] ">
                             <div className="h-14 w-14 rounded-full overflow-hidden">
@@ -52,15 +55,11 @@ export default function StoryHolder({ story, index }) {
             {openStoryModal && (
                 <StoryModal
                     closeModal={handleCloseStoryModal}
-                    username={"asdasd.asd"}
-                    avatar={
-                        "https://dfstudio-d420.kxcdn.com/wordpress/wp-content/uploads/2019/06/digital_camera_photo-1080x675.jpg"
-                    }
-                    timestamp={"9h"}
-                    verified={true}
-                    imgUrl={
-                        "https://blog.hubspot.com/hs-fs/hubfs/instagram-story-dimensions.png?width=350&name=instagram-story-dimensions.png"
-                    }
+                    username={story.userUsername}
+                    avatar={story.userAva}
+                    timestamp={story.timestamp}
+                    verified={story.verified}
+                    imgUrl={story.imageUrl}
                 />
             )}
         </div>

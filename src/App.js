@@ -11,6 +11,7 @@ import FirebaseContext from "./context/firebase";
 import StoriesContext from "./context/StoriesContext";
 import { getStories, getUserById } from "./services/firebase";
 import FollowingUsersContext from "./context/FollowingUsersContext";
+import SeenStoriesContext from "./context/SeenStoriesContext";
 
 const Login = lazy(() => import("./pages/Login"));
 const SignUp = lazy(() => import("./pages/SignUp"));
@@ -96,7 +97,7 @@ function App() {
     }, [currentUser]);
 
     const [stories, setStories] = useState([]);
-
+    const [seenStory, setSeenStory] = useState(new Set());
     useEffect(() => {
         const fetchStories = async () => {
             try {
@@ -118,36 +119,40 @@ function App() {
         <CurrentUserContext.Provider value={{ currentUser }}>
             <FollowingUsersContext.Provider value={{ followingUsers }}>
                 <StoriesContext.Provider value={{ stories }}>
-                    <Router>
-                        <Suspense fallback={<p>Loading ......</p>}>
-                            <Routes>
-                                <Route
-                                    path={ROUTER.LOGIN}
-                                    element={<Login />}
-                                />
-                                <Route
-                                    path={ROUTER.SIGNUP}
-                                    element={<SignUp />}
-                                />
-                                <Route
-                                    path={ROUTER.PROFILE}
-                                    element={<MyProfile />}
-                                />
+                    <SeenStoriesContext.Provider
+                        value={{ seenStory, setSeenStory }}
+                    >
+                        <Router>
+                            <Suspense fallback={<p>Loading ......</p>}>
+                                <Routes>
+                                    <Route
+                                        path={ROUTER.LOGIN}
+                                        element={<Login />}
+                                    />
+                                    <Route
+                                        path={ROUTER.SIGNUP}
+                                        element={<SignUp />}
+                                    />
+                                    <Route
+                                        path={ROUTER.PROFILE}
+                                        element={<MyProfile />}
+                                    />
 
-                                <Route
-                                    path={ROUTER.DASHBOARD}
-                                    element={
-                                        userId ? (
-                                            <Dashboard />
-                                        ) : (
-                                            <Navigate to={ROUTER.LOGIN} />
-                                        )
-                                    }
-                                />
-                                <Route path="*" element={<NotFound />} />
-                            </Routes>
-                        </Suspense>
-                    </Router>
+                                    <Route
+                                        path={ROUTER.DASHBOARD}
+                                        element={
+                                            userId ? (
+                                                <Dashboard />
+                                            ) : (
+                                                <Navigate to={ROUTER.LOGIN} />
+                                            )
+                                        }
+                                    />
+                                    <Route path="*" element={<NotFound />} />
+                                </Routes>
+                            </Suspense>
+                        </Router>
+                    </SeenStoriesContext.Provider>
                 </StoriesContext.Provider>
             </FollowingUsersContext.Provider>
         </CurrentUserContext.Provider>

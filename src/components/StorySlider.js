@@ -29,20 +29,6 @@ export default function StorySlider() {
     };
 
     const { stories } = useContext(StoriesContext);
-    // const [stories, setStories] = useState([]);
-    // useEffect(() => {
-    //     const fetchStories = async () => {
-    //         try {
-    //             setStories(await getStories(currentUser));
-    //         } catch (error) {
-    //             console.error("Error fetching suggestions:", error);
-    //         }
-    //     };
-
-    //     if (currentUser) {
-    //         fetchStories();
-    //     }
-    // }, []);
 
     return (
         <div>
