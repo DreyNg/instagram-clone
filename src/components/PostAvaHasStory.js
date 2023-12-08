@@ -17,7 +17,6 @@ export function PostAvaHasStory({ avatar, story }) {
     const handleViewedStory = () => {
         setNotSeen(false);
         setSeenStory(new Set([...seenStory, story]));
-        seenStory.add(story);
         // console.log(seenStory);
     };
     return (

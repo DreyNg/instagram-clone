@@ -137,7 +137,6 @@ export default function Post({
                                 src={avatar}
                                 className="w-full h-auto"
                                 alt={`Avatar of `}
-                                onClick={handleCreateComment}
                             />
                         </div>
                     )}
