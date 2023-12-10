@@ -72,7 +72,7 @@ export default function SignUp() {
         <div className=" bg-gray-50 flex flex-col items-center">
             <div className="bg-white border rounded border-gray-300 w-80 py-8 flex items-center flex-col m-3">
                 <img
-                    src="/images/logo.png"
+                    src="https://i.imgur.com/YYy6mGM.png"
                     alt="instagram logo"
                     className="mt-5 cursor-pointer"
                 />
@@ -86,7 +86,10 @@ export default function SignUp() {
                     </div>
                 )}
                 <button className="w-64 mt-2 p-1 border rounded flex items-center justify-center bg-ig-blue">
-                    <img src="/images/fb-logo-white.png" className="h-6 w-6" />
+                    <img
+                        src="https://i.imgur.com/qxMLdI0.png"
+                        className="h-6 w-6"
+                    />
                     <span className="ml-1 text-xs text-white font-semibold">
                         Log in with Facebook
                     </span>
@@ -185,11 +188,11 @@ export default function SignUp() {
                 Get the app.
                 <div className="flex justify-center mt-2 mb-4">
                     <img
-                        src="/images/playStore.png"
+                        src="https://i.imgur.com/9luhufo.png"
                         className="cursor-pointer h-12 mr-0.5"
                     />
                     <img
-                        src="/images/appStore.png"
+                        src="https://i.imgur.com/HDSctnV.png"
                         className="cursor-pointer h-12 ml-0.5"
                     />
                 </div>

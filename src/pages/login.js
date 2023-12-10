@@ -44,14 +44,14 @@ export default function Login() {
         <div className="container flex mx-auto max-w-screen-md items-center h-screen">
             <div className="flex w-3/6">
                 <img
-                    src="/images/iphone-with-profile.png"
+                    src="https://i.imgur.com/lqMwOfi.png"
                     alt="iphone with Ins"
                 />
             </div>
             <div className="h-screen bg-gray-50 w-3/6 flex flex-col justify-center items-center">
                 <div className="bg-white border rounded border-gray-300 w-80 py-8 flex items-center flex-col mb-3">
                     <img
-                        src="/images/logo.png"
+                        src="https://i.imgur.com/YYy6mGM.png"
                         alt="instagram logo"
                         className="mt-5 cursor-pointer"
                     />
@@ -99,7 +99,7 @@ export default function Login() {
                         <span className="bg-gray-300 h-px flex-grow t-2 relative top-2"></span>
                     </div>
                     <button className="flex mt-6">
-                        <img src="/images/fb-small-logo.png" />
+                        <img src="https://i.imgur.com/MVBuOf5.png" />
                         <span className="ml-2 text-xs text-blue-900 font-semibold">
                             Log in with Facebook
                         </span>
@@ -122,11 +122,11 @@ export default function Login() {
                     Get the app.
                     <div className="flex justify-center mt-2">
                         <img
-                            src="/images/playStore.png"
+                            src="https://i.imgur.com/9luhufo.png"
                             className="h-12 mr-0.5 cursor-pointer"
                         />
                         <img
-                            src="/images/appStore.png"
+                            src="https://i.imgur.com/HDSctnV.png"
                             className="h-12 ml-0.5 cursor-pointer"
                         />
                     </div>
