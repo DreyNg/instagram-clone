@@ -3,6 +3,7 @@ import { useState, useContext, useEffect } from "react";
 import FirebaseContext from "../context/firebase";
 import * as ROUTER from "../constants/route";
 import { getUserById } from "../services/firebase";
+import CurrentUserContext from "../context/CurrentUserContext";
 
 export default function Login() {
     const { firebase } = useContext(FirebaseContext);
@@ -13,6 +14,8 @@ export default function Login() {
 
     const [error, setError] = useState("");
     const isInvalid = password === "" || email === "";
+
+    const { setCurrentUser } = useContext(CurrentUserContext);
 
     useEffect(() => {
         document.title = "Login • Insgragram";
@@ -29,6 +32,7 @@ export default function Login() {
                     const uid = authUser.uid;
                     const user = await getUserById(uid);
                     localStorage.setItem("userId", user.userId);
+                    setCurrentUser(user);
                 });
             // TODO:store logged user
 

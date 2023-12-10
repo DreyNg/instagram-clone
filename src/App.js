@@ -116,7 +116,7 @@ function App() {
     }
 
     return (
-        <CurrentUserContext.Provider value={{ currentUser }}>
+        <CurrentUserContext.Provider value={{ currentUser, setCurrentUser }}>
             <FollowingUsersContext.Provider value={{ followingUsers }}>
                 <StoriesContext.Provider value={{ stories }}>
                     <SeenStoriesContext.Provider
@@ -141,7 +141,7 @@ function App() {
                                     <Route
                                         path={ROUTER.DASHBOARD}
                                         element={
-                                            userId ? (
+                                            currentUser ? (
                                                 <Dashboard />
                                             ) : (
                                                 <Navigate to={ROUTER.LOGIN} />
