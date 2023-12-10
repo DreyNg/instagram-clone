@@ -4,20 +4,20 @@ import {
     Routes,
     Route,
     Navigate,
+    redirect,
 } from "react-router-dom";
 import * as ROUTER from "./constants/route";
 import CurrentUserContext from "./context/CurrentUserContext";
 import FirebaseContext from "./context/firebase";
 import StoriesContext from "./context/StoriesContext";
 import { getStories, getUserById } from "./services/firebase";
-import FollowingUsersContext from "./context/FollowingUsersContext";
 import SeenStoriesContext from "./context/SeenStoriesContext";
 
 const Login = lazy(() => import("./pages/Login"));
 const SignUp = lazy(() => import("./pages/SignUp"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const Dashboard = lazy(() => import("./pages/Dashboard"));
-const MyProfile = lazy(() => import("./pages/ProfilePage"));
+const ProfilePage = lazy(() => import("./pages/ProfilePage"));
 
 function App() {
     const { firebase } = useContext(FirebaseContext);
@@ -105,15 +105,41 @@ function App() {
                             <Routes>
                                 <Route
                                     path={ROUTER.LOGIN}
-                                    element={<Login />}
+                                    element={
+                                        currentUser ? (
+                                            <Navigate to={ROUTER.DASHBOARD} />
+                                        ) : (
+                                            <Suspense
+                                                fallback={<p>Loading ......</p>}
+                                            >
+                                                <Login />
+                                            </Suspense>
+                                        )
+                                    }
                                 />
                                 <Route
                                     path={ROUTER.SIGNUP}
-                                    element={<SignUp />}
+                                    element={
+                                        currentUser ? (
+                                            <Navigate to={ROUTER.DASHBOARD} />
+                                        ) : (
+                                            <Suspense
+                                                fallback={<p>Loading ......</p>}
+                                            >
+                                                <SignUp />
+                                            </Suspense>
+                                        )
+                                    }
                                 />
                                 <Route
                                     path={ROUTER.PROFILE}
-                                    element={<MyProfile />}
+                                    element={
+                                        currentUser ? (
+                                            <ProfilePage />
+                                        ) : (
+                                            <Navigate to={ROUTER.LOGIN} />
+                                        )
+                                    }
                                 />
 
                                 <Route
