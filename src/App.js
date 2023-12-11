@@ -46,16 +46,16 @@ function App() {
                                 });
                             });
                         }
-                        // unsubscribe = userRef.onSnapshot((snapshot) => {
-                        //     snapshot.docChanges().forEach((change) => {
-                        //         if (change.type === "modified") {
-                        //             setCurrentUser({
-                        //                 firestoreId: change.doc.id,
-                        //                 ...change.doc.data(),
-                        //             });
-                        //         }
-                        //     });
-                        // });
+                        unsubscribe = userRef.onSnapshot((snapshot) => {
+                            snapshot.docChanges().forEach((change) => {
+                                if (change.type === "modified") {
+                                    setCurrentUser({
+                                        firestoreId: change.doc.id,
+                                        ...change.doc.data(),
+                                    });
+                                }
+                            });
+                        });
                     }
                 } catch (error) {
                     // Handle error if fetching user fails
