@@ -4,7 +4,7 @@ import MakePostModal from "./MakePostModal";
 import { Link } from "react-router-dom";
 import { createHighlight, createStory } from "../services/firebase";
 import FirebaseContext from "../context/firebase";
-import { createSeedPosts } from "../seed";
+import { createSeedPosts, createSeedStory } from "../seed";
 
 export default function Navigation() {
     const { currentUser } = useContext(CurrentUserContext);
@@ -66,7 +66,7 @@ export default function Navigation() {
 
                         // onClick={async () => {
                         //     console.log("hi");
-                        //     await createSeedPosts();
+                        //     await createSeedStory();
                         //     console.log("hi");
                         // }}
                     >

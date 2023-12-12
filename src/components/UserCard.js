@@ -29,11 +29,13 @@ const UserCard = ({
         <div className="w-full py-2 flex items-center">
             <div className="p-1 rounded-lg flex-none cursor-pointer">
                 <div className="h-11 w-11 rounded-full overflow-hidden">
-                    <img
-                        src={avatarSrc}
-                        className="w-full h-auto"
-                        alt={`Avatar of ${username}`}
-                    />
+                    <Link to={`/p/${username}`}>
+                        <img
+                            src={avatarSrc}
+                            className="w-full h-auto"
+                            alt={`Avatar of ${username}`}
+                        />
+                    </Link>
                 </div>
             </div>
             <div className="mx-2 flex-grow">

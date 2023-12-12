@@ -952,3 +952,190 @@ export async function createSeedPosts() {
         console.error("Error creating users:", error);
     }
 }
+
+const storyImg =
+    "https://blog.hubspot.com/hs-fs/hubfs/instagram-story-dimensions.png?width=350&name=instagram-story-dimensions.png";
+// story
+const storySeed = [
+    {
+        imageUrl: storyImg,
+        timestamp: "20h",
+        userAva:
+            "https://img.freepik.com/premium-vector/instagram-social-media-icon-gradient-social-media-logo_197792-4682.jpg?size=338&ext=jpg&ga=GA1.1.1546980028.1702339200&semt=ais",
+        userId: insId,
+        userUsername: "instagram",
+        verified: true,
+    },
+    {
+        imageUrl: storyImg,
+        timestamp: "10h",
+        userAva: "https://i.imgur.com/cGsXYgP.jpg",
+        userId: veyId,
+        userUsername: "harvey.tr",
+        verified: false,
+    },
+    {
+        imageUrl: storyImg,
+        timestamp: "10h",
+        userAva:
+            "https://static.vecteezy.com/system/resources/previews/013/948/549/original/google-logo-on-transparent-white-background-free-vector.jpg",
+        userId: googleId,
+        userUsername: "google",
+        verified: true,
+    },
+    {
+        imageUrl: storyImg,
+        timestamp: "2m",
+        userAva: "http://placekitten.com/200/300",
+        userId: catId,
+        userUsername: "cat",
+        verified: true,
+    },
+    {
+        imageUrl: storyImg,
+        timestamp: "15m",
+        userAva:
+            "https://i.pinimg.com/originals/12/c6/f0/12c6f07612826a4ecaa52d7fb825b5b3.jpg",
+        userId: dogId,
+        userUsername: "dog",
+        verified: true,
+    },
+    {
+        imageUrl: storyImg,
+        timestamp: "15m",
+        userAva:
+            "https://static.vecteezy.com/system/resources/previews/023/506/852/non_2x/cute-kawaii-mushroom-chibi-mascot-cartoon-style-vector.jpg",
+        userId: jenId,
+        userUsername: "jennifer.cubu",
+        verified: false,
+    },
+    {
+        imageUrl: storyImg,
+        timestamp: "16h",
+        userAva: "https://avatars.githubusercontent.com/u/46010107?v=4",
+        userId: adenId,
+        userUsername: "aden.m",
+        verified: false,
+    },
+    {
+        imageUrl: storyImg,
+        timestamp: "2h",
+        userAva:
+            "https://img.pikbest.com/png-images/qiantu/cute-square-rectangle-small-dinosaur-is-commercially-available_2575297.png!sw800",
+        userId: harryId,
+        userUsername: "harry.wang_",
+        verified: false,
+    },
+    {
+        imageUrl: storyImg,
+        timestamp: "30m",
+        userAva:
+            "https://usercontent.one/wp/studyoptions.com/wp-content/uploads/2021/09/The-University-of-Melbourne-logo-300x300.jpg",
+        userId: unimelbId,
+        userUsername: "unimelb",
+        verified: true,
+    },
+    {
+        imageUrl: storyImg,
+        timestamp: "30m",
+        userAva:
+            "https://usercontent.one/wp/studyoptions.com/wp-content/uploads/2021/09/The-University-of-Melbourne-logo-300x300.jpg",
+        userId: lawlId,
+        userUsername: "lawrencelin18",
+        verified: false,
+    },
+    {
+        imageUrl: storyImg,
+        timestamp: "30m",
+        userAva: "https://i.imgur.com/kHCU1Lz.png",
+        userId: brianId,
+        userUsername: "lm_dgg_koway",
+        verified: false,
+    },
+    {
+        imageUrl: storyImg,
+        timestamp: "30m",
+        userAva: "https://i.imgur.com/uH7KgB5.png",
+        userId: lucasId,
+        userUsername: "_.lucas._",
+        verified: false,
+    },
+    {
+        imageUrl: storyImg,
+        timestamp: "30m",
+        userAva: "https://i.imgur.com/golmxuk.jpg",
+        userId: jeremyId,
+        userUsername: "_.jeremy._",
+        verified: false,
+    },
+];
+
+const highlightSeed = [
+    // instagram
+    {
+        imageUrl: storyImg,
+        timestamp: "202w",
+        userAva:
+            "https://instagram.fmel15-1.fna.fbcdn.net/v/t51.2885-15/408434204_384453527344115_4394477290661748181_n.jpg?stp=c0.458.1179.1179a_dst-jpg_e35_s150x150&_nc_ht=instagram.fmel15-1.fna.fbcdn.net&_nc_cat=1&_nc_ohc=u6S5K_x-Xe4AX-Wbv9K&edm=AGW0Xe4BAAAA&ccb=7-5&oh=00_AfBmzbmUQ2PhQoH2ooNAb4gSwrT0it091oBochLqhzAxaQ&oe=657A256E&_nc_sid=94fea1",
+        userId: insId,
+        userUsername: "Trend Talk 2020",
+        verified: true,
+    },
+    {
+        imageUrl: storyImg,
+        timestamp: "202w",
+        userAva:
+            "https://instagram.fmel15-1.fna.fbcdn.net/v/t51.2885-15/379767354_860931855419358_3557172558601046132_n.jpg?stp=c32.196.590.590a_dst-jpg_e15_s150x150&_nc_ht=instagram.fmel15-1.fna.fbcdn.net&_nc_cat=1&_nc_ohc=rDwWtZTXUAYAX-wdbcQ&edm=AGW0Xe4BAAAA&ccb=7-5&oh=00_AfAnvWXbfwnhsW6ua80F0kYp3qOxgePTj8-DwqCAe615Zg&oe=657A6020&_nc_sid=94fea1",
+        userId: insId,
+        userUsername: "Creatives ✩",
+        verified: true,
+    },
+    {
+        imageUrl: storyImg,
+        timestamp: "202w",
+        userAva:
+            "https://instagram.fmel15-1.fna.fbcdn.net/v/t51.2885-15/379767354_860931855419358_3557172558601046132_n.jpg?stp=c32.196.590.590a_dst-jpg_e15_s150x150&_nc_ht=instagram.fmel15-1.fna.fbcdn.net&_nc_cat=1&_nc_ohc=rDwWtZTXUAYAX-wdbcQ&edm=AGW0Xe4BAAAA&ccb=7-5&oh=00_AfAnvWXbfwnhsW6ua80F0kYp3qOxgePTj8-DwqCAe615Zg&oe=657A6020&_nc_sid=94fea1",
+        userId: insId,
+        userUsername: "Creatives ✩",
+        verified: true,
+    },
+];
+
+export async function createSeedStory() {
+    for (const u of storySeed) {
+        try {
+            const postsRef = firebase.firestore().collection("stories");
+
+            // Create a new post object
+            const newStory = {
+                userUsername: u.userUsername.toLowerCase(),
+                userAva: u.userAva,
+                userId: u.userId,
+                imageUrl: u.imageUrl,
+                timestamp: u.timestamp,
+                verified: u.verified,
+            };
+
+            // Add the new post to Firestore
+            const docRef = await postsRef.add(newStory);
+            await docRef.update({
+                storyId: docRef.id,
+            });
+
+            // // append to user field: posts
+            const currentUserQuery = firebase
+                .firestore()
+                .collection("users")
+                .doc(u.userId);
+            // Update the post document with the post's ID
+            await currentUserQuery.update({
+                stories: [docRef.id],
+            });
+            console.log(docRef.id);
+        } catch (error) {
+            console.error("Error adding post: ", error);
+        }
+    }
+}
+// ticks: google, unimelb dog cat ins
+//  vey Jerry, aden, brian lucas jen harry law
