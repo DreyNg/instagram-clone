@@ -3,8 +3,8 @@ import CurrentUserContext from "../context/CurrentUserContext";
 import MakePostModal from "./MakePostModal";
 import { Link } from "react-router-dom";
 import { createHighlight, createStory } from "../services/firebase";
-import { createSeedUser } from "../seed";
 import FirebaseContext from "../context/firebase";
+import { createSeedPosts } from "../seed";
 
 export default function Navigation() {
     const { currentUser } = useContext(CurrentUserContext);
@@ -65,7 +65,9 @@ export default function Navigation() {
                         // }}
 
                         onClick={async () => {
-                            await createSeedUser(firebase);
+                            console.log("hi");
+                            await createSeedPosts();
+                            console.log("hi");
                         }}
                     >
                         <svg
