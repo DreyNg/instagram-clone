@@ -91,11 +91,13 @@ const CommentPost = (
                         <PostAvaHasStory avatar={avatar} story={hasStory} />
                     ) : (
                         <div className="h-8 w-8 rounded-full overflow-hidden">
-                            <img
-                                src={avatar}
-                                className="w-full h-auto"
-                                alt={`Avatar of `}
-                            />
+                            <Link to={`/p/${username}`}>
+                                <img
+                                    src={avatar}
+                                    className="w-full h-auto"
+                                    alt={`Avatar of `}
+                                />
+                            </Link>
                         </div>
                     )}
                 </div>
