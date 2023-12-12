@@ -64,11 +64,11 @@ export default function Navigation() {
                         //     );
                         // }}
 
-                        onClick={async () => {
-                            console.log("hi");
-                            await createSeedPosts();
-                            console.log("hi");
-                        }}
+                        // onClick={async () => {
+                        //     console.log("hi");
+                        //     await createSeedPosts();
+                        //     console.log("hi");
+                        // }}
                     >
                         <svg
                             className="w-7 h-7 fill-current text-gray-100 "

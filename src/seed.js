@@ -236,16 +236,16 @@ const catId = "FOvcIjMxSPXYl7TWVjCCNazfl513";
 const insId = "BqQ8mVpkFfaPNPjBuGdQizGFUno1";
 
 const veyId = "6upITnFxUhel1rzzBIP5q7xanjA2";
-const jeremyId = "";
-const adenId = "";
-const brianId = "";
-const lucasId = "";
-const jenId = "";
-const harryId = "";
-const lawlId = "";
-const dreyId = "";
+const jeremyId = "m4ByqX5JD5dwiUkrjgIVH6jKLOA3";
+const adenId = "73em8rq5pIOUUzFN210KImyDTlw1";
+const brianId = "D5uQaRtQF4dSp7u7hXpOl1UufxK2";
+const lucasId = "XkrnMmahLIcnZZwskh6X4ANhBB23";
+const jenId = "0YepfTyO8aPOH6zrrF1sNTCPYSd2";
+const harryId = "EzxnAftKNZNo9Iu4E5HBOCYVD9J3";
+const lawlId = "Zf4I61HPDjbZX1dBzDqu8f9eMXo2";
+const dreyId = "xZe7V1UeX3P84j0mrIpkCrRjM1k2";
 
-const postData = [
+const pData = [
     // google
     {
         caption:
@@ -260,6 +260,183 @@ const postData = [
         userUsername: "google",
         verified: true,
     },
+    // unimelb
+    {
+        caption:
+            "We've offered our first Narrm Scholarships to eligible students who received their Year 12 results yesterday, alongside our esteemed Melbourne Chancellor’s Scholarship offered to students who achieved academically outstanding results. Congratulations!",
+        imageUrl: "https://i.imgur.com/Vrfvq0Y.png",
+        comments: [],
+        likes: [],
+        userAva:
+            "https://usercontent.one/wp/studyoptions.com/wp-content/uploads/2021/09/The-University-of-Melbourne-logo-300x300.jpg",
+
+        userId: unimelbId,
+        userUsername: "unimelb",
+        verified: true,
+    },
+    // cat
+    {
+        caption: "Who can relate?",
+        imageUrl:
+            "https://www.boredpanda.com/blog/wp-content/uploads/2022/09/cat-memes-catslovecatnip-cover_800.png",
+        comments: [],
+        likes: [],
+        userAva: "http://placekitten.com/200/300",
+
+        userId: catId,
+        userUsername: "cat",
+        verified: true,
+    },
+    //dog
+    {
+        caption: "let's go!!!",
+        imageUrl:
+            "https://i.pinimg.com/736x/07/a8/8d/07a88d1f5115a47e65c3f2598a760d82.jpg",
+        comments: [],
+        likes: [],
+        userAva:
+            "https://i.pinimg.com/originals/12/c6/f0/12c6f07612826a4ecaa52d7fb825b5b3.jpg",
+
+        userId: dogId,
+        userUsername: "dog",
+        verified: true,
+    },
+    // instagram
+
+    {
+        caption:
+            "When considering my aesthetic, I like to think of it as ‘cartoon in real life,’” says the self-taught multidisciplinary artist and, more recently, novice toy-maker. “One striking quality of my characters is their immediate and welcoming presence, which mystifies their true intentions. I enjoy toying with the sinister flip side that cuteness can conceal, adding a layer of intrigue to the otherwise adorable and endearing nature of my creations.",
+        imageUrl: "https://i.imgur.com/uiV3Lb1.png",
+        comments: [],
+        likes: [],
+        userAva:
+            "https://img.freepik.com/premium-vector/instagram-social-media-icon-gradient-social-media-logo_197792-4682.jpg?size=338&ext=jpg&ga=GA1.1.1546980028.1702339200&semt=ais",
+
+        userId: insId,
+        userUsername: "instagram",
+        verified: true,
+    },
+    //vey
+    {
+        caption: "bad manners to keep Buda-best waiting",
+        imageUrl: "https://i.imgur.com/oCfGgaw.jpg",
+        comments: [],
+        likes: [],
+        userAva: "https://i.imgur.com/cGsXYgP.jpg",
+
+        userId: veyId,
+        userUsername: "harvey.tr",
+        verified: false,
+    },
+    // Jeremmy
+    {
+        caption: "Graetch Michael",
+        imageUrl: "https://i.imgur.com/golmxuk.jpg",
+        comments: [],
+        likes: [],
+        userAva: "https://i.imgur.com/golmxuk.jpg",
+
+        userId: jeremyId,
+        userUsername: "_.jeremy._",
+        verified: false,
+    },
+
+    // Aden
+    {
+        caption: "I love Flutter <3",
+        imageUrl:
+            "https://topdigital.agency/wp-content/uploads/2021/04/title-image.png",
+        comments: [],
+        likes: [],
+        userAva: "https://avatars.githubusercontent.com/u/46010107?v=4",
+
+        userId: adenId,
+        userUsername: "aden.m",
+        verified: false,
+    },
+    // Brian
+    {
+        caption: "Dance world!",
+        imageUrl:
+            "https://www.danceworldstudios.com/wp-content/uploads/2023/04/Junior-Dance-Kids.jpg",
+        comments: [],
+        likes: [],
+        userAva: "https://i.imgur.com/kHCU1Lz.png",
+
+        userId: brianId,
+        userUsername: "lm_dgg_koway",
+        verified: false,
+    },
+    // Lucas
+    {
+        caption: "Lee Chong Wei Jr",
+        imageUrl:
+            "https://img.olympics.com/images/image/private/t_s_pog_staticContent_hero_lg/f_auto/primary/n48stycjpdkk3ohkglvg",
+        comments: [],
+        likes: [],
+        userAva: "https://i.imgur.com/uH7KgB5.png",
+
+        userId: lucasId,
+        userUsername: "_.lucas._",
+        verified: false,
+    },
+    // Jen
+    {
+        caption: "I Graduated!",
+        imageUrl: "https://i.imgur.com/lv6PiFs.jpg",
+        comments: [],
+        likes: [],
+        userAva:
+            "https://static.vecteezy.com/system/resources/previews/023/506/852/non_2x/cute-kawaii-mushroom-chibi-mascot-cartoon-style-vector.jpg",
+
+        userId: jenId,
+        userUsername: "jennifer.cubu",
+        verified: false,
+    },
+    // Harry
+    {
+        caption: "Yum",
+        imageUrl:
+            "https://images.squarespace-cdn.com/content/v1/5d6373bf35fc9f0001a2c37d/1606653527309-WFRUFM6VNFR7TOUQVM25/201127_LAGOON_DINING_3799.jpg",
+        comments: [],
+        likes: [],
+        userAva:
+            "https://img.pikbest.com/png-images/qiantu/cute-square-rectangle-small-dinosaur-is-commercially-available_2575297.png!sw800",
+
+        userId: harryId,
+        userUsername: "harry.wang_",
+        verified: false,
+    },
+    // Lawl
+    {
+        caption: "Cool",
+        imageUrl:
+            "https://images.squarespace-cdn.com/content/v1/5683aff9a12f443fdcd7b3a0/1613748834314-30BC7DR6FTV9BI6PLY06/lens+ball+800.jpg",
+        comments: [],
+        likes: [],
+        userAva:
+            "https://i.etsystatic.com/27713397/r/il/265d10/4503094953/il_fullxfull.4503094953_ioyq.jpg",
+
+        userId: lawlId,
+        userUsername: "lawrencelin18",
+        verified: false,
+    },
+    // Drey
+    {
+        caption: "Cool",
+        imageUrl: "https://i.imgur.com/enKGudj.jpg",
+        comments: [],
+        likes: [],
+        userAva:
+            "https://media.licdn.com/dms/image/C5603AQEoU_6p7eFO8A/profile-displayphoto-shrink_200_200/0/1639044381680?e=2147483647&v=beta&t=F4wV3HwJ7US3YxmmuAb-49brTwLoDXFLJvcjEfJC-IQ",
+
+        userId: dreyId,
+        userUsername: "drey.ng",
+        verified: true,
+    },
+];
+
+const postData = [
     {
         caption:
             "We choose you, Pikachu! And fans searching for you did too. g.co/25YearsinSearch #YearInSearch",
@@ -365,20 +542,6 @@ const postData = [
         verified: true,
     },
 
-    // unimelb
-    {
-        caption:
-            "We've offered our first Narrm Scholarships to eligible students who received their Year 12 results yesterday, alongside our esteemed Melbourne Chancellor’s Scholarship offered to students who achieved academically outstanding results. Congratulations!",
-        imageUrl: "https://i.imgur.com/Vrfvq0Y.png",
-        comments: [],
-        likes: [],
-        userAva:
-            "https://usercontent.one/wp/studyoptions.com/wp-content/uploads/2021/09/The-University-of-Melbourne-logo-300x300.jpg",
-
-        userId: unimelbId,
-        userUsername: "unimelb",
-        verified: true,
-    },
     {
         caption:
             "Demonstrating Australia’s growing reputation in the global space sector, SpIRIT is the first Australian satellite to carry a foreign space agency’s scientific instrument as its main payload, namely the Italian Space Agency’s HERMES X-ray detector. The HERMES X-ray detector is designed to search for bursts of gamma rays, which are created when stars die or collide and for a moment emit more energy than an entire galaxy.",
@@ -432,19 +595,6 @@ const postData = [
         verified: true,
     },
 
-    // cat
-    {
-        caption: "Who can relate?",
-        imageUrl:
-            "https://www.boredpanda.com/blog/wp-content/uploads/2022/09/cat-memes-catslovecatnip-cover_800.png",
-        comments: [],
-        likes: [],
-        userAva: "http://placekitten.com/200/300",
-
-        userId: catId,
-        userUsername: "cat",
-        verified: true,
-    },
     {
         caption: "Ooops",
         imageUrl:
@@ -470,20 +620,6 @@ const postData = [
         verified: true,
     },
 
-    //dog
-    {
-        caption: "let's go!!!",
-        imageUrl:
-            "https://i.pinimg.com/736x/07/a8/8d/07a88d1f5115a47e65c3f2598a760d82.jpg",
-        comments: [],
-        likes: [],
-        userAva:
-            "https://i.pinimg.com/originals/12/c6/f0/12c6f07612826a4ecaa52d7fb825b5b3.jpg",
-
-        userId: dogId,
-        userUsername: "dog",
-        verified: true,
-    },
     {
         caption: "deep",
         imageUrl:
@@ -511,21 +647,6 @@ const postData = [
         verified: true,
     },
 
-    // instagram
-
-    {
-        caption:
-            "When considering my aesthetic, I like to think of it as ‘cartoon in real life,’” says the self-taught multidisciplinary artist and, more recently, novice toy-maker. “One striking quality of my characters is their immediate and welcoming presence, which mystifies their true intentions. I enjoy toying with the sinister flip side that cuteness can conceal, adding a layer of intrigue to the otherwise adorable and endearing nature of my creations.",
-        imageUrl: "https://i.imgur.com/uiV3Lb1.png",
-        comments: [],
-        likes: [],
-        userAva:
-            "https://img.freepik.com/premium-vector/instagram-social-media-icon-gradient-social-media-logo_197792-4682.jpg?size=338&ext=jpg&ga=GA1.1.1546980028.1702339200&semt=ais",
-
-        userId: insId,
-        userUsername: "instagram",
-        verified: true,
-    },
     {
         caption:
             "“We can’t respect our Earth without respecting each other, and we can’t respect each other without respecting our Earth. They are interconnected.” —Essayist and eco-feminist @kwolanne (Kwolanne Felix) ",
@@ -605,28 +726,196 @@ const postData = [
         verified: true,
     },
 
-    //vey
-    // {
-    //     caption:
-    //         "My work inherently celebrates and uplifts, offering visual candy that serves as something sweet and delectable for the mind’s eye to indulge in.",
-    //     imageUrl: "https://i.imgur.com/2e6K2ch.png",
-    //     comments: [],
-    //     likes: [],
-    //     userAva: "https://i.imgur.com/cGsXYgP.jpg",
+    {
+        caption: "<3 this roll",
+        imageUrl: "https://i.imgur.com/4Ed64RA.jpg",
+        comments: [],
+        likes: [],
+        userAva: "https://i.imgur.com/cGsXYgP.jpg",
 
-    //     userId: veyId,
-    //     userUsername: "harvey.tr",
-    //     verified: false,
-    // },
+        userId: veyId,
+        userUsername: "harvey.tr",
+        verified: false,
+    },
+    {
+        caption: "🦥 low quality",
+        imageUrl: "https://i.imgur.com/TKvLBzn.jpg",
+        comments: [],
+        likes: [],
+        userAva: "https://i.imgur.com/cGsXYgP.jpg",
+
+        userId: veyId,
+        userUsername: "harvey.tr",
+        verified: false,
+    },
+    {
+        caption: "ein luftkuss",
+        imageUrl: "https://i.imgur.com/A5BWwwV.jpg",
+        comments: [],
+        likes: [],
+        userAva: "https://i.imgur.com/cGsXYgP.jpg",
+
+        userId: veyId,
+        userUsername: "harvey.tr",
+        verified: false,
+    },
+    {
+        caption: "brrrrr-lin dump 🍻🐊🍅 rrrrrewe",
+        imageUrl: "https://i.imgur.com/Vvb9xQ0.jpg",
+        comments: [],
+        likes: [],
+        userAva: "https://i.imgur.com/cGsXYgP.jpg",
+
+        userId: veyId,
+        userUsername: "harvey.tr",
+        verified: false,
+    },
+    {
+        caption: "tipsy",
+        imageUrl: "https://i.imgur.com/4A8ufEX.jpg",
+        comments: [],
+        likes: [],
+        userAva: "https://i.imgur.com/cGsXYgP.jpg",
+
+        userId: veyId,
+        userUsername: "harvey.tr",
+        verified: false,
+    },
+    {
+        caption: "học thì không học",
+        imageUrl: "https://i.imgur.com/w960Aur.jpg",
+        comments: [],
+        likes: [],
+        userAva: "https://i.imgur.com/cGsXYgP.jpg",
+
+        userId: veyId,
+        userUsername: "harvey.tr",
+        verified: false,
+    },
+    {
+        caption: "o nhonn 🧅 mi nhonn 😶👖👞",
+        imageUrl: "https://i.imgur.com/wu3vKqo.jpg",
+        comments: [],
+        likes: [],
+        userAva: "https://i.imgur.com/cGsXYgP.jpg",
+
+        userId: veyId,
+        userUsername: "harvey.tr",
+        verified: false,
+    },
+    {
+        caption: "🖍️",
+        imageUrl: "https://i.imgur.com/u0k7oIm.jpg",
+        comments: [],
+        likes: [],
+        userAva: "https://i.imgur.com/cGsXYgP.jpg",
+
+        userId: veyId,
+        userUsername: "harvey.tr",
+        verified: false,
+    },
+
+    {
+        caption: "",
+        imageUrl: "https://i.imgur.com/58NZZJz.jpg",
+        comments: [],
+        likes: [],
+        userAva:
+            "https://media.licdn.com/dms/image/C5603AQEoU_6p7eFO8A/profile-displayphoto-shrink_200_200/0/1639044381680?e=2147483647&v=beta&t=F4wV3HwJ7US3YxmmuAb-49brTwLoDXFLJvcjEfJC-IQ",
+
+        userId: dreyId,
+        userUsername: "drey.ng",
+        verified: true,
+    },
+    {
+        caption: "",
+        imageUrl: "https://i.imgur.com/Aorlk2B.jpg",
+        comments: [],
+        likes: [],
+        userAva:
+            "https://media.licdn.com/dms/image/C5603AQEoU_6p7eFO8A/profile-displayphoto-shrink_200_200/0/1639044381680?e=2147483647&v=beta&t=F4wV3HwJ7US3YxmmuAb-49brTwLoDXFLJvcjEfJC-IQ",
+
+        userId: dreyId,
+        userUsername: "drey.ng",
+        verified: true,
+    },
+    {
+        caption: "",
+        imageUrl: "https://i.imgur.com/c8SG42t.jpg",
+        comments: [],
+        likes: [],
+        userAva:
+            "https://media.licdn.com/dms/image/C5603AQEoU_6p7eFO8A/profile-displayphoto-shrink_200_200/0/1639044381680?e=2147483647&v=beta&t=F4wV3HwJ7US3YxmmuAb-49brTwLoDXFLJvcjEfJC-IQ",
+
+        userId: dreyId,
+        userUsername: "drey.ng",
+        verified: true,
+    },
+    {
+        caption: "",
+        imageUrl: "https://i.imgur.com/L5aFdd6.jpg",
+        comments: [],
+        likes: [],
+        userAva:
+            "https://media.licdn.com/dms/image/C5603AQEoU_6p7eFO8A/profile-displayphoto-shrink_200_200/0/1639044381680?e=2147483647&v=beta&t=F4wV3HwJ7US3YxmmuAb-49brTwLoDXFLJvcjEfJC-IQ",
+
+        userId: dreyId,
+        userUsername: "drey.ng",
+        verified: true,
+    },
+    {
+        caption: "",
+        imageUrl: "https://i.imgur.com/8sg1Za8.jpg",
+        comments: [],
+        likes: [],
+        userAva:
+            "https://media.licdn.com/dms/image/C5603AQEoU_6p7eFO8A/profile-displayphoto-shrink_200_200/0/1639044381680?e=2147483647&v=beta&t=F4wV3HwJ7US3YxmmuAb-49brTwLoDXFLJvcjEfJC-IQ",
+
+        userId: dreyId,
+        userUsername: "drey.ng",
+        verified: true,
+    },
+    {
+        caption: "",
+        imageUrl: "https://i.imgur.com/WrC0vBe.jpg",
+        comments: [],
+        likes: [],
+        userAva:
+            "https://media.licdn.com/dms/image/C5603AQEoU_6p7eFO8A/profile-displayphoto-shrink_200_200/0/1639044381680?e=2147483647&v=beta&t=F4wV3HwJ7US3YxmmuAb-49brTwLoDXFLJvcjEfJC-IQ",
+
+        userId: dreyId,
+        userUsername: "drey.ng",
+        verified: true,
+    },
+    {
+        caption: "",
+        imageUrl: "https://i.imgur.com/3l69XjU.jpg",
+        comments: [],
+        likes: [],
+        userAva:
+            "https://media.licdn.com/dms/image/C5603AQEoU_6p7eFO8A/profile-displayphoto-shrink_200_200/0/1639044381680?e=2147483647&v=beta&t=F4wV3HwJ7US3YxmmuAb-49brTwLoDXFLJvcjEfJC-IQ",
+
+        userId: dreyId,
+        userUsername: "drey.ng",
+        verified: true,
+    },
+    {
+        caption: "",
+        imageUrl: "https://i.imgur.com/QP6xf2d.jpg",
+        comments: [],
+        likes: [],
+        userAva:
+            "https://media.licdn.com/dms/image/C5603AQEoU_6p7eFO8A/profile-displayphoto-shrink_200_200/0/1639044381680?e=2147483647&v=beta&t=F4wV3HwJ7US3YxmmuAb-49brTwLoDXFLJvcjEfJC-IQ",
+
+        userId: dreyId,
+        userUsername: "drey.ng",
+        verified: true,
+    },
 ];
-
-// // friends: Vey, Jeremy, aden, Brian, Lucas, Jen, Harry, Lawl
-
-// google, isntagram, harry, dog, lawl
 
 export async function createSeedPosts() {
     try {
-        for (const u of postData) {
+        for (const u of pData) {
             const postsRef = firebase.firestore().collection("posts");
 
             // Create a new post object
