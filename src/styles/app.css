@@ -679,9 +679,6 @@ video {
 .mt-\[5px\] {
   margin-top: 5px;
 }
-.mt-10 {
-  margin-top: 2.5rem;
-}
 .block {
   display: block;
 }
@@ -970,10 +967,6 @@ video {
 .bg-gray-50 {
   --tw-bg-opacity: 1;
   background-color: rgb(249 250 251 / var(--tw-bg-opacity));
-}
-.bg-green-500 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(34 197 94 / var(--tw-bg-opacity));
 }
 .bg-ig-blue {
   --tw-bg-opacity: 1;
