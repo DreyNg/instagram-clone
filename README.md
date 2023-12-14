@@ -1,6 +1,12 @@
+# Drey-stagram
+
+Deploy: [Link](https://instagram-clone-e91a2.web.app/)
+
+This project is an attempt to recreate the functionality and design of Instagram. It's a web application built using ReactJs with tailwind for UI and Firebase for back end as a service to mimic various features of Instagram, such as posting images, following other users, liking posts, etc.
+
 ## Table of Contents
 
--   [About](#ℹ️-instagram-clone-project)
+-   [About](#ℹ️-preview)
 -   [Features](#🆕-features)
 -   [Technologies Used](#technologies-used)
 -   [Installation](#installation)
@@ -9,11 +15,7 @@
 -   [License](#📝license)
 -   [Contact](#👤-contact)
 
-# ℹ️ Instagram Clone Project
-
-Deploy: [Link](https://instagram-clone-e91a2.web.app/)
-
-This project is an attempt to recreate the functionality and design of Instagram. It's a web application built using ReactJs with tailwind for UI and Firebase for back end as a service to mimic various features of Instagram, such as posting images, following other users, liking posts, etc.
+## ℹ️ Preview
 
 ## 🆕 Features
 

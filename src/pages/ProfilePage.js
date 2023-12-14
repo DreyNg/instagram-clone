@@ -299,27 +299,34 @@ export default function ProfilePage() {
                 {/* story */}
                 {highlights.length > 0 ? (
                     <div className=" border-zinc-600 border-b relative h-[220px]  flex items-center justify-between ">
-                        <button
-                            className="absolute left-5 pb-3"
-                            onClick={scrollLeft}
-                        >
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                className="h-7 w-7"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                stroke="none"
+                        {highlights.length >= 8 && (
+                            <button
+                                className="absolute left-5 pb-3"
+                                onClick={scrollLeft}
                             >
-                                <circle cx="12" cy="12" r="11" fill="#fff" />
-                                <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth="2"
-                                    d="M14 9l-4 3 4 3"
-                                    stroke="rgba(0, 0, 0, 0.2)"
-                                />
-                            </svg>
-                        </button>
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    className="h-7 w-7"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="none"
+                                >
+                                    <circle
+                                        cx="12"
+                                        cy="12"
+                                        r="11"
+                                        fill="#fff"
+                                    />
+                                    <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth="2"
+                                        d="M14 9l-4 3 4 3"
+                                        stroke="rgba(0, 0, 0, 0.2)"
+                                    />
+                                </svg>
+                            </button>
+                        )}
                         <div
                             ref={scrollContainerRef}
                             className="overflow-hidden flex scroll-container px-3"
@@ -334,27 +341,34 @@ export default function ProfilePage() {
 
                             {/* ... Repeat your avatar and username components as needed */}
                         </div>
-                        <button
-                            className="absolute right-2 pb-3"
-                            onClick={scrollRight}
-                        >
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                className="h-7 w-7"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                stroke="none"
+                        {highlights.length >= 8 && (
+                            <button
+                                className="absolute right-2 pb-3"
+                                onClick={scrollRight}
                             >
-                                <circle cx="12" cy="12" r="11" fill="#fff" />
-                                <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth="2"
-                                    d="M12 9l3 3-3 3"
-                                    stroke="rgba(0, 0, 0, 0.2)"
-                                />
-                            </svg>
-                        </button>
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    className="h-7 w-7"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="none"
+                                >
+                                    <circle
+                                        cx="12"
+                                        cy="12"
+                                        r="11"
+                                        fill="#fff"
+                                    />
+                                    <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth="2"
+                                        d="M12 9l3 3-3 3"
+                                        stroke="rgba(0, 0, 0, 0.2)"
+                                    />
+                                </svg>
+                            </button>
+                        )}
                     </div>
                 ) : (
                     <div className="h-10 border-zinc-600 border-b"></div>

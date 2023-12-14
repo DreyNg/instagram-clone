@@ -1,6 +1,6 @@
-import React, { useContext } from "react";
+import React from "react";
 import ReactDom from "react-dom";
-import CurrentUserContext from "../context/CurrentUserContext";
+import { Link } from "react-router-dom";
 
 const StoryModal = ({
     closeModal,
@@ -50,16 +50,20 @@ const StoryModal = ({
             </div>
             <div className="flex flex-col h-[95%] w-[25%] rounded-lg overflow-hidden bg-black">
                 <div className="flex absolute items-center px-3 mt-3">
-                    <div className="h-10 w-10 rounded-full overflow-hidden flex items-center justify-center ">
-                        <img
-                            src={avatar}
-                            className="w-full h-auto"
-                            alt={`Avatar of ${username}`}
-                        />
-                    </div>
-                    <div className="mx-2 text-white text-sm font-semibold">
-                        {username}
-                    </div>
+                    <Link to={`/p/${username}`}>
+                        <div className="h-10 w-10 rounded-full overflow-hidden flex items-center justify-center ">
+                            <img
+                                src={avatar}
+                                className="w-full h-auto"
+                                alt={`Avatar of ${username}`}
+                            />
+                        </div>
+                    </Link>
+                    <Link to={`/p/${username}`}>
+                        <div className="mx-2 text-white text-sm font-semibold">
+                            {username}
+                        </div>
+                    </Link>
                     <div className="">
                         {verified && (
                             <svg
