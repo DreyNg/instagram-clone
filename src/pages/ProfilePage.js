@@ -31,7 +31,7 @@ export default function ProfilePage() {
     };
     useEffect(() => {
         document.title = `@${username} • Insgragram`;
-    });
+    }, []);
     const handleClosePostModal = () => {
         setOpenPostModal(false);
     };

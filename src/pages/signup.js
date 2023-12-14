@@ -16,7 +16,7 @@ export default function SignUp() {
 
     useEffect(() => {
         document.title = "Sign up • Insgragram";
-    });
+    }, []);
 
     const [error, setError] = useState("");
     const isInvalid =
