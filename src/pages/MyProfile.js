@@ -11,7 +11,7 @@ export default function MyProfile() {
 
     useEffect(() => {
         document.title = `(@${username}) • Insgragram`;
-    });
+    }, []);
     const scrollContainerRef = useRef(null);
 
     const scrollLeft = () => {

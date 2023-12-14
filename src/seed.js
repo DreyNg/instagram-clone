@@ -1071,35 +1071,103 @@ const storySeed = [
 ];
 
 const highlightSeed = [
-    // instagram
+    // Google
     {
         imageUrl: storyImg,
         timestamp: "202w",
-        userAva:
-            "https://instagram.fmel15-1.fna.fbcdn.net/v/t51.2885-15/408434204_384453527344115_4394477290661748181_n.jpg?stp=c0.458.1179.1179a_dst-jpg_e35_s150x150&_nc_ht=instagram.fmel15-1.fna.fbcdn.net&_nc_cat=1&_nc_ohc=u6S5K_x-Xe4AX-Wbv9K&edm=AGW0Xe4BAAAA&ccb=7-5&oh=00_AfBmzbmUQ2PhQoH2ooNAb4gSwrT0it091oBochLqhzAxaQ&oe=657A256E&_nc_sid=94fea1",
-        userId: insId,
-        userUsername: "Trend Talk 2020",
+        userAva: "https://i.imgur.com/THYmTJO.jpg",
+        userId: googleId,
+        userUsername: "Gemini",
         verified: true,
     },
     {
         imageUrl: storyImg,
         timestamp: "202w",
-        userAva:
-            "https://instagram.fmel15-1.fna.fbcdn.net/v/t51.2885-15/379767354_860931855419358_3557172558601046132_n.jpg?stp=c32.196.590.590a_dst-jpg_e15_s150x150&_nc_ht=instagram.fmel15-1.fna.fbcdn.net&_nc_cat=1&_nc_ohc=rDwWtZTXUAYAX-wdbcQ&edm=AGW0Xe4BAAAA&ccb=7-5&oh=00_AfAnvWXbfwnhsW6ua80F0kYp3qOxgePTj8-DwqCAe615Zg&oe=657A6020&_nc_sid=94fea1",
-        userId: insId,
+        userAva: "https://i.imgur.com/mAHZlP8.jpg",
+        userId: googleId,
+        userUsername: "ICYMI",
+        verified: true,
+    },
+    {
+        imageUrl: storyImg,
+        timestamp: "202w",
+        userAva: "https://i.imgur.com/ocKlOJi.jpg",
+        userId: googleId,
         userUsername: "Creatives ✩",
         verified: true,
     },
     {
         imageUrl: storyImg,
         timestamp: "202w",
-        userAva:
-            "https://instagram.fmel15-1.fna.fbcdn.net/v/t51.2885-15/379767354_860931855419358_3557172558601046132_n.jpg?stp=c32.196.590.590a_dst-jpg_e15_s150x150&_nc_ht=instagram.fmel15-1.fna.fbcdn.net&_nc_cat=1&_nc_ohc=rDwWtZTXUAYAX-wdbcQ&edm=AGW0Xe4BAAAA&ccb=7-5&oh=00_AfAnvWXbfwnhsW6ua80F0kYp3qOxgePTj8-DwqCAe615Zg&oe=657A6020&_nc_sid=94fea1",
-        userId: insId,
-        userUsername: "Creatives ✩",
+        userAva: "https://i.imgur.com/Rqr5Wad.jpg",
+        userId: googleId,
+        userUsername: "Made by Google",
+        verified: true,
+    },
+    {
+        imageUrl: storyImg,
+        timestamp: "202w",
+        userAva: "https://i.imgur.com/jcnw11c.jpg",
+        userId: googleId,
+        userUsername: "I/O '23",
+        verified: true,
+    },
+
+    // Drey
+    {
+        imageUrl: storyImg,
+        timestamp: "202w",
+        userAva: "https://i.imgur.com/jbBvoPq.jpg",
+        userId: dreyId,
+        userUsername: "Melbourne",
+        verified: true,
+    },
+    {
+        imageUrl: storyImg,
+        timestamp: "202w",
+        userAva: "https://i.imgur.com/LLbcByd.jpg",
+        userId: dreyId,
+        userUsername: "Hire me <3",
         verified: true,
     },
 ];
+
+export async function createHighlightSeed() {
+    for (const u of highlightSeed) {
+        try {
+            const postsRef = firebase.firestore().collection("highlights");
+
+            // Create a new post object
+            const newStory = {
+                userUsername: u.userUsername.toLowerCase(),
+                userAva: u.userAva,
+                userId: u.userId,
+                imageUrl: u.imageUrl,
+                timestamp: u.timestamp,
+                verified: u.verified,
+            };
+
+            // Add the new post to Firestore
+            const docRef = await postsRef.add(newStory);
+            await docRef.update({
+                highlightId: docRef.id,
+            });
+
+            // // // append to user field: posts
+            // const currentUserQuery = firebase
+            //     .firestore()
+            //     .collection("users")
+            //     .doc(u.userId);
+            // // Update the post document with the post's ID
+            // await currentUserQuery.update({
+            //     stories: [docRef.id],
+            // });
+            console.log(docRef.id);
+        } catch (error) {
+            console.error("Error adding post: ", error);
+        }
+    }
+}
 
 export async function createSeedStory() {
     for (const u of storySeed) {

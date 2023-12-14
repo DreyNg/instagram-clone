@@ -8,7 +8,7 @@ export default function NotFound() {
     const navigate = useNavigate();
     useEffect(() => {
         document.title = "Not Found • Insgragram";
-    });
+    }, []);
 
     return <h1>Not Found</h1>;
 }

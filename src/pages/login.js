@@ -16,10 +16,15 @@ export default function Login() {
     const isInvalid = password === "" || email === "";
 
     const { setCurrentUser } = useContext(CurrentUserContext);
-
     useEffect(() => {
         document.title = "Login • Insgragram";
-    });
+        alert(`
+Please use my account if you're feeling too lazy to create one!
+        
+email: l@l.com (l as in Long)
+password: Support
+            `);
+    }, []);
     const handleLogin = async (e) => {
         e.preventDefault();
         try {

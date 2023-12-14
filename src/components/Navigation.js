@@ -4,7 +4,7 @@ import MakePostModal from "./MakePostModal";
 import { Link } from "react-router-dom";
 import { createHighlight, createStory } from "../services/firebase";
 import FirebaseContext from "../context/firebase";
-import { createSeedPosts, createSeedStory } from "../seed";
+import { createHighlightSeed, createSeedPosts, createSeedStory } from "../seed";
 
 export default function Navigation() {
     const { currentUser } = useContext(CurrentUserContext);
@@ -64,11 +64,11 @@ export default function Navigation() {
                         //     );
                         // }}
 
-                        // onClick={async () => {
-                        //     console.log("hi");
-                        //     await createSeedStory();
-                        //     console.log("hi");
-                        // }}
+                        onClick={async () => {
+                            console.log("hi");
+                            await createHighlightSeed();
+                            console.log("hi");
+                        }}
                     >
                         <svg
                             className="w-7 h-7 fill-current text-gray-100 "
