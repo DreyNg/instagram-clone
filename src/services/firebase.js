@@ -559,7 +559,7 @@ export async function createStory(
             userAva: userAva,
             userId: userId,
             imageUrl: img,
-            timestamp: serverTimestamp(),
+            timestamp: "20h",
             verified: verified,
         };
 
@@ -636,7 +636,7 @@ export async function getUserSuggestion(user) {
     const following = user.following;
     const followers = user.followers;
 
-    const filterList = [user.userId, ...following];
+    const filterList = [user.userId, ...following].slice(0, 10);
 
     async function getNewSuggestion() {
         try {

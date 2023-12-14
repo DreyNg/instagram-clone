@@ -56,9 +56,10 @@ export default function StorySlider() {
                     className="overflow-hidden flex scroll-container "
                 >
                     {/* story */}
-                    {stories.map((story, index) => (
-                        <StoryHolder story={story} index={index} />
-                    ))}
+                    {stories &&
+                        stories.map((story, index) => (
+                            <StoryHolder story={story} index={index} />
+                        ))}
                     {/* ... Repeat your avatar and username components as needed */}
                 </div>
                 <button className="absolute right-2 pb-3" onClick={scrollRight}>

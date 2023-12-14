@@ -32,9 +32,9 @@ export default function SignUp() {
                     .auth()
                     .createUserWithEmailAndPassword(email, password);
 
-                createdUser.user.updateProfile({
-                    displayName: username,
-                });
+                // createdUser.user.updateProfile({
+                //     displayName: username,
+                // });
 
                 // create instance on firestore
                 await firebase

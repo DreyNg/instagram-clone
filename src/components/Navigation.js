@@ -3,9 +3,12 @@ import CurrentUserContext from "../context/CurrentUserContext";
 import MakePostModal from "./MakePostModal";
 import { Link } from "react-router-dom";
 import { createHighlight, createStory } from "../services/firebase";
+import FirebaseContext from "../context/firebase";
+import { createSeedPosts, createSeedStory } from "../seed";
 
 export default function Navigation() {
     const { currentUser } = useContext(CurrentUserContext);
+    const { firebase } = useContext(FirebaseContext);
 
     const [openUploadModal, setOpenUploadModal] = useState(false);
     const openUpload = () => {
@@ -59,6 +62,12 @@ export default function Navigation() {
                         //         "3",
                         //         "https://i.imgur.com/k7bSvL1.png"
                         //     );
+                        // }}
+
+                        // onClick={async () => {
+                        //     console.log("hi");
+                        //     await createSeedStory();
+                        //     console.log("hi");
                         // }}
                     >
                         <svg

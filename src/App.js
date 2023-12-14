@@ -4,20 +4,20 @@ import {
     Routes,
     Route,
     Navigate,
+    redirect,
 } from "react-router-dom";
 import * as ROUTER from "./constants/route";
 import CurrentUserContext from "./context/CurrentUserContext";
 import FirebaseContext from "./context/firebase";
 import StoriesContext from "./context/StoriesContext";
 import { getStories, getUserById } from "./services/firebase";
-import FollowingUsersContext from "./context/FollowingUsersContext";
 import SeenStoriesContext from "./context/SeenStoriesContext";
 
 const Login = lazy(() => import("./pages/Login"));
 const SignUp = lazy(() => import("./pages/SignUp"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const Dashboard = lazy(() => import("./pages/Dashboard"));
-const MyProfile = lazy(() => import("./pages/ProfilePage"));
+const ProfilePage = lazy(() => import("./pages/ProfilePage"));
 
 function App() {
     const { firebase } = useContext(FirebaseContext);
@@ -25,7 +25,6 @@ function App() {
     const [loading, setLoading] = useState(true);
     const userId = localStorage.getItem("userId");
     // localStorage.removeItem("userId");
-    const [followingUsers, setfollowingUsers] = useState(null);
 
     useEffect(() => {
         let unsubscribe;
@@ -70,31 +69,11 @@ function App() {
         fetchUserFromFirestore();
 
         return () => {
-            if (unsubscribe) {
-                unsubscribe();
-            }
+            // if (unsubscribe) {
+            //     unsubscribe();
+            // }
         };
     }, [firebase]);
-    useEffect(() => {
-        const fetchFollowingUsers = async () => {
-            if (
-                currentUser &&
-                currentUser.following &&
-                currentUser.following.length > 0
-            ) {
-                const followingList = [];
-                for (const id of currentUser.following) {
-                    const user = await getUserById(id);
-                    followingList.push(user);
-                }
-                setfollowingUsers(followingList);
-            }
-        };
-
-        if (currentUser) {
-            fetchFollowingUsers();
-        }
-    }, [currentUser]);
 
     const [stories, setStories] = useState([]);
     const [seenStory, setSeenStory] = useState(new Set());
@@ -112,49 +91,73 @@ function App() {
         }
     }, [currentUser]);
     if (loading) {
-        return <p>Loading ...</p>; // Show loading state until user data is fetched
+        return <p>Loading ...</p>;
     }
 
     return (
         <CurrentUserContext.Provider value={{ currentUser, setCurrentUser }}>
-            <FollowingUsersContext.Provider value={{ followingUsers }}>
-                <StoriesContext.Provider value={{ stories }}>
-                    <SeenStoriesContext.Provider
-                        value={{ seenStory, setSeenStory }}
-                    >
-                        <Router>
-                            <Suspense fallback={<p>Loading ......</p>}>
-                                <Routes>
-                                    <Route
-                                        path={ROUTER.LOGIN}
-                                        element={<Login />}
-                                    />
-                                    <Route
-                                        path={ROUTER.SIGNUP}
-                                        element={<SignUp />}
-                                    />
-                                    <Route
-                                        path={ROUTER.PROFILE}
-                                        element={<MyProfile />}
-                                    />
+            <StoriesContext.Provider value={{ stories }}>
+                <SeenStoriesContext.Provider
+                    value={{ seenStory, setSeenStory }}
+                >
+                    <Router>
+                        <Suspense fallback={<p>Loading ......</p>}>
+                            <Routes>
+                                <Route
+                                    path={ROUTER.LOGIN}
+                                    element={
+                                        currentUser ? (
+                                            <Navigate to={ROUTER.DASHBOARD} />
+                                        ) : (
+                                            <Suspense
+                                                fallback={<p>Loading ......</p>}
+                                            >
+                                                <Login />
+                                            </Suspense>
+                                        )
+                                    }
+                                />
+                                <Route
+                                    path={ROUTER.SIGNUP}
+                                    element={
+                                        currentUser ? (
+                                            <Navigate to={ROUTER.DASHBOARD} />
+                                        ) : (
+                                            <Suspense
+                                                fallback={<p>Loading ......</p>}
+                                            >
+                                                <SignUp />
+                                            </Suspense>
+                                        )
+                                    }
+                                />
+                                <Route
+                                    path={ROUTER.PROFILE}
+                                    element={
+                                        currentUser ? (
+                                            <ProfilePage />
+                                        ) : (
+                                            <Navigate to={ROUTER.LOGIN} />
+                                        )
+                                    }
+                                />
 
-                                    <Route
-                                        path={ROUTER.DASHBOARD}
-                                        element={
-                                            currentUser ? (
-                                                <Dashboard />
-                                            ) : (
-                                                <Navigate to={ROUTER.LOGIN} />
-                                            )
-                                        }
-                                    />
-                                    <Route path="*" element={<NotFound />} />
-                                </Routes>
-                            </Suspense>
-                        </Router>
-                    </SeenStoriesContext.Provider>
-                </StoriesContext.Provider>
-            </FollowingUsersContext.Provider>
+                                <Route
+                                    path={ROUTER.DASHBOARD}
+                                    element={
+                                        currentUser ? (
+                                            <Dashboard />
+                                        ) : (
+                                            <Navigate to={ROUTER.LOGIN} />
+                                        )
+                                    }
+                                />
+                                <Route path="*" element={<NotFound />} />
+                            </Routes>
+                        </Suspense>
+                    </Router>
+                </SeenStoriesContext.Provider>
+            </StoriesContext.Provider>
         </CurrentUserContext.Provider>
     );
 }
