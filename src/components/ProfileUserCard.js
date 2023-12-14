@@ -7,7 +7,6 @@ export default function ProfileUserCard(profileUser) {
     const { stories } = useContext(StoriesContext);
 
     const hasStory = userHasStory(profileUser.username, stories);
-    console.log("hasStory");
     return (
         <div className="flex">
             {/* profile Pic */}

@@ -2,11 +2,12 @@
 
 Deploy: [Link](https://instagram-clone-e91a2.web.app/)
 
-This project is an attempt to recreate the functionality and design of Instagram. It's a web application built using ReactJs with tailwind for UI and Firebase for back end as a service to mimic various features of Instagram, such as posting images, following other users, liking posts, etc.
+In my last project, my man Aden McCusker made me code in Flutter 🤮. Flutter was too good I almost forgot how to use ReactJs and NextJs.
+
+This project is an attempt to revisit ReactJs by recreating the functionality and design of Instagram. It's a web application built using ReactJs with tailwind for UI and Firebase for back end as a service to mimic various features of Instagram, such as posting images, following other users, liking posts, etc.
 
 ## Table of Contents
 
--   [About](#ℹ️-preview)
 -   [Features](#🆕-features)
 -   [Technologies Used](#technologies-used)
 -   [Installation](#installation)
@@ -15,8 +16,6 @@ This project is an attempt to recreate the functionality and design of Instagram
 -   [License](#📝license)
 -   [Contact](#👤-contact)
 
-## ℹ️ Preview
-
 ## 🆕 Features
 
 -   **User Authentication**: Allow users to sign up, log in, and log out securely.
@@ -24,7 +23,10 @@ This project is an attempt to recreate the functionality and design of Instagram
 -   **User Profile**: Profiles for each user showing their posts and information.
 -   **Follow/Unfollow**: Functionality to follow and unfollow other users.
 -   **Like and Comment**: Allow users to like posts and add comments.
+-   **Comment Reply**: Each comment is like a thread, can be replied.
+-   **Upload Story**: Allow users to share story.
 -   **Real-Time Updates**: Real-time updating of posts, likes, and comments.
+    And So much more...
 
 ## Technologies Used
 

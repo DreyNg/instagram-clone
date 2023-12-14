@@ -27,6 +27,7 @@ export default function Timeline() {
         <div className="h-full ">
             <div className="h-full flex flex-col ">
                 {/* Story */}
+
                 <StorySlider />
                 <div className="flex-1 flex justify-center">
                     <div className="w-[480px]">

@@ -122,7 +122,6 @@ export default function ProfilePage() {
     const isMyProfile = currentUser.userId === profileUser?.userId;
 
     const { stories } = useContext(StoriesContext);
-
     const hasStory = userHasStory(username, stories);
     return profileUser ? (
         <div className="bg-black h-screen px-28 flex flex-col overflow-y-auto">
@@ -130,7 +129,7 @@ export default function ProfilePage() {
                 <Navigation />
             </div>
             {/* rest */}
-            <div className="ml-20 my-10  h-60">
+            <div className="ml-20 my-10 h-60">
                 {/* User Card */}
                 {isMyProfile ? (
                     <MyProfileUserCard />
@@ -625,7 +624,7 @@ export default function ProfilePage() {
                                     </div>
                                 </div> */}
                                 <SquarePost
-                                    captionText={post.captionText}
+                                    captionText={post.caption}
                                     avatar={post.userAva}
                                     username={post.userUsername}
                                     verified={post.verified}

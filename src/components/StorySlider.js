@@ -30,7 +30,7 @@ export default function StorySlider() {
 
     const { stories } = useContext(StoriesContext);
 
-    return (
+    return stories ? (
         <div>
             <div className="relative h-24 flex items-center justify-between mb-2 mt-4">
                 {stories.length >= 8 && (
@@ -90,6 +90,14 @@ export default function StorySlider() {
                         </svg>
                     </button>
                 )}
+            </div>
+        </div>
+    ) : (
+        <div>
+            <div className="relative h-24 flex mb-2 mt-4">
+                <div className="overflow-hidden flex scroll-container text-white items-center justify-center">
+                    No Stories to display
+                </div>
             </div>
         </div>
     );

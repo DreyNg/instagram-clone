@@ -679,6 +679,9 @@ video {
 .mt-\[5px\] {
   margin-top: 5px;
 }
+.mt-10 {
+  margin-top: 2.5rem;
+}
 .block {
   display: block;
 }

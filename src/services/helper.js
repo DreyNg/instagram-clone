@@ -32,6 +32,7 @@ export const calculateTimeDifference = (timestamp) => {
 };
 
 export const userHasStory = (userIdToCheck, stories) => {
+    if (!stories) return null;
     const foundStory = stories.find(
         (story) =>
             story.userUsername.toLowerCase() === userIdToCheck.toLowerCase()

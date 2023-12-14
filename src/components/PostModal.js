@@ -156,7 +156,7 @@ const PostModal = ({
     const hasStory = userHasStory(username, stories);
 
     return ReactDOM.createPortal(
-        <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-green-500 bg-opacity-60">
+        <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-60">
             <div className="items-center justify-center flex h-[90%] w-[80%] overflow-hidden rounded">
                 {/* COMMENT IMAGE */}
                 <div className="bg-black h-full max-w-[50%] flex items-center justify-center">
