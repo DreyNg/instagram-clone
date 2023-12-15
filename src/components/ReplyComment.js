@@ -75,7 +75,7 @@ export default function ReplyComment({
                 <div className="text-white flex-grow overflow-hidden flex flex-col">
                     {/*  CMT content */}
                     <p className="text-sm mb-1 break-words">
-                        <span class="inline-flex items-baseline text-sm font-semibold">
+                        <span class=" text-white hover:text-ig-grey inline-flex items-baseline text-sm font-semibold">
                             <Link to={`/p/${username}`}>
                                 <span className="mr-1">{username}</span>
                             </Link>
@@ -120,7 +120,7 @@ export default function ReplyComment({
                 <div className="pl-2 m-1">
                     {!likeList.includes(currentUser.userId) ? (
                         <svg
-                            className="cursor-pointer"
+                            className="cursor-pointer hover:fill-ig-grey"
                             aria-label="Like"
                             fill="white"
                             height="12"

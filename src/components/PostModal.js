@@ -408,7 +408,7 @@ const PostModal = ({
                                     </div>
                                 </div>
                             </div>
-                            {likeList ? (
+                            {likeList.length ? (
                                 <div className="text-sm text-white hover:text-ig-grey py-1">
                                     Liked by {likeList.length}{" "}
                                     <span

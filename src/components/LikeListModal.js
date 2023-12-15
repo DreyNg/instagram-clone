@@ -71,7 +71,8 @@ const LikeListModal = ({ closeModal, postId }) => {
                     </div>
                 </div>
                 <div className="p-2 bg-ig-grey-bg flex flex-col overflow-auto  h-full ">
-                    {likeList[0] &&
+                    {likeList &&
+                        likeList[0] &&
                         likeList[0].length > 0 &&
                         likeList[0].map((e, innerIndex) => (
                             <UserCard
@@ -82,7 +83,8 @@ const LikeListModal = ({ closeModal, postId }) => {
                                 subtitle={e.fullname}
                             />
                         ))}
-                    {likeList[1] &&
+                    {likeList &&
+                        likeList[1] &&
                         likeList[1].length > 0 &&
                         likeList[1].map((e, innerIndex) => (
                             <UserCard
@@ -121,7 +123,8 @@ const LikeListModal = ({ closeModal, postId }) => {
                                 )}
                             />
                         ))}
-                    {likeList[2] &&
+                    {likeList &&
+                        likeList[2] &&
                         likeList[2].length > 0 &&
                         likeList[2].map((e, innerIndex) => (
                             <UserCard
