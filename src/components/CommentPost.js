@@ -107,7 +107,9 @@ const CommentPost = (
                     <p className="text-sm mb-1 break-words">
                         <span class="inline-flex items-baseline text-sm font-semibold">
                             <Link to={`/p/${username}`}>
-                                <span className="mr-1">{username}</span>
+                                <span className="mr-1 hover:text-ig-grey">
+                                    {username}
+                                </span>
                             </Link>
                             {verified && (
                                 <svg
@@ -150,7 +152,7 @@ const CommentPost = (
                 <div className="pl-2 m-1">
                     {!likeList.includes(currentUser.userId) ? (
                         <svg
-                            className="cursor-pointer"
+                            className="cursor-pointer hover:fill-ig-grey"
                             aria-label="Like"
                             fill="white"
                             height="12"

@@ -40,7 +40,7 @@ const UserCard = ({
             </div>
             <div className="mx-2 flex-grow">
                 <Link to={`/p/${username}`}>
-                    <div className="text-white font-semibold text-sm cursor-pointer">
+                    <div className="text-white hover:text-ig-grey font-semibold text-sm cursor-pointer">
                         {username}
                     </div>
                 </Link>

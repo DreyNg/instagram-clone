@@ -224,7 +224,8 @@ export async function getLikeList(postId, followingList, currentUserId) {
         const resultFollowing = [];
         const resultNotFollowing = [];
         const resultCurrentUser = [];
-        // fetching the rest
+
+        // Fetch likes for the current user
         const likesCurrentUser = await firebase
             .firestore()
             .collection("likes")
@@ -232,21 +233,10 @@ export async function getLikeList(postId, followingList, currentUserId) {
             .where("userId", "==", currentUserId)
             .get();
 
-        const temp = [...likesCurrentUser.docs];
-        temp.forEach((e) => resultCurrentUser.push(e.data()));
+        const tempCurrentUser = [...likesCurrentUser.docs];
+        tempCurrentUser.forEach((e) => resultCurrentUser.push(e.data()));
 
-        // fetching the rest
-        const likesRest = await firebase
-            .firestore()
-            .collection("likes")
-            .where("postId", "==", postId)
-            .where("userId", "not-in", followingList)
-            .get();
-
-        const tempRest = [...likesRest.docs];
-        tempRest.forEach((e) => resultNotFollowing.push(e.data()));
-
-        // fetching following user that liked the posts
+        // Fetch likes for following users that liked the posts
         const likesFollowing = await firebase
             .firestore()
             .collection("likes")
@@ -258,9 +248,30 @@ export async function getLikeList(postId, followingList, currentUserId) {
         const tempFollowing = [...likesFollowing.docs];
         tempFollowing.forEach((e) => resultFollowing.push(e.data()));
 
+        // Fetch all likes for the post
+        const likesAll = await firebase
+            .firestore()
+            .collection("likes")
+            .where("postId", "==", postId)
+            .get();
+
+        const tempAll = [...likesAll.docs];
+        tempAll.forEach((e) => resultNotFollowing.push(e.data()));
+
+        // Filter out likes from resultNotFollowing that are in resultFollowing or resultCurrentUser
+        const combinedLikes = resultFollowing.concat(resultCurrentUser);
+        const uniqueLikesIds = new Set(
+            combinedLikes.map((like) => like.userId)
+        );
+
+        const filteredResultNotFollowing = resultNotFollowing.filter(
+            (like) => !uniqueLikesIds.has(like.userId)
+        );
+
         result.push(resultCurrentUser);
         result.push(resultFollowing);
-        result.push(resultNotFollowing);
+        result.push(filteredResultNotFollowing);
+
         return result;
     } catch (error) {
         console.error("Error getting likes: ", error);
