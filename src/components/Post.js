@@ -232,48 +232,27 @@ export default function Post({
                             fill="white"
                             height="24"
                             role="img"
-                            viewBox="0 0 24 24"
+                            viewBox="3 3 24 24"
                             width="24"
                             onClick={() => {
                                 handleOpenPostModal();
                             }}
                         >
                             <title>Comment</title>
-                            <path
-                                d="M20.656 17.008a9.993 9.993 0 1 0-3.59 3.615L22 22Z"
-                                fill="none"
-                                stroke="white"
-                                stroke-linejoin="round"
-                                stroke-width="2"
-                            ></path>
+                            <path d="M25.784,21.017C26.581,19.467,27,17.741,27,16c0-6.065-4.935-11-11-11S5,9.935,5,16s4.935,11,11,11   c1.742,0,3.468-0.419,5.018-1.215l4.74,1.185C25.838,26.99,25.919,27,26,27c0.262,0,0.518-0.103,0.707-0.293   c0.248-0.249,0.349-0.609,0.263-0.95L25.784,21.017z M23.751,21.127l0.874,3.498l-3.498-0.875   c-0.247-0.061-0.509-0.026-0.731,0.098C19.055,24.602,17.534,25,16,25c-4.963,0-9-4.038-9-9s4.037-9,9-9s9,4.038,9,9   c0,1.534-0.398,3.054-1.151,4.395C23.724,20.618,23.688,20.88,23.751,21.127z" />
                         </svg>
+
                         <svg
                             aria-label="Share Post"
-                            class="mx-1 cursor-pointer"
+                            class="mx-1 cursor-pointer hover:fill-ig-grey"
                             fill="white"
-                            height="24"
                             role="img"
-                            viewBox="0 0 24 24"
-                            width="24"
+                            viewBox="0 -10 125 125"
+                            height="24" // Set the height to match other SVGs
+                            width="24" // Set the width to match other SVGs
                         >
                             <title>Share Post</title>
-                            <line
-                                fill="none"
-                                stroke="white"
-                                stroke-linejoin="round"
-                                stroke-width="2"
-                                x1="22"
-                                x2="9.218"
-                                y1="3"
-                                y2="10.083"
-                            ></line>
-                            <polygon
-                                fill="none"
-                                points="11.698 20.334 22 3.001 2 3.001 9.218 10.084 11.698 20.334"
-                                stroke="white"
-                                stroke-linejoin="round"
-                                stroke-width="2"
-                            ></polygon>
+                            <path d="M96.14,12.47l-76.71-1.1,28.3,27.85L96.14,12.47ZM53.27,49l9.88,39.17L102.1,22,53.27,49ZM117,1.6a5.59,5.59,0,0,1,4.9,8.75L66.06,105.21a5.6,5.6,0,0,1-10.44-1.15L41.74,49,1.67,9.57A5.59,5.59,0,0,1,5.65,0L117,1.6Z" />
                         </svg>
                     </div>
                     <div>
