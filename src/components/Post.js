@@ -146,7 +146,7 @@ export default function Post({
                 {/* UserName */}
                 <div className="mx-2  flex items-center h-full flex-grow">
                     <Link to={`/p/${username}`}>
-                        <div className="mr-1 text-white font-semibold text-sm cursor-pointer pb-1">
+                        <div className="mr-1 text-white font-semibold text-sm cursor-pointer pb-1 hover:text-ig-grey">
                             {username}
                         </div>
                     </Link>
@@ -274,14 +274,14 @@ export default function Post({
                     </div>
                 </div>
                 {likeList.length != 0 && (
-                    <div className="text-sm text-white py-1">
+                    <div className="text-sm text-white py-1 cursor-pointer hover:text-ig-grey">
                         Liked by {likeList.length}{" "}
                         <span
-                            className="font-semibold cursor-pointer"
+                            className="font-semibold "
                             // onClick={handleShowLikes}
                         >
                             <span
-                                className="font-semibold cursor-pointer"
+                                className="font-semibold "
                                 onClick={handleOpenLikeModal}
                             >
                                 others
@@ -296,7 +296,7 @@ export default function Post({
                         onClick={toggleCaption}
                     >
                         <Link to={`/p/${username}`}>
-                            <span className="font-semibold cursor-pointer">
+                            <span className="font-semibold cursor-pointer hover:text-ig-grey">
                                 {username}
                             </span>{" "}
                         </Link>

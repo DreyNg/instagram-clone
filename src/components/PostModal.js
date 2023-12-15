@@ -187,7 +187,7 @@ const PostModal = ({
                         {/* UserName */}
                         <div className="mx-3 flex items-center h-full flex-grow ">
                             <Link to={`/p/${username}`}>
-                                <div className="mr-2 text-white font-semibold text-sm cursor-pointer pb-1">
+                                <div className="mr-2 text-white hover:text-ig-grey font-semibold text-sm cursor-pointer pb-1">
                                     {username}
                                 </div>
                             </Link>
@@ -254,7 +254,7 @@ const PostModal = ({
                                     <div className="text-white flex-grow overflow-hidden flex flex-col">
                                         {/*  caption content */}
                                         <p className="text-sm mb-1 break-words">
-                                            <span class="inline-flex items-baseline text-sm font-semibold">
+                                            <span class="inline-flex text-white hover:text-ig-grey items-baseline text-sm font-semibold">
                                                 <Link to={`/p/${username}`}>
                                                     <span className="mr-1">
                                                         {username}
@@ -409,7 +409,7 @@ const PostModal = ({
                                 </div>
                             </div>
                             {likeList ? (
-                                <div className="text-sm text-white py-1">
+                                <div className="text-sm text-white hover:text-ig-grey py-1">
                                     Liked by {likeList.length}{" "}
                                     <span
                                         className="font-semibold cursor-pointer"
