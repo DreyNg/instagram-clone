@@ -195,11 +195,11 @@ export default function Post({
             {/* comment */}
             <div className="">
                 <div className="flex py-2">
-                    <div className="flex flex-grow">
+                    <div className="flex flex-grow ">
                         {likeList.includes(currentUser.userId) ? (
                             <svg
                                 aria-label="Unlike"
-                                class="mr-1 cursor-pointer"
+                                class="mr-1 cursor-pointer "
                                 fill="#ff3040"
                                 height="24"
                                 role="img"
@@ -213,7 +213,7 @@ export default function Post({
                         ) : (
                             <svg
                                 aria-label="Like"
-                                class="mr-1 cursor-pointer"
+                                class="mr-1 cursor-pointer hover:fill-ig-grey "
                                 fill="white"
                                 height="24"
                                 role="img"
@@ -228,7 +228,7 @@ export default function Post({
 
                         <svg
                             aria-label="Comment"
-                            class="mx-3 cursor-pointer"
+                            class="mx-3 cursor-pointer hover:fill-ig-grey"
                             fill="white"
                             height="24"
                             role="img"
