@@ -23,7 +23,7 @@ export default function Navigation() {
             <div className="flex items-center justify-center pt-1 pb-6">
                 {/* Instagram Logo */}
                 <Link to={`/`}>
-                    <div className=" p-3 rounded-lg cursor-pointer">
+                    <div className=" p-3 rounded-lg cursor-pointer hover:scale-110 hover:bg-zinc-900">
                         <svg
                             className="w-7 h-7 fill-current text-gray-100 "
                             viewBox="0 0 24 24"
@@ -39,7 +39,7 @@ export default function Navigation() {
                 <div className="flex items-center justify-center">
                     {/* Home */}
                     <Link to={`/`}>
-                        <div className=" p-3 rounded-lg cursor-pointer">
+                        <div className=" p-3 rounded-lg cursor-pointer hover:scale-110 hover:bg-zinc-900">
                             <svg
                                 className="w-7 h-7 fill-current text-gray-100 "
                                 viewBox="0 0 24 24"
@@ -52,7 +52,7 @@ export default function Navigation() {
                 </div>
                 <div className="flex items-center justify-center">
                     {/* Search */}
-                    <div className=" p-3 rounded-lg cursor-pointer">
+                    <div className=" p-3 rounded-lg cursor-pointer hover:scale-110 hover:bg-zinc-900">
                         <svg
                             className="w-7 h-7 fill-current text-gray-100 "
                             viewBox="0 0 24 24"
@@ -82,7 +82,7 @@ export default function Navigation() {
                 </div>
                 <div className="flex items-center justify-center">
                     {/* Explore */}
-                    <div className=" p-3 rounded-lg cursor-pointer">
+                    <div className=" p-3 rounded-lg cursor-pointer hover:scale-110 hover:bg-zinc-900">
                         <svg
                             className="w-7 h-7 fill-current text-gray-100 "
                             viewBox="0 0 24 24"
@@ -115,7 +115,7 @@ export default function Navigation() {
                 </div>
                 <div className="flex items-center justify-center">
                     {/* reels */}
-                    <div className=" p-3 rounded-lg cursor-pointer">
+                    <div className=" p-3 rounded-lg cursor-pointer hover:scale-110 hover:bg-zinc-900">
                         <svg
                             className="w-7 h-7 fill-current text-gray-100 "
                             viewBox="0 0 24 24"
@@ -171,7 +171,7 @@ export default function Navigation() {
 
                 <div className="flex items-center justify-center">
                     {/* Mess */}
-                    <div className=" p-3 rounded-lg cursor-pointer">
+                    <div className=" p-3 rounded-lg cursor-pointer hover:scale-110 hover:bg-zinc-900">
                         <svg
                             className="w-7 h-7 fill-current text-gray-100 "
                             viewBox="0 0 24 24"
@@ -193,7 +193,7 @@ export default function Navigation() {
                 </div>
                 <div className="flex items-center justify-center">
                     {/* noti */}
-                    <div className=" p-3 rounded-lg cursor-pointer">
+                    <div className=" p-3 rounded-lg cursor-pointer hover:scale-110 hover:bg-zinc-900">
                         <svg
                             className="w-7 h-7 fill-current text-gray-100 "
                             viewBox="0 0 24 24"
@@ -206,7 +206,7 @@ export default function Navigation() {
                 <div className="flex items-center justify-center">
                     {/* Upload */}
                     <div
-                        className=" p-3 rounded-lg cursor-pointer"
+                        className=" p-3 rounded-lg cursor-pointer hover:scale-110 hover:bg-zinc-900"
                         onClick={() => {
                             openUpload();
                         }}
@@ -252,7 +252,7 @@ export default function Navigation() {
                 <div className="flex items-center p-4 justify-center">
                     {/* profile */}
                     <Link to={`/p/${currentUser.username}`}>
-                        <div className="h-7 w-7 cursor-pointer rounded-full overflow-hidden">
+                        <div className="h-7 w-7 cursor-pointer rounded-full overflow-hidden hover:scale-110 hover:bg-zinc-900">
                             <img
                                 src={currentUser.profilePicture}
                                 className="w-full h-auto"
@@ -265,9 +265,9 @@ export default function Navigation() {
             <div>
                 <div className="flex items-center justify-center">
                     {/* Setting */}
-                    <div className=" p-3 rounded-lg cursor-pointer">
+                    <div className=" p-3 rounded-lg cursor-pointer hover:scale-110 hover:bg-zinc-900">
                         <svg
-                            className="w-7 h-7 fill-current text-gray-100 "
+                            className="w-6 h-6 fill-current text-gray-100 "
                             viewBox="0 0 24 24"
                             xmlns="http://www.w3.org/2000/svg"
                         >
