@@ -154,23 +154,130 @@ export default function Setting() {
                 <div className="border-zinc-600 border-b"></div>
 
                 {/* setting */}
-                <div className="my-10">
-                    <div className="flex flex-col">
+                <div className="my-6">
+                    <div className="flex flex-col my-4 mx-14">
                         <div className="text-white">username</div>
                         <div className="flex">
                             <input
                                 aria-label="Username"
                                 type="text"
                                 value={username}
-                                placeholder="Email address"
+                                placeholder="Username"
+                                maxLength={20} // Set the maximum character length
                                 onChange={({ target }) =>
                                     setUsername(target.value)
                                 }
-                                className="text-xs w-full mb-2 rounded border bg-gray-100 border-gray-300 px-2 py-2 focus:outline-none focus:border-gray-400 active:outline-none"
+                                className=" w-full text-white rounded border bg-ig-grey-bg border-gray-300 px-2 py-2 focus:outline-none focus:border-gray-400 active:outline-none"
                             />
-                            <button className="text-white bg-ig-blue py-2 px-6 rounded-lg mr-3 ml-4 text-sm font-semibold cursor-pointer">
-                                Follow
-                            </button>
+                            <div className="flex">
+                                <button className="text-white bg-ig-blue py-2 px-6 rounded-lg mr-3 ml-3 text-sm font-semibold cursor-pointer">
+                                    Change
+                                </button>
+                                <button
+                                    className="text-white bg-ig-blue py-2 px-6 rounded-lg mr-3 text-sm font-semibold cursor-pointer"
+                                    onClick={() => {
+                                        setUsername(currentUser.username);
+                                    }}
+                                >
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        width="30"
+                                        height="30"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                    >
+                                        <path
+                                            fill-rule="evenodd"
+                                            clip-rule="evenodd"
+                                            d="M7.53033 3.46967C7.82322 3.76256 7.82322 4.23744 7.53033 4.53033L5.81066 6.25H15C18.1756 6.25 20.75 8.82436 20.75 12C20.75 15.1756 18.1756 17.75 15 17.75H8.00001C7.58579 17.75 7.25001 17.4142 7.25001 17C7.25001 16.5858 7.58579 16.25 8.00001 16.25H15C17.3472 16.25 19.25 14.3472 19.25 12C19.25 9.65279 17.3472 7.75 15 7.75H5.81066L7.53033 9.46967C7.82322 9.76256 7.82322 10.2374 7.53033 10.5303C7.23744 10.8232 6.76256 10.8232 6.46967 10.5303L3.46967 7.53033C3.17678 7.23744 3.17678 6.76256 3.46967 6.46967L6.46967 3.46967C6.76256 3.17678 7.23744 3.17678 7.53033 3.46967Z"
+                                            fill="white"
+                                        />
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="flex flex-col my-4 mx-14">
+                        <div className="text-white">fullname</div>
+                        <div className="flex">
+                            <input
+                                aria-label="Username"
+                                type="text"
+                                value={fullname}
+                                placeholder="Username"
+                                maxLength={20} // Set the maximum character length
+                                onChange={({ target }) =>
+                                    setFullname(target.value)
+                                }
+                                className=" w-full text-white rounded border bg-ig-grey-bg border-gray-300 px-2 py-2 focus:outline-none focus:border-gray-400 active:outline-none"
+                            />
+                            <div className="flex">
+                                <button className="text-white bg-ig-blue py-2 px-6 rounded-lg mr-3 ml-3 text-sm font-semibold cursor-pointer">
+                                    Change
+                                </button>
+                                <button
+                                    className="text-white bg-ig-blue py-2 px-6 rounded-lg mr-3 text-sm font-semibold cursor-pointer"
+                                    onClick={() => {
+                                        setFullname(currentUser.fullname);
+                                    }}
+                                >
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        width="30"
+                                        height="30"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                    >
+                                        <path
+                                            fill-rule="evenodd"
+                                            clip-rule="evenodd"
+                                            d="M7.53033 3.46967C7.82322 3.76256 7.82322 4.23744 7.53033 4.53033L5.81066 6.25H15C18.1756 6.25 20.75 8.82436 20.75 12C20.75 15.1756 18.1756 17.75 15 17.75H8.00001C7.58579 17.75 7.25001 17.4142 7.25001 17C7.25001 16.5858 7.58579 16.25 8.00001 16.25H15C17.3472 16.25 19.25 14.3472 19.25 12C19.25 9.65279 17.3472 7.75 15 7.75H5.81066L7.53033 9.46967C7.82322 9.76256 7.82322 10.2374 7.53033 10.5303C7.23744 10.8232 6.76256 10.8232 6.46967 10.5303L3.46967 7.53033C3.17678 7.23744 3.17678 6.76256 3.46967 6.46967L6.46967 3.46967C6.76256 3.17678 7.23744 3.17678 7.53033 3.46967Z"
+                                            fill="white"
+                                        />
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="flex flex-col my-4 mx-14">
+                        <div className="text-white">bio</div>
+                        <div className="flex">
+                            <input
+                                aria-label="Username"
+                                type="text"
+                                value={bio}
+                                placeholder="Username"
+                                maxLength={65} // Set the maximum character length
+                                onChange={({ target }) => setBio(target.value)}
+                                className=" w-full text-white rounded border bg-ig-grey-bg border-gray-300 px-2 py-2 focus:outline-none focus:border-gray-400 active:outline-none"
+                            />
+                            <div className="flex">
+                                <button className="text-white bg-ig-blue py-2 px-6 rounded-lg mr-3 ml-3 text-sm font-semibold cursor-pointer">
+                                    Change
+                                </button>
+                                <button
+                                    className="text-white bg-ig-blue py-2 px-6 rounded-lg mr-3 text-sm font-semibold cursor-pointer"
+                                    onClick={() => {
+                                        setBio(currentUser.bio);
+                                    }}
+                                >
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        width="30"
+                                        height="30"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                    >
+                                        <path
+                                            fill-rule="evenodd"
+                                            clip-rule="evenodd"
+                                            d="M7.53033 3.46967C7.82322 3.76256 7.82322 4.23744 7.53033 4.53033L5.81066 6.25H15C18.1756 6.25 20.75 8.82436 20.75 12C20.75 15.1756 18.1756 17.75 15 17.75H8.00001C7.58579 17.75 7.25001 17.4142 7.25001 17C7.25001 16.5858 7.58579 16.25 8.00001 16.25H15C17.3472 16.25 19.25 14.3472 19.25 12C19.25 9.65279 17.3472 7.75 15 7.75H5.81066L7.53033 9.46967C7.82322 9.76256 7.82322 10.2374 7.53033 10.5303C7.23744 10.8232 6.76256 10.8232 6.46967 10.5303L3.46967 7.53033C3.17678 7.23744 3.17678 6.76256 3.46967 6.46967L6.46967 3.46967C6.76256 3.17678 7.23744 3.17678 7.53033 3.46967Z"
+                                            fill="white"
+                                        />
+                                    </svg>
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
