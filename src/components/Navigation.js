@@ -5,10 +5,10 @@ import { Link } from "react-router-dom";
 import { createHighlight, createStory } from "../services/firebase";
 import FirebaseContext from "../context/firebase";
 import { createHighlightSeed, createSeedPosts, createSeedStory } from "../seed";
+import SettingModal from "./SettingModal";
 
 export default function Navigation() {
     const { currentUser } = useContext(CurrentUserContext);
-    const { firebase } = useContext(FirebaseContext);
 
     const [openUploadModal, setOpenUploadModal] = useState(false);
     const openUpload = () => {
@@ -17,6 +17,15 @@ export default function Navigation() {
 
     const closeModal = () => {
         setOpenUploadModal(false);
+    };
+
+    const [openSettingModal, setOpenSettingModal] = useState(false);
+    const openSetting = () => {
+        setOpenSettingModal(true);
+    };
+
+    const closeSetting = () => {
+        setOpenSettingModal(false);
     };
     return (
         <nav className="bg-black h-full py-4 border-r border-zinc-800 ">
@@ -265,7 +274,10 @@ export default function Navigation() {
             <div>
                 <div className="flex items-center justify-center">
                     {/* Setting */}
-                    <div className=" p-3 rounded-lg cursor-pointer hover:scale-110 hover:bg-zinc-900">
+                    <div
+                        className=" p-3 rounded-lg cursor-pointer hover:scale-110 hover:bg-zinc-900"
+                        onClick={openSetting}
+                    >
                         <svg
                             className="w-6 h-6 fill-current text-gray-100 "
                             viewBox="0 0 24 24"
@@ -310,6 +322,7 @@ export default function Navigation() {
             </div>
             {/* <MakePostModal closeModal={closeModal} /> */}
             {openUploadModal && <MakePostModal closeModal={closeModal} />}
+            {openSettingModal && <SettingModal closeModal={closeSetting} />}
         </nav>
     );
 }
