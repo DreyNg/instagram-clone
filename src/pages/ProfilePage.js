@@ -1,10 +1,9 @@
 import { useContext, useEffect, useRef, useState } from "react";
-import { Router, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Navigation from "../components/Navigation";
 import {
     getAllPostFromUserId,
     getHighlights,
-    getUserByListId,
     getUserByUsername,
     handleFollowUser,
     handleUnfollowUser,
@@ -12,9 +11,8 @@ import {
 import * as ROUTER from "../constants/route";
 import CurrentUserContext from "../context/CurrentUserContext";
 import MyProfileUserCard from "../components/MyProfileUserCard";
-import ProfileUserCard from "../components/ProfileUserCard";
-import PostModal from "../components/PostModal";
-import SquarePost from "./SquarePost";
+
+import SquarePost from "../components/SquarePost";
 import StoriesContext from "../context/StoriesContext";
 import { userHasStory } from "../services/helper";
 import { ProfileAvaHasStory } from "../components/ProfileAvaHasStory";
