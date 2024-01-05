@@ -18,13 +18,13 @@ const SignUp = lazy(() => import("./pages/SignUp"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const Dashboard = lazy(() => import("./pages/Dashboard"));
 const ProfilePage = lazy(() => import("./pages/ProfilePage"));
+const Setting = lazy(() => import("./pages/Setting"));
 
 function App() {
     const { firebase } = useContext(FirebaseContext);
     const [currentUser, setCurrentUser] = useState(null);
     const [loading, setLoading] = useState(true);
     const userId = localStorage.getItem("userId");
-    // localStorage.removeItem("userId");
 
     useEffect(() => {
         let unsubscribe;
@@ -136,6 +136,16 @@ function App() {
                                     element={
                                         currentUser ? (
                                             <ProfilePage />
+                                        ) : (
+                                            <Navigate to={ROUTER.LOGIN} />
+                                        )
+                                    }
+                                />
+                                <Route
+                                    path={ROUTER.SETTING}
+                                    element={
+                                        currentUser ? (
+                                            <Setting />
                                         ) : (
                                             <Navigate to={ROUTER.LOGIN} />
                                         )

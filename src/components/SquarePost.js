@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 
 import { calculateTimeDifference } from "../services/helper";
-import PostModal from "../components/PostModal";
+import PostModal from "./PostModal";
 
 export default function SquarePost({
     captionText,
