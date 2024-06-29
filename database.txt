@@ -1,0 +1,96 @@
+users (collection)
+    - userId (document)
+    - username
+    - email
+    - fullName
+    - profilePicture
+    - bio
+    - followers (array or subcollection)   
+    - following (array or subcollection)   
+    - posts (array or subcollection)
+    - comments
+
+posts (collection)
+    - postId (document)
+    - userId (user who created the post)
+    - imageUrl [array]
+    - caption
+    - likes (user id, username, ava)
+    - like counts
+    - comments (userid, username, ava, comment, timestamp verified )
+    - comments counts
+    - timestamp
+    - verified
+
+
+comments (sub to post collection)    -> get Comments by postID
+  - postId (document)
+  - replies [ids]
+  - number of likes
+
+  - userId 
+  - username
+  - ava
+  - verified
+  - commentText
+  - timestamp
+
+
+reply comments (sub to post collection)    -> get Comments by postID
+  - postId (document)
+  - parentComment ID
+  - replyId (document)
+  - userId 
+  - username
+  - ava
+  - verified
+  - replyText
+  - timestamp
+  - number of likes
+
+
+likes (sub to post collection)            -> get Likes by postID
+  - postId (document)
+  - userId (user id, username, ava)
+  - username
+  - ava
+  - verified
+  - timestamp
+
+
+
+posts (collection)
+  - postId (document)
+    - userId (user who created the post)
+    - imageUrl [array]
+    - caption
+    - likes [array]
+    - like counts 0
+    - comments [array]
+    - comments counts 0
+    - timestamp
+    - verified false
+
+
+======================================================================================================
+TODO:
+Post Feed
+Like logic
+avatar change
+profile page
+comment logic
+
+-> loading
+======================================================================================================
+
+
+
+
+
+
+
+
+
+
+
+
